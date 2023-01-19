@@ -23,6 +23,7 @@
               "src/assets"
             ],
             "styles": [
+              "../node_modules/normalize.css/normalize.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -97,5 +98,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "2d05c543-694e-4134-873a-9b1562d5765c"
   }
 }

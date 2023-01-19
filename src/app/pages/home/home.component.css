@@ -1,0 +1,7 @@
+.pageHome{
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(#181818, #353535, #5D5E5D,#E8E9E8);
+}
