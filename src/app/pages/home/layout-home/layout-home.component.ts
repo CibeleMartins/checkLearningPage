@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, Input } from '@angular/core';
 
 @Component({
   selector: 'app-layout-home',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./layout-home.component.css']
 })
 export class LayoutHomeComponent implements OnInit {
+
+  @Input() image: string | undefined;
 
   constructor() { }
 

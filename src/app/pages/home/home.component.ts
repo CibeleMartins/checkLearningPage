@@ -9,6 +9,10 @@ import { TextAnimation } from 'ngx-teximate';
 })
 export class HomeComponent implements OnInit {
 
+  poster: string = "../../../../assets/poster.svg";
+  checkList: string = "";
+  learnerMethod: string = "";
+
   constructor() { }
 
   ngOnInit(): void {
