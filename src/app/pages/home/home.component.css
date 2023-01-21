@@ -38,6 +38,11 @@
  
 }
 
+#title-tablet {
+  width: 20%;
+  font-size: 30px;
+}
+
 #description {
   position: absolute;
   top: 55%;

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { fadeInDown, fadeInLeft } from 'ng-animate';
-import { TextAnimation } from 'ngx-teximate';
+// import { fadeInDown, fadeInLeft } from 'ng-animate';
+// import { TextAnimation } from 'ngx-teximate';
+
+import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-home',
@@ -13,9 +15,23 @@ export class HomeComponent implements OnInit {
   checkList: string = "";
   learnerMethod: string = "";
 
-  constructor() { }
+  sizeTitleInitialContent = false;
+
+  constructor(private breakpointService: BreakpointObserver) {
+    
+  }
 
   ngOnInit(): void {
+
+    this.breakpointService.observe(Breakpoints.Tablet).subscribe((result)=> {
+
+      this. sizeTitleInitialContent = false;
+
+      if (result.matches) {
+
+        this.sizeTitleInitialContent = true;
+      }
+    })
   }
 
 }
