@@ -1,11 +1,10 @@
-<svg width="650" height="770" viewBox="0 0 912 870" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<rect x="169" y="-30" width="864" height="850" rx="20" fill="#50F374"/>
-<rect y="452" width="509" height="418" fill="url(#pattern0)"/>
-<rect x="509.273" y="169" width="320" height="315" fill="url(#pattern1)"/>
-<line x1="174.534" y1="-10.8111" x2="471.534" y2="451.189" stroke="white" stroke-width="3"/>
-<line x1="925.075" y1="-8.73292" x2="697.803" y2="135.267" stroke="white" stroke-width="3"/>
-<line x1="925.075" y1="-8.73292" x2="697.803" y2="135.267" stroke="white" stroke-width="3"/>
-<line x1="923.479" y1="810.273" x2="761.479" y2="709.273" stroke="white" stroke-width="3"/>
+<svg width="933" height="914" viewBox="0 0 933 914" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<rect x="167" y="19" width="864" height="850" rx="20" fill="#50F374"/>
+<rect y="496" width="509" height="418" fill="url(#pattern0)"/>
+<rect x="509.273" y="213" width="320" height="315" fill="url(#pattern1)"/>
+<line x1="155.263" y1="1.19122" x2="471.536" y2="495.191" stroke="white" stroke-width="3"/>
+<line x1="953.85" y1="3.23606" x2="697.85" y2="179.236" stroke="white" stroke-width="3"/>
+<line x1="932.152" y1="870.237" x2="761.425" y2="753.237" stroke="white" stroke-width="3"/>
 <defs>
 <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
 <use xlink:href="#image0_0_1" transform="translate(0 -0.108852) scale(0.00222222 0.00270601)"/>

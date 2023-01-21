@@ -13,9 +13,12 @@ export class HomeComponent implements OnInit {
   poster: string = '../../../../assets/poster.svg';
   checkList: string = '';
   learnerMethod: string = '';
+  poster2: string = '../../../../assets/poster.svg';
 
+  // props css for elements
+  fontSizeTitle = '50px';
   sizeTitleInitialContent = '50%';
-  size2 = '100px';
+
 
   constructor(private breakpointService: BreakpointObserver) {}
 
@@ -24,14 +27,16 @@ export class HomeComponent implements OnInit {
       .observe([Breakpoints.Tablet, Breakpoints.XSmall])
       .subscribe((result) => {
         this.sizeTitleInitialContent = '50%';
-        this.size2 = '100px';
+        this.fontSizeTitle = '50px';
 
         if (result.breakpoints[Breakpoints.Tablet]) {
+          
+          this.fontSizeTitle = '10px';
           this.sizeTitleInitialContent = '0%';
         }
 
         if (result.breakpoints[Breakpoints.XSmall]) {
-          this.size2 = '50px';
+          this.fontSizeTitle = '20px';
         }
       });
   }
