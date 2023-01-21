@@ -12,7 +12,8 @@
   flex-direction: column;
 }
 
-#initial-content {
+.initial-content {
+  width: 50%;
   height: 100%;
   display: flex;
   justify-content: space-evenly;
@@ -22,17 +23,13 @@
 }
 
 .child-content {
+  align-items: flex-start;
   display: flex;
   flex-direction: row;
-  align-items: center;
-  position: absolute;
-  top: 30%;
-  left: 7%;
-
-
+  /* align-items: center; */
 }
 
-#title {
+.title {
   font-weight: 200;
   width: 50%;
   letter-spacing: 1px;
@@ -47,7 +44,7 @@
   font-size: 30px;
 }
 
-#description {
+.description {
   position: absolute;
   top: 55%;
   left: 7%;
@@ -55,7 +52,7 @@
   align-items: flex-start;
 }
 
-#register-action {
+.register-action {
   width: 10%;
   height: 10vh;
   position: absolute;
@@ -68,12 +65,12 @@
 
 }
 
-#register-image {
+.register-image {
   width: 70px;
 }
 
 
-#poster {
+.poster {
   width: 50%;
   height: 100vh;
   position: absolute;
@@ -81,3 +78,4 @@
   top: 10px;
   right: 0%;
 }
+

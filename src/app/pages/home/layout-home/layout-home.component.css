@@ -8,17 +8,20 @@
 .content {
   width: 50%;
   height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 7%;
 }
 
-/* #poster {
+.content-img {
   width: 50%;
-  height: 100vh;
-  position: absolute;
-  /* bottom: 3%; */
-  /* top: 10px;
-  right: 0%;
-} */ 
-
-#poster-tablet-phone {
-  white-space: 40%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
 }
+
+.poster {
+  width: 675px;
+  height: 100vh;
+}
+
