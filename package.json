@@ -21,6 +21,7 @@
     "@angular/router": "^14.2.0",
     "angular-animate": "^1.8.3",
     "angular-material": "^1.2.5",
+    "aos": "^2.3.4",
     "ng-animate": "^2.0.1",
     "ngx-teximate": "^0.3.0",
     "normalize.css": "^8.0.1",
