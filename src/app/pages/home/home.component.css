@@ -31,7 +31,7 @@
 .title {
   font-weight: 200;
   letter-spacing: 1px;
-  font-size: 7vh;
+  font-size: 5vw;
   white-space: normal;
   line-height: 1.5;
 }
@@ -43,6 +43,7 @@
 .description {
   letter-spacing: 1px;
   align-items: flex-start;
+  animation: paragraph-opacity ease-in-out 5s;
 }
 
 .register-action {
@@ -122,4 +123,18 @@
   
   /* transform: scale(1.08); */
   color: #50f374;
+}
+
+
+@keyframes paragraph-opacity  {
+
+  from {
+    opacity: 0;
+  }
+
+
+  to {
+    transition: ease-in-out 1s;
+    opacity: 1.5;
+  }
 }

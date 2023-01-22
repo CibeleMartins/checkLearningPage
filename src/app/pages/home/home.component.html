@@ -3,11 +3,23 @@
   <app-layout-home [image]="poster">
     <div class="initial-content">
       <div class="child-content">
-        <h1 class="title">Check Learning</h1>
-        <img id="logo" alt="logo" src="../../../assets/miniLogo.svg" />
+        <h1 class="title" data-aos="fade-right" data-aos-duration="1500">
+          Check Learning
+        </h1>
+        <img
+          data-aos="zoom-in-up"
+          data-aos-duration="1000"
+          id="logo"
+          alt="logo"
+          src="../../../assets/miniLogo.svg"
+        />
       </div>
 
-      <p class="description">Um site feito para VOCÊ aprender</p>
+      <p
+        class="description"
+      >
+        Um site feito para VOCÊ aprender!
+      </p>
 
       <button class="register-action" (click)="navigateToRegistration()">
         <img
@@ -21,15 +33,22 @@
 
   <!-- content 2 -->
   <app-layout-home [ngStyle]="{ marginTop: '15vh' }" [image]="poster">
-    <div data-aos="fade-right" class="initial-content-2">
-      <p>Um jeito diferente <br/> de registrar e <br/> checar</p>
+    <div class="initial-content-2">
+      <p data-aos="fade-right" data-aos-duration="2000">
+        Um jeito diferente <br />
+        de registrar e <br />
+        checar
+      </p>
     </div>
   </app-layout-home>
 
   <!-- content 3 -->
   <app-layout-home [ngStyle]="{ marginTop: '15vh' }" [image]="learnerMethod">
     <div class="initial-content-3">
-      <p id="your-learning">O seu <br/> aprendizado</p>
+      <p id="your-learning">
+        O seu <br />
+        aprendizado
+      </p>
 
       <div id="entry-button">
         <p>Entre</p>
