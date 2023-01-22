@@ -43,7 +43,7 @@
 .description {
   letter-spacing: 1px;
   align-items: flex-start;
-  animation: paragraph-opacity ease-in-out 5s;
+  animation: paragraph-opacity ease-in-out 3.5s;
 }
 
 .register-action {
@@ -124,7 +124,6 @@
   /* transform: scale(1.08); */
   color: #50f374;
 }
-
 
 @keyframes paragraph-opacity  {
 

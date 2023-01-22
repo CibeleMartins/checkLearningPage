@@ -34,19 +34,20 @@
   <!-- content 2 -->
   <app-layout-home [ngStyle]="{ marginTop: '15vh' }" [image]="poster">
     <div class="initial-content-2">
-      <p data-aos="fade-right" data-aos-duration="2000">
-        Um jeito diferente <br />
-        de registrar e <br />
-        checar
-      </p>
+       <p data-aos="fade-right" data-aos-duration="2000"> Um jeito diferente </p> 
+       <p data-aos="fade-right" data-aos-duration="300">de registrar e </p> 
+       <p data-aos="fade-right" data-aos-duration="2000">checar</p> 
+   
     </div>
   </app-layout-home>
 
   <!-- content 3 -->
   <app-layout-home [ngStyle]="{ marginTop: '15vh' }" [image]="learnerMethod">
     <div class="initial-content-3">
-      <p id="your-learning">
-        O seu <br />
+      <p data-aos="fade-right" data-aos-duration="15000" id="your-learning">
+        O seu 
+      </p>
+      <p data-aos="fade-right" data-aos-duration="2500" id="your-learning">
         aprendizado
       </p>
 
@@ -54,6 +55,8 @@
         <p>Entre</p>
         <button id="login-action" (click)="navigateLogin()">
           <img
+          data-aos="fade-right"
+          data-aos-duration="1500"
             class="register-image"
             alt="register"
             src="../../../assets/login.svg"
