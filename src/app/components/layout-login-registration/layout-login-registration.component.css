@@ -6,12 +6,15 @@
 }
 
 #navigator {
-    width: 6%;
+    width: 90px;
     background-color: #50f374;
     height: 100vh;
     border-radius: 10px;
     position: absolute;
     left: -10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 #register-logo-content {
@@ -32,4 +35,17 @@
     width: 60px;
     padding-left: 10px;
     cursor: pointer;
+}
+
+#miniPostIt {
+    width: 40px;
+    position: absolute;
+    left: 20px;
+    bottom: 100px;
+}
+
+#miniAnnotation {
+   position: absolute;
+   top: 609px;
+   left: 20px;
 }
