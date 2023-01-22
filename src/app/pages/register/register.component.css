@@ -1,0 +1,49 @@
+#title-register {
+    font-weight: 100;
+    letter-spacing: 1px;
+    line-height: 2.5;
+    font-size: 2vw;
+    white-space: nowrap;
+    padding-top: 2vw;
+}
+
+#forms-register {
+    display: flex;
+    flex-direction: column;
+    height: 40vw;
+    justify-content: space-evenly;
+    padding-top: 4vw;
+}
+
+.input-register {
+    width: 70%;
+    height: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    background-color: #fffacd;
+  }
+  
+  .input-register::placeholder {
+    color: black;
+    letter-spacing: 1px;
+    font-size: 1.1vw;
+  }
+
+  #register-action {
+    background-color: #50f374;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    width: 25%;
+    cursor: pointer;
+    margin-top: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #image-register-action {
+    width: 60%;
+  }

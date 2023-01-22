@@ -12,6 +12,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { LayoutHomeComponent } from './components/layout-home/layout-home.component';
 import { LayoutLoginRegistrationComponent } from './components/layout-login-registration/layout-login-registration.component';
 import { LoginComponent } from './pages/login/login.component';
+import { RegisterComponent } from './pages/register/register.component';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { LoginComponent } from './pages/login/login.component';
     LayoutHomeComponent,
     LayoutLoginRegistrationComponent,
     LoginComponent,
+    RegisterComponent,
 
    
   ],

@@ -22,4 +22,8 @@ export class HomeComponent implements OnInit {
   navigateLogin() {
     this.route.navigate(['/login'])
   }
+
+  navigateToRegistration() {
+    this.route.navigate(['/cadastro'])
+  }
 }

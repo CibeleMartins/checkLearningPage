@@ -27,12 +27,11 @@
 
 #logo {
   width: 60px;
-  padding-left: 10px;
+  cursor: pointer;
 }
 
 #register-action {
-  width: 60px;
-  padding-left: 10px;
+  width: 60px; 
   cursor: pointer;
 }
 
@@ -55,6 +54,7 @@
 .container-forms {
   display: flex;
   width: 30%;
+  height: 100vh;
   flex-direction: column;
   justify-content: center;
 }
