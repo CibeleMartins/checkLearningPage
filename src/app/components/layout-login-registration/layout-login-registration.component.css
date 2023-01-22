@@ -45,7 +45,8 @@
 }
 
 #miniAnnotation {
-   position: absolute;
-   top: 609px;
-   left: 20px;
+  display: flex;
+  align-items: flex-end;
+  width: 130px;
+  justify-content: flex-end;
 }
