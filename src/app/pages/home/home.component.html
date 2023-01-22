@@ -42,7 +42,7 @@
   </app-layout-home>
 
   <!-- content 3 -->
-  <app-layout-home [ngStyle]="{ marginTop: '15vh' }">
+  <app-layout-home [ngStyle]="{ marginTop: '15vh' }" [image]="learnerMethod">
     <div class="initial-content-3">
       <p data-aos="fade-right" data-aos-duration="15000" id="your-learning">
         O seu 
@@ -64,7 +64,10 @@
         </button>
       </div>
 
-      <p id="back-top">Ou volte ao topo e registre-se</p>
+      <p (click)="backToTop()" id="back-top">Ou volte ao topo e registre-se</p>
+      
     </div>
   </app-layout-home>
 </div>
+
+

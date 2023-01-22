@@ -11,9 +11,11 @@ import * as Aos from 'aos';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
+
   poster: string = '../../../../assets/poster.svg';
   checkList: string = '';
   learnerMethod: string = '../../../../assets/howToLearn.svg';
+  renderAnimatedText: boolean=true;
 
 
   constructor(private route: Router) {}
@@ -28,5 +30,12 @@ export class HomeComponent implements OnInit {
 
   navigateToRegistration() {
     this.route.navigate(['/cadastro'])
+  }
+
+  backToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    })
   }
 }

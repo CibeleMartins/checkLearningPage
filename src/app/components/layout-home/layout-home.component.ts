@@ -9,8 +9,6 @@ export class LayoutHomeComponent implements OnInit {
 
   @Input() image: string | undefined;
 
-  fluidSizePoster = false;
-
   constructor() { }
 
   ngOnInit(): void {
