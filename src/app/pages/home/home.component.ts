@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Router } from '@angular/router';
+import * as Aos from 'aos';
+
+
 
 @Component({
   selector: 'app-home',
@@ -16,7 +19,7 @@ export class HomeComponent implements OnInit {
   constructor(private route: Router) {}
 
   ngOnInit(): void {
-    
+    Aos.init();
   }
 
   navigateLogin() {
