@@ -3,7 +3,11 @@
     <div class="content">
         <ng-content></ng-content>
     </div>
-    <div class="content-img">
+    <div *ngIf="image">
         <img class="poster" src={{image}}/>
     </div>
+
+    <!-- <ng-template #ngContent>
+        <ng-content></ng-content>
+    </ng-template> -->
 </div>
