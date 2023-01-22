@@ -11,6 +11,7 @@ import { HomeComponent } from './pages/home/home.component';
 
 import { LayoutHomeComponent } from './components/layout-home/layout-home.component';
 import { LayoutLoginRegistrationComponent } from './components/layout-login-registration/layout-login-registration.component';
+import { LoginComponent } from './pages/login/login.component';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { LayoutLoginRegistrationComponent } from './components/layout-login-regi
     HomeComponent,
     LayoutHomeComponent,
     LayoutLoginRegistrationComponent,
+    LoginComponent,
 
    
   ],

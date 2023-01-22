@@ -1,0 +1,26 @@
+#forms-login {
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+  justify-content: space-evenly;
+}
+
+.input-login {
+  padding: 20px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  background-color: #fffacd;
+}
+
+.input-login::placeholder {
+  color: black;
+}
+
+#login-action {
+  background-color: #50f374;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  width: 30%;
+}
