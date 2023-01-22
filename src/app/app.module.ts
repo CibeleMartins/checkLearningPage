@@ -10,12 +10,16 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
 
 import { LayoutHomeComponent } from './components/layout-home/layout-home.component';
+import { LayoutLoginRegistrationComponent } from './components/layout-login-registration/layout-login-registration.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     LayoutHomeComponent,
+    LayoutLoginRegistrationComponent,
+
    
   ],
   imports: [
