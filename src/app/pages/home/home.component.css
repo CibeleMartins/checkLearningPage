@@ -82,7 +82,7 @@
 
 #your-learning {
 
-  font-size: 70px;
+  font-size: 5vw;
 }
 
 #entry-button {
@@ -108,7 +108,7 @@
   border-radius: 10px;
   background-color: #50f374;
   cursor: pointer;
-  margin-left: 40px;
+  margin-left: 10%;
 }
 
 #back-top {
