@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-// import { fadeInDown, fadeInLeft } from 'ng-animate';
-// import { TextAnimation } from 'ngx-teximate';
 
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -15,13 +13,13 @@ export class HomeComponent implements OnInit {
   learnerMethod: string = '../../../../assets/howToLearn.svg';
 
 
-  constructor() {}
+  constructor(private route: Router) {}
 
   ngOnInit(): void {
     
   }
 
   navigateLogin() {
-    
+    this.route.navigate(['/login'])
   }
 }

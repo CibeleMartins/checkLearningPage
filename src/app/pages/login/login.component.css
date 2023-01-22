@@ -5,6 +5,11 @@
   justify-content: space-evenly;
 }
 
+#title-login {
+    font-weight: 200;
+    letter-spacing: 1px;
+}
+
 .input-login {
   padding: 20px;
   border-radius: 10px;
@@ -15,6 +20,7 @@
 
 .input-login::placeholder {
   color: black;
+  letter-spacing: 1px;
 }
 
 #login-action {
@@ -22,5 +28,6 @@
   border-radius: 10px;
   border: none;
   outline: none;
-  width: 30%;
+  width: 25%;
+  cursor: pointer;
 }
