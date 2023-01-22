@@ -1,21 +1,48 @@
 <div class="pageHome">
-
+  <!-- content 1 -->
   <app-layout-home [image]="poster">
     <div class="initial-content">
       <div class="child-content">
         <h1 class="title">Check Learning</h1>
-        <img alt="logo" src="../../../assets/miniLogo.svg"/>
+        <img id="logo" alt="logo" src="../../../assets/miniLogo.svg" />
       </div>
 
-      <p id="description">Um site feito para VOCÊ aprender</p>
+      <p class="description">Um site feito para VOCÊ aprender</p>
 
-      <button
-      class="register-action">
-        <img class="register-image" alt="register" src="../../../assets//register.svg"/>
+      <button class="register-action">
+        <img
+          class="register-image"
+          alt="register"
+          src="../../../assets//register.svg"
+        />
       </button>
     </div>
   </app-layout-home>
 
+  <!-- content 2 -->
+  <app-layout-home [ngStyle]="{ marginTop: '15vh' }" [image]="poster">
+    <div class="initial-content-2">
+      <p>Um jeito diferente <br/> de registrar e <br/> checar</p>
+    </div>
+  </app-layout-home>
 
-  
+  <!-- content 3 -->
+  <app-layout-home [ngStyle]="{ marginTop: '15vh' }" [image]="poster">
+    <div class="initial-content-3">
+      <p id="your-learning">O seu <br/> aprendizado</p>
+
+      <div id="entry-button">
+        <p>Entre</p>
+        <button id="login-action">
+          <img
+            class="register-image"
+            alt="register"
+            src="../../../assets//register.svg"
+          />
+        </button>
+      </div>
+
+      <p id="back-top">Ou volte ao topo e registre-se</p>
+    </div>
+  </app-layout-home>
 </div>

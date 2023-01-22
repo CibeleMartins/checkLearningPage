@@ -1,6 +1,6 @@
 .pageHome {
   width: 100%;
-  height: 100vh;
+  height: 100%;
   /* background: rgb(53, 53, 53);
   background: radial-gradient(
     circle,
@@ -14,68 +14,112 @@
 
 .initial-content {
   width: 50%;
-  height: 100%;
+  height: 60%;
   display: flex;
   justify-content: space-evenly;
-  align-items: center;
+  /* align-items: center; */
   flex-direction: column;
   align-items: flex-start;
 }
 
 .child-content {
-  align-items: flex-start;
   display: flex;
   flex-direction: row;
-  /* align-items: center; */
+  justify-content: space-between;
 }
 
 .title {
   font-weight: 200;
-  width: 50%;
   letter-spacing: 1px;
   font-size: 7vh;
   white-space: normal;
   line-height: 1.5;
- 
 }
 
-#title-tablet-phone {
-  width: 30%;
-  font-size: 30px;
+#logo {
+  margin-left: 40px;
 }
 
 .description {
-  position: absolute;
-  top: 55%;
-  left: 7%;
   letter-spacing: 1px;
   align-items: flex-start;
 }
 
 .register-action {
-  width: 10%;
+  width: 35%;
   height: 10vh;
-  position: absolute;
-  top: 63%;
-  left: 7%;
   border: none;
   outline: none;
   border-radius: 10px;
-  background-color: #50F374 ;
-
+  background-color: #50f374;
+  cursor: pointer;
 }
 
 .register-image {
   width: 70px;
 }
 
-
-.poster {
-  width: 50%;
-  height: 100vh;
-  position: absolute;
-  /* bottom: 3%; */
-  top: 10px;
-  right: 0%;
+/* conntent 2 */
+.initial-content-2 p {
+  font-size: 70px;
+  letter-spacing: 1px;
+  white-space: inherit;
+  line-height: 1.5;
 }
 
+/* content 3 */
+.initial-content-3 {
+  display: flex;
+  height: 70%;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.initial-content-3{
+
+  font-size: 30px ;
+}
+
+#your-learning {
+
+  font-size: 70px;
+}
+
+#entry-button {
+  display: flex;
+  /* flex-direction: column; */
+
+  align-items: center;
+  height: 100px;
+
+}
+
+#entry-button p {
+
+  font-size: 70px;
+  
+}
+
+#login-action {
+  width: 25%;
+  height: 10vh;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  background-color: #50f374;
+  cursor: pointer;
+  margin-left: 40px;
+}
+
+#back-top {
+  font-size: 25px;
+  cursor: pointer;
+  transition: color 300ms linear;
+
+}
+
+#back-top:hover {
+  
+  /* transform: scale(1.08); */
+  color: #50f374;
+}
