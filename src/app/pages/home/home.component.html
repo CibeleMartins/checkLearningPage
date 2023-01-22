@@ -27,13 +27,13 @@
   </app-layout-home>
 
   <!-- content 3 -->
-  <app-layout-home [ngStyle]="{ marginTop: '15vh' }" [image]="poster">
+  <app-layout-home [ngStyle]="{ marginTop: '15vh' }" [image]="learnerMethod">
     <div class="initial-content-3">
       <p id="your-learning">O seu <br/> aprendizado</p>
 
       <div id="entry-button">
         <p>Entre</p>
-        <button id="login-action">
+        <button id="login-action" (click)="navigateLogin()">
           <img
             class="register-image"
             alt="register"

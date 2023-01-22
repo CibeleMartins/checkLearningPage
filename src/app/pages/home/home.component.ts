@@ -12,32 +12,16 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 export class HomeComponent implements OnInit {
   poster: string = '../../../../assets/poster.svg';
   checkList: string = '';
-  learnerMethod: string = '';
-  poster2: string = '../../../../assets/poster.svg';
-
-  // props css for elements
-  fontSizeTitle = '50px';
-  sizeTitleInitialContent = '50%';
+  learnerMethod: string = '../../../../assets/howToLearn.svg';
 
 
-  constructor(private breakpointService: BreakpointObserver) {}
+  constructor() {}
 
   ngOnInit(): void {
-    this.breakpointService
-      .observe([Breakpoints.Tablet, Breakpoints.XSmall])
-      .subscribe((result) => {
-        this.sizeTitleInitialContent = '50%';
-        this.fontSizeTitle = '50px';
+    
+  }
 
-        if (result.breakpoints[Breakpoints.Tablet]) {
-          
-          this.fontSizeTitle = '10px';
-          this.sizeTitleInitialContent = '0%';
-        }
-
-        if (result.breakpoints[Breakpoints.XSmall]) {
-          this.fontSizeTitle = '20px';
-        }
-      });
+  navigateLogin() {
+    
   }
 }
