@@ -6,6 +6,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { NgMaterialModule } from './ng-material/ng-material.module';
+
 import { TeximateModule } from 'ngx-teximate';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -35,7 +37,8 @@ import { RegisterComponent } from './pages/register/register.component';
     AppRoutingModule,
     TeximateModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgMaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]
