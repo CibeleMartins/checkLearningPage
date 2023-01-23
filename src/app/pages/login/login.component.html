@@ -1,9 +1,9 @@
 <app-layout-login-registration>
     <p id="title-login">Seja bem-vindo!</p>
     
-    <form id="forms-login">
-        <input class="input-login" placeholder="E-mail" type="email">
-        <input class="input-login"  placeholder="Senha" type="password">
+    <form [formGroup]="signupForm" id="forms-login">
+        <input formControlName="userEmail" class="input-login" placeholder="E-mail" type="email">
+        <input formControlName="userPassword" class="input-login"  placeholder="Senha" type="password">
 
         <button id="login-action">
             <img id="login-register-action" src="../../../assets//login.svg" alt="signup"/>

@@ -9,14 +9,15 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
-  signupForm: FormGroup | undefined;
+  signupForm!: FormGroup ;
 
   constructor() { }
 
   ngOnInit(): void {
 
     this.signupForm = new FormGroup({
-      'userEmail': new FormControl()
+      'userEmail': new FormControl(),
+      'userPassword': new FormControl()
     })
   }
 
