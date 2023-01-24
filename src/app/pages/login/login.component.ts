@@ -8,7 +8,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  @Output() evento = new EventEmitter<any>();
+
 
   signupForm!: FormGroup;
   viewSnackbar: boolean = false;
@@ -24,8 +24,7 @@ export class LoginComponent implements OnInit {
 
   signUp() {
     if (this.signupForm.get('userEmail')?.invalid && this.signupForm.get('userEmail')?.invalid) {
-      this.evento.emit(true)
-      console.log('sgsdgsd')
+        this.viewSnackbar = true
     }
   }
 }
