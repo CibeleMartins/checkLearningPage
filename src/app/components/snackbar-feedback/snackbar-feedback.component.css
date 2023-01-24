@@ -1,17 +1,19 @@
-.container-snackbar {
+.container-snackbar-invalid {
     display: flex;
     flex-direction: row-reverse;
     align-items: center;
     background-color: white;
-    border-radius: 10px;
+    border-radius: 6px;
+    border-top: solid 3px red ;
 }
 
-.content-feedback-invalid {
-
-    /* background-color: #50f374; */
+.content-feedback {
+    
     border-radius: 10px;
     width: 10%;
     background-color: white;
+    color: black;
+    letter-spacing: 1px;
 }
 
 
@@ -26,3 +28,14 @@ button {
     align-items: center;
     justify-content: center;
 }
+
+.container-snackbar-success {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    background-color: white;
+    border-radius: 6px;
+    border-top: solid 3px #50f374 ;
+}
+
+
