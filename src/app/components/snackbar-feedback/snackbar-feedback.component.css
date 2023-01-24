@@ -2,4 +2,27 @@
     display: flex;
     flex-direction: row-reverse;
     align-items: center;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.content-feedback-invalid {
+
+    /* background-color: #50f374; */
+    border-radius: 10px;
+    width: 10%;
+    background-color: white;
+}
+
+
+button {
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    width: 70%;
+    padding: 5px;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
