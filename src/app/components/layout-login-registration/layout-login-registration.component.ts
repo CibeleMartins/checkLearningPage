@@ -20,6 +20,7 @@ import { SnackBarService } from 'src/app/services/SnackbarFeedback.service';
 })
 export class LayoutLoginRegistrationComponent implements OnInit, OnChanges {
   @Input() viewSnackbar!: boolean;
+  @Input() message!: string;
 
   constructor(private feedbackService: SnackBarService) {}
 
@@ -30,7 +31,7 @@ export class LayoutLoginRegistrationComponent implements OnInit, OnChanges {
     // console.log(changes);
     // console.log(this.viewSnackbar);
     if (this.viewSnackbar) {
-      this.feedbackService.openSnackBar(null, null, null, "Algum campo do formulário inválido.")
+      this.feedbackService.openSnackBar(null, null, null, this.message)
   
     }
   }
