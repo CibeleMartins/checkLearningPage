@@ -1,7 +1,7 @@
 <app-layout-login-registration>
     <p id="title-login">Seja bem-vindo!</p>
     
-    <form [formGroup]="signupForm" id="forms-login">
+    <form [formGroup]="signupForm" id="forms-login" (ngSubmit)="signUp()">
         <input formControlName="userEmail" class="input-login" placeholder="E-mail" type="email">
         <input formControlName="userPassword" class="input-login"  placeholder="Senha" type="password">
 
@@ -9,5 +9,5 @@
             <img id="login-register-action" src="../../../assets//login.svg" alt="signup"/>
         </button>
     </form>
-
 </app-layout-login-registration>
+

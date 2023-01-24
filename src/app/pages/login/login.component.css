@@ -43,3 +43,8 @@
 #login-register-action {
   width: 60%;
 }
+
+.snack-style {
+  position: absolute;
+  background-color: red;
+}
