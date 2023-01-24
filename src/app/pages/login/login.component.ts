@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
 
   signUp() {
     if (this.signupForm.get('userEmail')?.invalid && this.signupForm.get('userEmail')?.invalid) {
-        this.viewSnackbar = true
+        this.viewSnackbar = !this.viewSnackbar
     }
   }
 }

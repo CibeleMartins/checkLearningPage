@@ -22,11 +22,15 @@ export class SnackBarService {
     data?: string
   ) {
     this.snackBar.openFromComponent(SnackbarFeedbackComponent, {
-    data: data,
+      data: data,
       duration: 5000,
       horizontalPosition: hPosition ? hPosition : 'end',
       verticalPosition: vPosition ? vPosition : 'top',
       panelClass: style,
     });
+  }
+
+  closeSnackbar() {
+    this.snackBar.dismiss();
   }
 }

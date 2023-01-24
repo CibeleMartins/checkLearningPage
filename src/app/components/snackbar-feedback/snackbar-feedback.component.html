@@ -1,6 +1,11 @@
-<span class="example-pizza-party" matSnackBarLabel>
-    Pizza party!!!
-  </span>
+
+<div class="container-snackbar">
   <span matSnackBarActions>
-    <button mat-button matSnackBarAction>🍕</button>
+    <button mat-button matSnackBarAction (click)="close()">X</button>
   </span>
+  
+  <span class="example-pizza-party" matSnackBarLabel>
+      {{data}}
+  </span>
+</div>
+

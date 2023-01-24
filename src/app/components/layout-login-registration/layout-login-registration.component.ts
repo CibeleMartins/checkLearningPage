@@ -5,12 +5,13 @@ import {
   OnChanges,
   SimpleChanges,
 } from '@angular/core';
+import { SnackBarService } from 'src/app/services/SnackbarFeedback.service';
 
-import {
-  MatSnackBar,
-  MatSnackBarHorizontalPosition,
-  MatSnackBarVerticalPosition,
-} from '@angular/material/snack-bar';
+// import {
+//   MatSnackBar,
+//   MatSnackBarHorizontalPosition,
+//   MatSnackBarVerticalPosition,
+// } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-layout-login-registration',
@@ -20,7 +21,7 @@ import {
 export class LayoutLoginRegistrationComponent implements OnInit, OnChanges {
   @Input() viewSnackbar!: boolean;
 
-  constructor(private _snackBar: MatSnackBar) {}
+  constructor(private feedbackService: SnackBarService) {}
 
   ngOnInit(): void {
   }
@@ -29,10 +30,7 @@ export class LayoutLoginRegistrationComponent implements OnInit, OnChanges {
     // console.log(changes);
     // console.log(this.viewSnackbar);
     if (this.viewSnackbar) {
-      this._snackBar.open('Cannonball!!', 'Splash', {
-        horizontalPosition: 'end',
-        verticalPosition: 'top',
-      });
+      this.feedbackService.openSnackBar(null, null, null, "Algum campo do formulário inválido.")
   
     }
   }
