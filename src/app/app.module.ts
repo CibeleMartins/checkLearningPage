@@ -17,6 +17,7 @@ import { LayoutLoginRegistrationComponent } from './components/layout-login-regi
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { SnackbarFeedbackComponent } from './components/snackbar-feedback/snackbar-feedback.component';
 
 
 
@@ -28,6 +29,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     LayoutLoginRegistrationComponent,
     LoginComponent,
     RegisterComponent,
+    SnackbarFeedbackComponent,
 
    
   ],

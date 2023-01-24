@@ -23,18 +23,17 @@ export class LayoutLoginRegistrationComponent implements OnInit, OnChanges {
   constructor(private _snackBar: MatSnackBar) {}
 
   ngOnInit(): void {
-    console.log(this.viewSnackbar);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes);
-    console.log(this.viewSnackbar);
+    // console.log(changes);
+    // console.log(this.viewSnackbar);
     if (this.viewSnackbar) {
       this._snackBar.open('Cannonball!!', 'Splash', {
         horizontalPosition: 'end',
         verticalPosition: 'top',
       });
-      console.log('dsdgsdgs');
+  
     }
   }
 }
