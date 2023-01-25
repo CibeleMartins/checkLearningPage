@@ -55,17 +55,12 @@ export class RegisterComponent implements OnInit {
         this.viewSnackbar = !this.viewSnackbar;
         this.messageSnackBar = 'O nome completo muito pequeno.';
         this.warningIcon = '../../../assets//warningIcon.png';
-        // return{'minLengthPasswordError': true}
       }
     }, 1500);
-
-    // console.log(control);
-
     return null;
   }
 
   emailValidator(control: FormControl): { [s: string]: boolean } {
-    // console.log(control)
     if (
       control.value &&
       control.errors &&
@@ -75,10 +70,8 @@ export class RegisterComponent implements OnInit {
       this.viewSnackbar = !this.viewSnackbar;
       this.messageSnackBar = 'E-mail inválido.';
       this.warningIcon = '../../../assets//warningIcon.png';
-
       return { emailInvalid: true };
     }
-
     return null;
   }
 
@@ -89,30 +82,13 @@ export class RegisterComponent implements OnInit {
         this.messageSnackBar = 'Senha muito pequena.';
         this.warningIcon = '../../../assets//warningIcon.png';
       }
-
       this.password = control.value;
     }, 1500);
 
     return null;
   }
 
-  // verifyPasswordEquals() {
-  //   if(this.registerForm.get('confirmationPassword').value !== this.registerForm.get('password').value) {
-  //     this.viewSnackbar = !this.viewSnackbar;
-  //     this.messageSnackBar = 'As senhas não estão iguais.';
-  //     this.warningIcon = '../../../assets//warningIcon.png';
-  //     return {'confirmationPasswordInvalid': true };
-  //   }
-
-  //   return {};
-  // }
-
-  confirmationPasswordValidator(control: FormControl): {
-    [s: string]: boolean;
-  } {
-    console.log(control);
-    // console.log(this.registerForm.get('password').value)
-
+  confirmationPasswordValidator(control: FormControl): {[s: string]: boolean;} {
     if (control.value !== this.password && this.password.length > 0) {
       this.viewSnackbar = !this.viewSnackbar;
       this.messageSnackBar = 'As senhas não estão iguais.';
@@ -121,14 +97,11 @@ export class RegisterComponent implements OnInit {
     } else {
       return null;
     }
-
-    // this.verifyPasswordEquals();
   }
 
   onRegister() {
     if (this.registerForm.invalid) {
       let invalidControls: any = [];
-
       let key!: string;
 
       for (key in this.registerForm.controls) {
