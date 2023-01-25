@@ -7,67 +7,63 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnChanges {
   signupForm!: FormGroup;
   viewSnackbar: boolean = false;
   messageSnackBar!: string;
   warningIcon!: string;
-  
+
   constructor() {}
 
   ngOnInit(): void {
     this.signupForm = new FormGroup({
       userEmail: new FormControl(
         null,
-        [Validators.required, Validators.email, this.emailValidator.bind(this)],
+        [Validators.required, this.emailValidator.bind(this)],
         null
       ),
-      userPassword: new FormControl(null, Validators.minLength(6)),
+      userPassword: new FormControl(null, [
+        Validators.required,
+        this.passwordValidator.bind(this),
+      ]),
     });
     console.log(this.signupForm);
   }
 
-  emailValidator(control: FormControl): { [s: string]: boolean } {
-    if (control.value && control.value.includes('@') === false) {
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes);
+  }
 
+  emailValidator(control: FormControl): { [s: string]: boolean } {
+    // console.log(control)
+    if (
+      control.value &&
+      control.value.length > 5 &&
+      control.value.includes('@') === false
+    ) {
       this.viewSnackbar = !this.viewSnackbar;
       this.messageSnackBar = 'E-mail inválido.';
-      this.warningIcon = "../../../assets//warningIcon.png"
+      this.warningIcon = '../../../assets//warningIcon.png';
 
-      return {'emailInvalid': true}
+      return { emailInvalid: true };
     }
 
     return null;
   }
 
-  signUp() {
-    if (
-      // this.signupForm.get('userEmail')?.invalid &&
-      // this.signupForm.get('userPassword')?.invalid &&
-      // this.signupForm.get('userEmail')?.touched &&
-      // this.signupForm.get('userPassword')?.touched
-      this.signupForm.invalid ||
-      (this.signupForm.get('userPassword')?.invalid &&
-        this.signupForm.get('userPassword')?.touched &&
-        this.signupForm.get('userEmail')?.invalid &&
-        this.signupForm.get('userEmail')?.touched)
-    ) {
-      this.viewSnackbar = !this.viewSnackbar;
-      this.messageSnackBar = 'Campos do formulário inválidos.';
-    }
+  passwordValidator(control: FormControl): { [s: string]: boolean } {
+    setTimeout(() => {
+      if (control.value && control.value.length < 6) {
+        this.viewSnackbar = !this.viewSnackbar;
+        this.messageSnackBar = 'Senha inválida.';
+        this.warningIcon = '../../../assets//warningIcon.png';
+      }
+    }, 3000);
 
-    // if (
-    //   this.signupForm.get('userEmail')?.invalid &&
-    //   this.signupForm.get('userEmail')?.touched) {
-    //   this.viewSnackbar = !this.viewSnackbar;
-    //   this.messageSnackBar = 'E-mail inválido.';
-    // }
-    // if (
-    //   this.signupForm.get('userPassword')?.invalid &&
-    //   this.signupForm.get('userPassword')?.touched
-    // ) {
-    //   this.viewSnackbar = !this.viewSnackbar;
-    //   this.messageSnackBar = 'Senha inválida.';
-    // }
+    return null;
+  }
+
+  signUp() {
+    // console.log(this.signupForm)
   }
 }

@@ -24,7 +24,7 @@ export class SnackBarService {
   ) {
     this.snackBar.openFromComponent(SnackbarFeedbackComponent, {
       data: [data, icon],
-      // duration: 2000,
+      duration: 1000,
       horizontalPosition: hPosition ? hPosition : 'end',
       verticalPosition: vPosition ? vPosition : 'top',
       panelClass: style,
