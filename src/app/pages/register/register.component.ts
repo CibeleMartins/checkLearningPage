@@ -1,10 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  EmailValidator,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -13,10 +8,11 @@ import {
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
-  signupForm!: FormGroup;
   viewSnackbar: boolean = false;
   messageSnackBar!: string;
   warningIcon!: string;
+
+  private password = '';
 
   constructor() {}
 
@@ -38,25 +34,31 @@ export class RegisterComponent implements OnInit {
       ),
       password: new FormControl(
         '',
-        [Validators.required, Validators.minLength(6), this.passwordValidator.bind(this)],
+        [
+          Validators.required,
+          Validators.minLength(6),
+          this.passwordValidator.bind(this),
+        ],
         null
       ),
-      confirmationPassword: new FormControl('', [Validators.required], null),
+      confirmationPassword: new FormControl(
+        '',
+        [Validators.required, this.confirmationPasswordValidator.bind(this)],
+        null
+      ),
     });
   }
 
   completeNameValidator(control: FormControl): { [s: string]: boolean } {
-   const timeout = setTimeout(() => {
+    const timeout = setTimeout(() => {
       if (control.value && control.errors) {
         this.viewSnackbar = !this.viewSnackbar;
         this.messageSnackBar = 'O nome completo muito pequeno.';
         this.warningIcon = '../../../assets//warningIcon.png';
         // return{'minLengthPasswordError': true}
       }
+    }, 1500);
 
-    }, 3000);
-
- 
     // console.log(control);
 
     return null;
@@ -64,7 +66,12 @@ export class RegisterComponent implements OnInit {
 
   emailValidator(control: FormControl): { [s: string]: boolean } {
     // console.log(control)
-    if (control.value && control.errors && control.errors['email']) {
+    if (
+      control.value &&
+      control.errors &&
+      control.errors['email'] &&
+      control.value.length > 4
+    ) {
       this.viewSnackbar = !this.viewSnackbar;
       this.messageSnackBar = 'E-mail inválido.';
       this.warningIcon = '../../../assets//warningIcon.png';
@@ -82,8 +89,83 @@ export class RegisterComponent implements OnInit {
         this.messageSnackBar = 'Senha muito pequena.';
         this.warningIcon = '../../../assets//warningIcon.png';
       }
-    }, 3000);
+
+      this.password = control.value;
+    }, 1500);
 
     return null;
+  }
+
+  // verifyPasswordEquals() {
+  //   if(this.registerForm.get('confirmationPassword').value !== this.registerForm.get('password').value) {
+  //     this.viewSnackbar = !this.viewSnackbar;
+  //     this.messageSnackBar = 'As senhas não estão iguais.';
+  //     this.warningIcon = '../../../assets//warningIcon.png';
+  //     return {'confirmationPasswordInvalid': true };
+  //   }
+
+  //   return {};
+  // }
+
+  confirmationPasswordValidator(control: FormControl): {
+    [s: string]: boolean;
+  } {
+    console.log(control);
+    // console.log(this.registerForm.get('password').value)
+
+    if (control.value !== this.password && this.password.length > 0) {
+      this.viewSnackbar = !this.viewSnackbar;
+      this.messageSnackBar = 'As senhas não estão iguais.';
+      this.warningIcon = '../../../assets//warningIcon.png';
+      return { confirmationPasswordInvalid: true };
+    } else {
+      return null;
+    }
+
+    // this.verifyPasswordEquals();
+  }
+
+  onRegister() {
+    if (this.registerForm.invalid) {
+      let invalidControls: any = [];
+
+      let key!: string;
+
+      for (key in this.registerForm.controls) {
+        if (this.registerForm.controls[key].errors !== null) {
+          invalidControls.push({
+            error: this.registerForm.controls[key].errors !== null,
+            nameControl: key,
+          });
+        }
+      }
+
+      const controlsWithError = invalidControls
+        .map((c: any) => {
+          if (c.nameControl && c.nameControl.toLowerCase().includes('name')) {
+            return (c.nameControl = 'Nome completo');
+          } else if (c.nameControl.toLowerCase().includes('email')) {
+            return (c.nameControl = 'E-mail');
+          } else if(!!c.nameControl.toLowerCase().includes('password') && c.nameControl.toLowerCase().includes('confirmation')) {
+            return (c.nameControl = 'Confirmação de senha');
+          } else {
+            return (c.nameControl = 'Senha');
+          }
+        })
+        .join(' - ');
+
+      this.viewSnackbar = !this.viewSnackbar;
+      this.messageSnackBar =
+        'Campos do formulário inválidos. ' + controlsWithError;
+      this.warningIcon = '../../../assets//warningIcon.png';
+
+      console.log(this.registerForm);
+    } else {
+      this.registerForm.reset();
+      this.viewSnackbar = !this.viewSnackbar;
+      this.messageSnackBar = 'Cadastro realizado com sucesso!';
+      this.warningIcon = '../../../assets//successIcon.png';
+      console.log(this.registerForm);
+    }
   }
 }
