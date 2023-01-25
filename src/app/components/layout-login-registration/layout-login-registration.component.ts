@@ -25,6 +25,7 @@ export class LayoutLoginRegistrationComponent implements OnInit, OnChanges {
   constructor(private feedbackService: SnackBarService) {}
 
   ngOnInit(): void {
+ 
   }
 
   ngOnChanges(changes: SimpleChanges): void {

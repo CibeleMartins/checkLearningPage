@@ -48,3 +48,15 @@
   position: absolute;
   background-color: red;
 }
+
+#warning-icon {
+  width: 30px;
+}
+
+span {
+  height: 20px;
+  width: 53%;
+  align-items: center;
+  display: flex;
+  justify-content: space-evenly;
+}
