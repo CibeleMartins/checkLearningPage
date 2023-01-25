@@ -6,6 +6,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
 })
+
+
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   viewSnackbar: boolean = false;
