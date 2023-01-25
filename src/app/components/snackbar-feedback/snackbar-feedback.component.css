@@ -1,6 +1,6 @@
 .container-snackbar-invalid {
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: row;
     align-items: center;
     background-color: white;
     border-radius: 6px;
@@ -10,24 +10,15 @@
 .content-feedback {
     
     border-radius: 10px;
-    width: 15%;
+    width: 20%;
     background-color: white;
     color: black;
     letter-spacing: 1px;
     display: flex;
     align-items: center;
-    /* justify-content: space-evenly; */
-}
-.content-button {
-    
-    border-radius: 10px;
-    width: 15%;
-    background-color: white;
-    color: black;
-    letter-spacing: 1px;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
+    justify-content: center;
+    white-space: nowrap;
+  
 }
 
 
@@ -35,25 +26,18 @@ button {
     border: none;
     outline: none;
     border-radius: 10px;
-    width: 70%;
+    width: 50%;
+    height: 30px;
     padding: 5px;
     font-size: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.container-snackbar-success {
-    display: flex;
-    flex-direction: row-reverse;
-    align-items: center;
-    background-color: white;
-    border-radius: 6px;
-    border-top: solid 3px #50f374 ;
+    background-color: #50f374 ;
 }
 
 
-.warning-icon {
+.icon {
     width: 30px;
-    margin-right: 20px;
+    padding-left: 20px;
 }

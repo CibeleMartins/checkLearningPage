@@ -17,12 +17,12 @@ export class LoginComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     this.signupForm = new FormGroup({
-      userEmail: new FormControl(
+      'userEmail': new FormControl(
         null,
         [Validators.required, this.emailValidator.bind(this)],
         null
       ),
-      userPassword: new FormControl(null, [
+      'userPassword': new FormControl(null, [
         Validators.required,
         this.passwordValidator.bind(this),
       ]),
@@ -64,6 +64,16 @@ export class LoginComponent implements OnInit, OnChanges {
   }
 
   signUp() {
-    // console.log(this.signupForm)
+    if (this.signupForm.invalid) {
+      this.viewSnackbar = !this.viewSnackbar;
+      this.messageSnackBar = 'Campos do formulário inválidos.';
+      this.warningIcon = '../../../assets//warningIcon.png';
+    } else {
+      this.viewSnackbar = !this.viewSnackbar;
+      this.messageSnackBar = 'Login realizado com sucesso!';
+      this.warningIcon = '../../../assets//successIcon.png';
+    }
+
+    
   }
 }

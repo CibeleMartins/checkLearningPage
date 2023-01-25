@@ -10,7 +10,7 @@
 
 .mdc-snackbar__surface.ng-tns-c95-0 {
     padding-right: 0px;
-    border-radius: 10px;   
+    border-radius: 20px;   
     background-color: white;
     position: absolute;
     right: 1vw;
@@ -19,6 +19,6 @@
 
 .mat-mdc-snack-bar-container {
     --mdc-snackbar-container-color: #ffff;
-    border-radius: 10px;
+    border-radius: 20px;
    
 }
