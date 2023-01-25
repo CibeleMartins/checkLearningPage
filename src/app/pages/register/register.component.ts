@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-
+import emailjs, { EmailJSResponseStatus } from '@emailjs/browser';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -133,11 +133,16 @@ export class RegisterComponent implements OnInit {
       this.messageSnackBar ='Campos do formulário inválidos. ' + controlsWithError;
       this.warningIcon = '../../../assets//warningIcon.png';
     } else {
-      this.registerForm.reset();
+
+
       this.viewSnackbar = !this.viewSnackbar;
       this.messageSnackBar = 'Cadastro realizado com sucesso!';
       this.warningIcon = '../../../assets//successIcon.png';
-      console.log(this.registerForm);
+      // console.log(this.registerForm);
+
+      setTimeout(()=>{
+        this.registerForm.reset()
+      }, 2000)
     }
   }
 }
