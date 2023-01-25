@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import emailjs, { EmailJSResponseStatus } from '@emailjs/browser';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -13,6 +14,10 @@ export class RegisterComponent implements OnInit {
   viewSnackbar: boolean = false;
   messageSnackBar!: string;
   warningIcon!: string;
+
+  private readonly apiKey = environment.publicKeyEmailJs
+  private readonly idService = environment.idServiceEmailJs
+  private readonly template = environment.templateEmailJs
 
   private password = '';
 
@@ -50,6 +55,7 @@ export class RegisterComponent implements OnInit {
       ),
     });
   }
+
 
   completeNameValidator(control: FormControl): { [s: string]: boolean } {
     const timeout = setTimeout(() => {
@@ -134,6 +140,15 @@ export class RegisterComponent implements OnInit {
       this.warningIcon = '../../../assets//warningIcon.png';
     } else {
 
+     const templateParams = {
+        to_name: "Check Learning",
+        from_name: this.registerForm.get('completeName').value,
+        message: "Estamos muito felizes em ter você com a gente! Esperamos que aproveite ao máximo o método de registro e checagem de aprendizado que a Check Learning desenvolveu pensando em você e no seu futuro!",
+        emailUser:this.registerForm.get('email').value
+      }
+      
+      emailjs.send(this.idService, this.template, templateParams, this.apiKey).then(response => {
+        console.log("Email enviado com sucesso!", response.status, response.text)}).catch((error)=> console.log(error))
 
       this.viewSnackbar = !this.viewSnackbar;
       this.messageSnackBar = 'Cadastro realizado com sucesso!';
