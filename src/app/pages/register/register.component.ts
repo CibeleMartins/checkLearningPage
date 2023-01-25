@@ -97,7 +97,7 @@ export class RegisterComponent implements OnInit {
   }
 
   confirmationPasswordValidator(control: FormControl): {[s: string]: boolean;} {
-    if (control.value !== this.password && this.password.length > 0) {
+    if (control.value && control.value !== this.password) {
       this.viewSnackbar = !this.viewSnackbar;
       this.messageSnackBar = 'As senhas não estão iguais.';
       this.warningIcon = '../../../assets//warningIcon.png';
@@ -151,7 +151,7 @@ export class RegisterComponent implements OnInit {
         console.log("Email enviado com sucesso!", response.status, response.text)}).catch((error)=> console.log(error))
 
       this.viewSnackbar = !this.viewSnackbar;
-      this.messageSnackBar = 'Cadastro realizado com sucesso!';
+      this.messageSnackBar = 'Cadastro realizado com sucesso! Enviamos um e-mail para você.';
       this.warningIcon = '../../../assets//successIcon.png';
       // console.log(this.registerForm);
 
