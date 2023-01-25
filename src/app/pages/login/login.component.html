@@ -1,4 +1,4 @@
-<app-layout-login-registration [viewSnackbar]="viewSnackbar" [message]="messageSnackBar">
+<app-layout-login-registration [viewSnackbar]="viewSnackbar" [message]="messageSnackBar" [icon]="warningIcon">
     <p id="title-login">Seja bem-vindo!</p>
     
     <form [formGroup]="signupForm" id="forms-login" (ngSubmit)="signUp()">

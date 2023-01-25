@@ -4,16 +4,30 @@
     align-items: center;
     background-color: white;
     border-radius: 6px;
-    border-top: solid 3px red ;
+    /* border-top: solid 3px red ; */
 }
 
 .content-feedback {
     
     border-radius: 10px;
-    width: 10%;
+    width: 15%;
     background-color: white;
     color: black;
     letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    /* justify-content: space-evenly; */
+}
+.content-button {
+    
+    border-radius: 10px;
+    width: 15%;
+    background-color: white;
+    color: black;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
 }
 
 
@@ -39,3 +53,7 @@ button {
 }
 
 
+.warning-icon {
+    width: 30px;
+    margin-right: 20px;
+}
