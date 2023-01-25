@@ -10,13 +10,13 @@
 .content-feedback {
     
     border-radius: 10px;
-    width: 20%;
+    width: 50px;
     background-color: white;
     color: black;
     letter-spacing: 1px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    /* justify-content: flex-end; */
     white-space: nowrap;
   
 }

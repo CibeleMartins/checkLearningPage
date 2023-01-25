@@ -1,11 +1,11 @@
-<app-layout-login-registration>
+<app-layout-login-registration [viewSnackbar]="viewSnackbar" [message]="messageSnackBar" [icon]="warningIcon">
     <p class="title-register">Precisamos de algumas informações <br/> para fazer o seu cadastro!</p>
 
-    <form id="forms-register">
-        <input class="input-register" placeholder="Nome completo" type="text">
-        <input class="input-register" placeholder="E-mail" type="email">
-        <input class="input-register"  placeholder="Senha" type="password">
-        <input class="input-register"  placeholder="Confirmação de senha" type="password">
+    <form [formGroup]="registerForm" id="forms-register">
+        <input formControlName="completeName" class="input-register" placeholder="Nome completo" type="text">
+        <input formControlName="email" class="input-register" placeholder="E-mail" type="email">
+        <input formControlName="password" class="input-register"  placeholder="Senha" type="password">
+        <input formControlName="confirmationPassword" class="input-register"  placeholder="Confirmação de senha" type="password">
 
         <button id="register-action">
             <img id="image-register-action" src="../../../assets//register.svg" alt="signup"/>
