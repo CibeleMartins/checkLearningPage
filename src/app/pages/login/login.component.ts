@@ -7,7 +7,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
-export class LoginComponent implements OnInit, OnChanges {
+export class LoginComponent implements OnInit {
   signupForm!: FormGroup;
   viewSnackbar: boolean = false;
   messageSnackBar!: string;
@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit, OnChanges {
     this.signupForm = new FormGroup({
       'userEmail': new FormControl(
         null,
-        [Validators.required, this.emailValidator.bind(this)],
+        [Validators.required, Validators.email, this.emailValidator.bind(this)],
         null
       ),
       'userPassword': new FormControl(null, [
@@ -27,19 +27,15 @@ export class LoginComponent implements OnInit, OnChanges {
         this.passwordValidator.bind(this),
       ]),
     });
-    console.log(this.signupForm);
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes);
   }
 
   emailValidator(control: FormControl): { [s: string]: boolean } {
     // console.log(control)
     if (
       control.value &&
-      control.value.length > 5 &&
-      control.value.includes('@') === false
+      control.errors &&
+      control.errors['email'] &&
+      control.value.length > 4
     ) {
       this.viewSnackbar = !this.viewSnackbar;
       this.messageSnackBar = 'E-mail inválido.';
@@ -58,7 +54,7 @@ export class LoginComponent implements OnInit, OnChanges {
         this.messageSnackBar = 'Senha inválida.';
         this.warningIcon = '../../../assets//warningIcon.png';
       }
-    }, 3000);
+    }, 1500);
 
     return null;
   }
@@ -72,6 +68,10 @@ export class LoginComponent implements OnInit, OnChanges {
       this.viewSnackbar = !this.viewSnackbar;
       this.messageSnackBar = 'Login realizado com sucesso!';
       this.warningIcon = '../../../assets//successIcon.png';
+     
+      setTimeout(()=> {
+         this.signupForm.reset();
+      }, 1000)
     }
 
     

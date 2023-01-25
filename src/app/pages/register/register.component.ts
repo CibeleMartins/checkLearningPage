@@ -155,11 +155,8 @@ export class RegisterComponent implements OnInit {
         .join(' - ');
 
       this.viewSnackbar = !this.viewSnackbar;
-      this.messageSnackBar =
-        'Campos do formulário inválidos. ' + controlsWithError;
+      this.messageSnackBar ='Campos do formulário inválidos. ' + controlsWithError;
       this.warningIcon = '../../../assets//warningIcon.png';
-
-      console.log(this.registerForm);
     } else {
       this.registerForm.reset();
       this.viewSnackbar = !this.viewSnackbar;
