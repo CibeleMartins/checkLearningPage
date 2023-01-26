@@ -1,12 +1,8 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDrawer } from '@angular/material/sidenav';
-interface AnnotationModel {
-  title: string;
-  date: string;
-  description: string;
-  annotation: string;
-}
+import { UserService } from 'src/app/services/UserService.service';
+
 
 @Component({
   selector: 'app-annotations',
@@ -14,29 +10,28 @@ interface AnnotationModel {
   styleUrls: ['./annotations.component.css'],
 })
 export class AnnotationsComponent implements OnInit {
+
+  
   @ViewChild('drawer') drawerReference!: MatDrawer;
 
   annotationForms!: FormGroup;
 
-  annotation: AnnotationModel = {
-    title: '',
-    date: '',
-    description: '',
-    annotation: '',
-  };
-
-  annotationsArray: [] = [];
+  annotationsArray: { idUser: number; title: string; date: string; description: string; annotation: string; }[] = [];
 
   viewSnackbar: boolean = false;
   messageSnackBar!: string;
   warningIcon!: string;
 
+  constructor(private userService: UserService) {
+
+  }
+
   ngOnInit(): void {
     this.annotationForms = new FormGroup({
-      title: new FormControl(null, [Validators.required], null),
-      date: new FormControl(null, [Validators.required], null),
-      description: new FormControl(null, [Validators.required], null),
-      annotation: new FormControl(null, [Validators.required], null),
+      title: new FormControl('react', [Validators.required], null),
+      date: new FormControl('01/01/2023', [Validators.required], null),
+      description: new FormControl('deajkbfhdsbghsbgskjbgjksd', [Validators.required], null),
+      annotation: new FormControl('sdkhbgksdbgksdbgkshbgkshbghs', [Validators.required], null),
     });
   }
 
@@ -59,6 +54,26 @@ export class AnnotationsComponent implements OnInit {
         this.viewSnackbar = !this.viewSnackbar;
         this.messageSnackBar = 'Anotação feita com sucesso!';
         this.warningIcon = '../../../assets//successIcon.png';
+
+        interface AnnotationModel {
+          idUser: number,
+          title: string;
+          date: string;
+          description: string;
+          annotation: string}
+
+        let annotation: AnnotationModel = {
+            idUser: 1,
+            title: this.annotationForms.get('title').value,
+            date: this.annotationForms.get('date').value,
+            description: this.annotationForms.get('description').value,
+            annotation: this.annotationForms.get('annotation').value,
+        };
+
+        this.userService.receiveAnnotationUser(annotation);
+        // this.annotationsArray.push(annotation)
+
+        // console.log(this.annotationsArray)
       }
   
   }

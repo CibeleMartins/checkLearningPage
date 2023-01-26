@@ -1,8 +1,16 @@
-<div class="container-annotation">
+<div class="container-annotation" *ngFor="let annotation of userAnnotations; let i = 'index'">
     <div class="container-title-date">
-        <h1 class="title">titulo</h1> <p class="date">data</p>
+        <h1 class="title">{{annotation.title}}</h1> <p class="date">{{annotation.date}}</p>
     </div>
 
-    <p class="description">Descricao</p>
-    <p class="annotation">Anotação</p>
+    <p class="description">{{annotation.description}}</p>
+    <p class="annotation">{{annotation.annotation}}</p>
 </div>
+
+
+
+
+
+
+
+

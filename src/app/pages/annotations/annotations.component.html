@@ -23,7 +23,7 @@
               </div>
             </mat-drawer>
             <mat-drawer-content id="container-button-sidenav">
-              <button id="button-open-close-sidenav" (click)="sideNav.toggle()">
+              <button id="button-open-close-sidenav" [routerLink]="['/anotacoes', annotationsArray.length > 0 ? annotationsArray[0].idUser : null]" (click)="sideNav.toggle()">
                 <img id="img-open-close-drawer" src="../../../assets//openSidenav.svg" alt="signup"/>
               </button>
             </mat-drawer-content>

@@ -5,7 +5,8 @@
     border-radius: 10px;
     padding: 20px;
     scroll-behavior: smooth;
-    overflow: auto;
+    /* overflow-x: auto;
+    overflow-y: hidden; */
 }
 
 .container-title-date {
@@ -29,9 +30,14 @@
 .description {
     padding-top: 20px;
     letter-spacing: 1px;
+    /* white-space:normal; */
+    /* width: 100px; */
+    word-wrap: break-word;
 }
 
 .annotation {
     padding-top: 20px;
     letter-spacing: 1px;
+    /* width: 100px; */
+    word-wrap: break-word
 }
