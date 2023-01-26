@@ -20,6 +20,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SnackbarFeedbackComponent } from './components/snackbar-feedback/snackbar-feedback.component';
 import { AnnotationsComponent } from './pages/annotations/annotations.component';
+import { AnnotationComponent } from './components/annotation/annotation.component';
 
 
 
@@ -33,6 +34,7 @@ import { AnnotationsComponent } from './pages/annotations/annotations.component'
     RegisterComponent,
     SnackbarFeedbackComponent,
     AnnotationsComponent,
+    AnnotationComponent,
     
    
   ],

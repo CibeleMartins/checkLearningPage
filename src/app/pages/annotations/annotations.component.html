@@ -15,10 +15,12 @@
         <mat-drawer-container class="example-container">
             <mat-drawer id="sidenav" #sideNav mode="side" opened="true" position="end">
               <div id="container-search-annotations">
-                <input id="search-annotations"/>
+                <input placeholder="Pesquise suas anotações" id="search-annotations">
                 <img id="search-icon" src="../../../assets/search.svg"/>
               </div>
-              <div id="container-annotations"></div>
+              <div id="container-annotations">
+                <router-outlet></router-outlet>
+              </div>
             </mat-drawer>
             <mat-drawer-content id="container-button-sidenav">
               <button id="button-open-close-sidenav" (click)="sideNav.toggle()">
