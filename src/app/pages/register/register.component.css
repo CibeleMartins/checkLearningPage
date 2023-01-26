@@ -47,3 +47,10 @@
   #image-register-action {
     width: 60%;
   }
+
+  span {
+    position: fixed;
+    left: 400px;
+    bottom: 230px;
+    cursor: pointer;
+  }

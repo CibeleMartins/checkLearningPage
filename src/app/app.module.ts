@@ -18,6 +18,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SnackbarFeedbackComponent } from './components/snackbar-feedback/snackbar-feedback.component';
+import { AnnotationsComponent } from './pages/annotations/annotations.component';
 
 
 
@@ -30,6 +31,7 @@ import { SnackbarFeedbackComponent } from './components/snackbar-feedback/snackb
     LoginComponent,
     RegisterComponent,
     SnackbarFeedbackComponent,
+    AnnotationsComponent,
 
    
   ],
