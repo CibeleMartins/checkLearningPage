@@ -17,13 +17,19 @@ export class AnnotationsComponent implements OnInit {
   @ViewChild('drawer') drawerReference!: MatDrawer;
 
   annotationForms!: FormGroup;
-  
+
   annotation: AnnotationModel = {
     title: '',
     date: '',
     description: '',
     annotation: '',
   };
+
+  annotationsArray: [] = [];
+
+  viewSnackbar: boolean = false;
+  messageSnackBar!: string;
+  warningIcon!: string;
 
   ngOnInit(): void {
     this.annotationForms = new FormGroup({
@@ -39,23 +45,16 @@ export class AnnotationsComponent implements OnInit {
   imageIsHidden: boolean = true;
   showFiller = false;
 
-  onAddAnnotation() {}
+  onAddAnnotation(event: Event) {
+
+    event.preventDefault()
+      if(this.annotationForms.invalid) {
+        this.viewSnackbar = !this.viewSnackbar;
+        this.messageSnackBar = 'É necessário preencher todos os campos.';
+        this.warningIcon = '../../../assets//warningIcon.png';
+      }
+  
+  }
 }
 
-// //HOW TO MAKE INTERFACE IN ANGULAR 14?
-// {
-//     "courseId": 1,
-//     "userIds": [
-//       "46071424",
-//       "46076456",
-//     ],
-//     "endDate": "2022-03-29"
-// }:
 
-// interface IModel {
-//   courseId: number;
-//   userIds: string[];
-//   endDate: string;
-// }
-
-// //Source: https://stackoverflow.com/questions/70247056
