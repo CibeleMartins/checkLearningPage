@@ -14,6 +14,7 @@ export class AnnotationComponent implements OnInit {
     date: string;
     description: string;
     annotation: string;
+    color: string;
   }[] = [];
 
   constructor(private userService: UserService) {

@@ -1,5 +1,6 @@
 <div class="container">
-    <div class="container-annotation" *ngFor="let annotation of userAnnotations; let i = 'index'">
+    
+    <div [ngStyle]="{'background-color': annotation.color}" class="container-annotation" *ngFor="let annotation of userAnnotations; let i = 'index'">
         <div class="container-title-date">
             <h1 class="title">{{annotation.title}}</h1> <p class="date">{{annotation.date}}</p>
         </div>

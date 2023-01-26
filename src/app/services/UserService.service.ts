@@ -10,6 +10,7 @@ export class UserService {
     date: string;
     description: string;
     annotation: string;
+    color: string;
   }[] = [];
 
   constructor() {}
@@ -20,6 +21,7 @@ export class UserService {
     date: string;
     description: string;
     annotation: string;
+    color: string;
   }) {
     this.annotationsUser.push(annotation);
     console.log(this.annotationsUser)

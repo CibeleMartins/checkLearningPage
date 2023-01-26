@@ -101,3 +101,9 @@ textarea {
     letter-spacing: 1px;
 }
 
+#input-color {
+   border: none;
+   outline: none;
+   border-radius: 10px;
+   margin-top: 20px;
+}
