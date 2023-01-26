@@ -14,14 +14,17 @@
     <!-- <div frame> -->
  
         <mat-drawer-container frame class="example-container" autosize>
-       
+     
             <mat-drawer #drawer class="example-sidenav" mode="side">
+               <div id="annotations-container">
+                    <input id="search-annotation" type="search"/>
+               </div>
                 <button class="button-sidenav" type="button" mat-button (click)="drawer.toggle()">
-                    <
+                    <img id="open-sidenav" alt="open-frame" src="../../../assets/openSidenav.svg"/>
                 </button>
             </mat-drawer>
             <button class="button-sidenav" type="button" mat-button (click)="drawer.toggle()">
-                <
+                <img id="open-sidenav" alt="open-frame" src="../../../assets/openSidenav.svg"/>
             </button>
           
           </mat-drawer-container>
