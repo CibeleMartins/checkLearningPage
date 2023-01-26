@@ -22,7 +22,9 @@ export class LayoutLoginRegistrationComponent implements OnInit, OnChanges {
   @Input() viewSnackbar!: boolean;
   @Input() message!: string;
   @Input() icon!: string;
+  @Input() imageIsHidden!: boolean;
 
+  
   constructor(private feedbackService: SnackBarService) {}
 
   ngOnInit(): void {
