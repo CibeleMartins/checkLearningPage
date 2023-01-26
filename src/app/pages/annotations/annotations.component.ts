@@ -28,10 +28,10 @@ export class AnnotationsComponent implements OnInit {
 
   ngOnInit(): void {
     this.annotationForms = new FormGroup({
-      title: new FormControl('react', [Validators.required], null),
-      date: new FormControl('01/01/2023', [Validators.required], null),
-      description: new FormControl('deajkbfhdsbghsbgskjbgjksd', [Validators.required], null),
-      annotation: new FormControl('sdkhbgksdbgksdbgkshbgkshbghs', [Validators.required], null),
+      title: new FormControl(null, [Validators.required], null),
+      date: new FormControl(null, [Validators.required], null),
+      description: new FormControl(null, [Validators.required], null),
+      annotation: new FormControl(null, [Validators.required], null),
     });
   }
 

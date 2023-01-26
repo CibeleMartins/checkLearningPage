@@ -1,53 +1,74 @@
-<app-layout-login-registration [imageIsHidden]="imageIsHidden"  [viewSnackbar]="viewSnackbar" [message]="messageSnackBar" [icon]="warningIcon">
+<app-layout-login-registration
+  [imageIsHidden]="imageIsHidden"
+  [viewSnackbar]="viewSnackbar"
+  [message]="messageSnackBar"
+  [icon]="warningIcon"
+>
+  <form [formGroup]="annotationForms" class="forms-annotations">
+    <input
+      formControlName="title"
+      placeholder="Título"
+      class="input-annotations"
+      type="text"
+    />
+    <input
+      formControlName="date"
+      placeholder="Data"
+      class="input-annotations"
+      type="date"
+    />
+    <input
+      formControlName="description"
+      placeholder="Descrição"
+      class="input-annotations"
+      type="text"
+    />
+    <textarea formControlName="annotation"></textarea>
 
-   <form [formGroup]="annotationForms" class="forms-annotations">
-        <input formControlName="title" placeholder="Título" class="input-annotations" type="text">
-        <input formControlName="date" placeholder="Data" class="input-annotations" type="date">
-        <input formControlName="description" placeholder="Descrição" class="input-annotations" type="text">
-        <textarea formControlName="annotation"></textarea>
+    <button id="annotation-action" (click)="onAddAnnotation($event)">
+      <img
+        id="image-annotation-action"
+        src="../../../assets//addAnnotation.svg"
+        alt="signup"
+      />
+    </button>
+  </form>
 
-        <button id="annotation-action" (click)="onAddAnnotation($event)">
-            <img id="image-annotation-action" src="../../../assets//addAnnotation.svg" alt="signup"/>
+  <div class="container-sidenav" frame>
+    <mat-drawer-container class="example-container">
+      <mat-drawer
+        id="sidenav"
+        #sideNav
+        mode="side"
+        opened="{{ sideNavIsopened }}"
+        position="end"
+      >
+        <div id="container-search-annotations">
+          <input
+            placeholder="Pesquise suas anotações"
+            id="search-annotations"
+          />
+          <img id="search-icon" src="../../../assets/search.svg" />
+        </div>
+
+        <router-outlet></router-outlet>
+      </mat-drawer>
+      <mat-drawer-content id="container-button-sidenav">
+        <button
+          id="button-open-close-sidenav"
+          [routerLink]="[
+            '/anotacoes',
+            annotationsArray.length > 0 ? annotationsArray[0].idUser : null
+          ]"
+          (click)="sideNav.toggle()"
+        >
+          <img
+            id="img-open-close-drawer"
+            src="../../../assets//openSidenav.svg"
+            alt="signup"
+          />
         </button>
-   </form>
-
-    <div class="container-sidenav" frame>
-        <mat-drawer-container class="example-container">
-            <mat-drawer id="sidenav" #sideNav mode="side" opened="{{sideNavIsopened}}" position="end">
-              <div id="container-search-annotations">
-                <input placeholder="Pesquise suas anotações" id="search-annotations">
-                <img id="search-icon" src="../../../assets/search.svg"/>
-              </div>
-              <div id="container-annotations">
-                <router-outlet></router-outlet>
-              </div>
-            </mat-drawer>
-            <mat-drawer-content id="container-button-sidenav">
-              <button id="button-open-close-sidenav" [routerLink]="['/anotacoes', annotationsArray.length > 0 ? annotationsArray[0].idUser : null]" (click)="sideNav.toggle()">
-                <img id="img-open-close-drawer" src="../../../assets//openSidenav.svg" alt="signup"/>
-              </button>
-            </mat-drawer-content>
-          </mat-drawer-container>
-    </div>
+      </mat-drawer-content>
+    </mat-drawer-container>
+  </div>
 </app-layout-login-registration>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
