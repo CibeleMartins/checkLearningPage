@@ -5,7 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatSidenavContainer, MatSidenavModule, MatSidenavContent} from '@angular/material/sidenav';
 
 import { TeximateModule } from 'ngx-teximate';
 
@@ -33,7 +33,7 @@ import { AnnotationsComponent } from './pages/annotations/annotations.component'
     RegisterComponent,
     SnackbarFeedbackComponent,
     AnnotationsComponent,
-
+    
    
   ],
   imports: [
@@ -43,7 +43,9 @@ import { AnnotationsComponent } from './pages/annotations/annotations.component'
     BrowserAnimationsModule,
     ReactiveFormsModule,
     MatSnackBarModule,
-    MatSidenavModule
+    MatSidenavModule,
+   
+   
 
   ],
   providers: [],
