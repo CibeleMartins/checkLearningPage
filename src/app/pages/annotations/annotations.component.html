@@ -13,8 +13,11 @@
 
     <div class="container-sidenav" frame>
         <mat-drawer-container class="example-container">
-            <mat-drawer id="sidenav" #sideNav mode="side" opened="true" position="end">
-              Right drawer
+            <mat-drawer id="sidenav" #sideNav mode="side" opened="{{sideNavIsopened}}" position="end">
+              <div id="container-search-annotations">
+                <input id="search-annotations"/>
+              </div>
+              <div id="container-annotations"></div>
             </mat-drawer>
             <mat-drawer-content id="container-button-sidenav">
               <button id="button-open-close-sidenav" (click)="sideNav.toggle()">

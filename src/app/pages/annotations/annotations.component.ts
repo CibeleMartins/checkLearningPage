@@ -10,6 +10,8 @@ export class AnnotationsComponent {
 
   @ViewChild('drawer') drawerReference!: MatDrawer;
 
+  sideNavIsopened: boolean = false;
+
   imageIsHidden: boolean = true;
   showFiller = false;
 

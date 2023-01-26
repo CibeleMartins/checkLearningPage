@@ -44,13 +44,19 @@ textarea {
     justify-content: center;
 }
 
+.example-container {
+    height: 100vh;
+}
+
 #sidenav {
     background-color: #50f374;
     width: 50vw;
+    height: 100vh;
 }
 .mat-drawer-content {
     width: 50px;
     background-color: #50f374;
+    height: 50vh;
     border: none;
     border-radius: 10px 0px 0px 10px;
 }
@@ -59,11 +65,16 @@ textarea {
     border: none;
     outline: none;
     background-color: #50f374;
-    height: 100vh;
+    height: 50vh;
 
 }
 
 #img-open-close-drawer {
     width: 30px;
     padding: 10px;
+}
+
+#container-search-annotations {
+    display: flex;
+    padding: 25px;
 }
