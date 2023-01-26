@@ -11,21 +11,21 @@
         </button>
    </form>
 
-    <div frame>
-        <mat-drawer-container class="example-container" autosize>
+    <!-- <div frame> -->
+ 
+        <mat-drawer-container frame class="example-container" autosize>
+       
             <mat-drawer #drawer class="example-sidenav" mode="side">
-         
-            
+                <button class="button-sidenav" type="button" mat-button (click)="drawer.toggle()">
+                    <
+                </button>
             </mat-drawer>
-          
-            <div class="example-sidenav-content">
-              <button class="button-sidenav" type="button" mat-button (click)="drawer.toggle()">
-               <
-              </button>
-            </div>
+            <button class="button-sidenav" type="button" mat-button (click)="drawer.toggle()">
+                <
+            </button>
           
           </mat-drawer-container>
-    </div>
+    <!-- </div> -->
 </app-layout-login-registration>
 
 
