@@ -44,3 +44,26 @@ textarea {
     justify-content: center;
 }
 
+#sidenav {
+    background-color: #50f374;
+    width: 50vw;
+}
+.mat-drawer-content {
+    width: 50px;
+    background-color: #50f374;
+    border: none;
+    border-radius: 10px 0px 0px 10px;
+}
+
+#button-open-close-sidenav {
+    border: none;
+    outline: none;
+    background-color: #50f374;
+    height: 100vh;
+
+}
+
+#img-open-close-drawer {
+    width: 30px;
+    padding: 10px;
+}

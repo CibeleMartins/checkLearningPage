@@ -11,10 +11,30 @@
         </button>
    </form>
 
-    <div class="container-sidenav" frame (click)="drawerReference.toggle()">
-            
+    <div class="container-sidenav" frame>
+        <mat-drawer-container class="example-container">
+            <mat-drawer id="sidenav" #sideNav mode="side" opened="true" position="end">
+              Right drawer
+            </mat-drawer>
+            <mat-drawer-content id="container-button-sidenav">
+              <button id="button-open-close-sidenav" (click)="sideNav.toggle()">
+                <img id="img-open-close-drawer" src="../../../assets//openSidenav.svg" alt="signup"/>
+              </button>
+            </mat-drawer-content>
+          </mat-drawer-container>
     </div>
 </app-layout-login-registration>
+
+
+
+
+
+
+
+
+
+
+
 
 
 
