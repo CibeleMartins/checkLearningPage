@@ -1,10 +1,10 @@
 <app-layout-login-registration [imageIsHidden]="imageIsHidden"  [viewSnackbar]="viewSnackbar" [message]="messageSnackBar" [icon]="warningIcon">
 
-   <form class="forms-annotations">
-        <input placeholder="Título" class="input-annotations" type="text">
-        <input placeholder="Data" class="input-annotations" type="date">
-        <input placeholder="Descrição" class="input-annotations" type="text">
-        <textarea></textarea>
+   <form [formGroup]="annotationForms" class="forms-annotations">
+        <input formControlName="title" placeholder="Título" class="input-annotations" type="text">
+        <input formControlName="date" placeholder="Data" class="input-annotations" type="date">
+        <input formControlName="description" placeholder="Descrição" class="input-annotations" type="text">
+        <textarea formControlName="annotation"></textarea>
 
         <button id="annotation-action" (click)="onAddAnnotation($event)">
             <img id="image-annotation-action" src="../../../assets//addAnnotation.svg" alt="signup"/>

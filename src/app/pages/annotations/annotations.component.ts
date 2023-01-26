@@ -35,7 +35,7 @@ export class AnnotationsComponent implements OnInit {
     this.annotationForms = new FormGroup({
       title: new FormControl(null, [Validators.required], null),
       date: new FormControl(null, [Validators.required], null),
-      decription: new FormControl(null, [Validators.required], null),
+      description: new FormControl(null, [Validators.required], null),
       annotation: new FormControl(null, [Validators.required], null),
     });
   }
@@ -47,11 +47,18 @@ export class AnnotationsComponent implements OnInit {
 
   onAddAnnotation(event: Event) {
 
-    event.preventDefault()
+
+
       if(this.annotationForms.invalid) {
+        event.preventDefault()
         this.viewSnackbar = !this.viewSnackbar;
         this.messageSnackBar = 'É necessário preencher todos os campos.';
         this.warningIcon = '../../../assets//warningIcon.png';
+        console.log(this.annotationForms)
+      } else {
+        this.viewSnackbar = !this.viewSnackbar;
+        this.messageSnackBar = 'Anotação feita com sucesso!';
+        this.warningIcon = '../../../assets//successIcon.png';
       }
   
   }
