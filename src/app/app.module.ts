@@ -5,6 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 import { TeximateModule } from 'ngx-teximate';
 
@@ -41,7 +42,8 @@ import { AnnotationsComponent } from './pages/annotations/annotations.component'
     TeximateModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatSidenavModule
 
   ],
   providers: [],

@@ -43,3 +43,19 @@ textarea {
     align-items: center;
     justify-content: center;
 }
+
+.example-sidenav {
+    width: 50vw;
+    background-color: #50f374;
+}
+
+.button-sidenav {
+    font-size: 30px;
+    font-weight: 200;
+    height: 300px;
+    border: none;
+    outline: none;
+    background-color: #50f374;
+    border-radius: 10px;
+    color: white;
+}

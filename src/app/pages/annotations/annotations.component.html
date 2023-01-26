@@ -12,7 +12,19 @@
    </form>
 
     <div frame>
-        
+        <mat-drawer-container class="example-container" autosize>
+            <mat-drawer #drawer class="example-sidenav" mode="side">
+         
+            
+            </mat-drawer>
+          
+            <div class="example-sidenav-content">
+              <button class="button-sidenav" type="button" mat-button (click)="drawer.toggle()">
+               <
+              </button>
+            </div>
+          
+          </mat-drawer-container>
     </div>
 </app-layout-login-registration>
 
