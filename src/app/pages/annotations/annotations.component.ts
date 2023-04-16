@@ -66,7 +66,6 @@ export class AnnotationsComponent implements OnInit {
       this.warningIcon = '../../../assets//successIcon.png';
 
       interface AnnotationModel {
-        idUser: number;
         title: string;
         date: string;
         description: string;
@@ -75,7 +74,6 @@ export class AnnotationsComponent implements OnInit {
       }
 
       let annotation: AnnotationModel = {
-        idUser: 1,
         title: this.annotationForms.get('title').value,
         date: this.annotationForms.get('date').value,
         description: this.annotationForms.get('description').value,
@@ -83,7 +81,7 @@ export class AnnotationsComponent implements OnInit {
         color: this.annotationForms.get('color').value
       };
 
-      this.userService.receiveAnnotationUser(annotation);
+ 
       this.annotationForms.reset();
 
     }

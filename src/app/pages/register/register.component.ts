@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import emailjs, { EmailJSResponseStatus } from '@emailjs/browser';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../../environments/environment';
+import { UserService } from 'src/app/services/UserService.service';
+import { UserRegistered } from 'src/app/interfaces/interfacesUser';
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -15,13 +18,13 @@ export class RegisterComponent implements OnInit {
   messageSnackBar!: string;
   warningIcon!: string;
 
-  private readonly apiKey = environment.publicKeyEmailJs
-  private readonly idService = environment.idServiceEmailJs
-  private readonly template = environment.templateEmailJs
+  private readonly apiKey = environment.development.publicKeyEmailJs
+  private readonly idService = environment.development.idServiceEmailJs
+  private readonly template = environment.development.templateEmailJs
 
   private password = '';
 
-  constructor() {}
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
     this.registerForm = new FormGroup({
@@ -96,7 +99,7 @@ export class RegisterComponent implements OnInit {
     return null;
   }
 
-  confirmationPasswordValidator(control: FormControl): {[s: string]: boolean;} {
+  confirmationPasswordValidator(control: FormControl): { [s: string]: boolean; } {
     if (control.value && control.value !== this.password) {
       this.viewSnackbar = !this.viewSnackbar;
       this.messageSnackBar = 'As senhas não estão iguais.';
@@ -127,7 +130,7 @@ export class RegisterComponent implements OnInit {
             return (c.nameControl = 'Nome completo');
           } else if (c.nameControl.toLowerCase().includes('email')) {
             return (c.nameControl = 'E-mail');
-          } else if(!!c.nameControl.toLowerCase().includes('password') && c.nameControl.toLowerCase().includes('confirmation')) {
+          } else if (!!c.nameControl.toLowerCase().includes('password') && c.nameControl.toLowerCase().includes('confirmation')) {
             return (c.nameControl = 'Confirmação de senha');
           } else {
             return (c.nameControl = 'Senha');
@@ -136,26 +139,33 @@ export class RegisterComponent implements OnInit {
         .join(' - ');
 
       this.viewSnackbar = !this.viewSnackbar;
-      this.messageSnackBar ='Campos do formulário inválidos. ' + controlsWithError;
+      this.messageSnackBar = 'Campos do formulário inválidos. ' + controlsWithError;
       this.warningIcon = '../../../assets//warningIcon.png';
     } else {
-
-     const templateParams = {
+      const templateParams = {
         to_name: "Check Learning",
         from_name: this.registerForm.get('completeName').value,
         message: "Estamos muito felizes em ter você com a gente! Esperamos que aproveite ao máximo o método de registro e checagem de aprendizado que a Check Learning desenvolveu pensando em você e no seu futuro!",
-        emailUser:this.registerForm.get('email').value
+        emailUser: this.registerForm.get('email').value
       }
-      
+
       emailjs.send(this.idService, this.template, templateParams, this.apiKey).then(response => {
-        console.log("Email enviado com sucesso!", response.status, response.text)}).catch((error)=> console.log(error))
+        console.log("Email enviado com sucesso!", response.status, response.text)
+      }).catch((error) => console.log(error))
+
+      this.userService.register(
+        {
+          nameUser: this.registerForm.get('completeName').value,
+          emailUser: this.registerForm.get('email').value,
+          passwordUser: this.registerForm.get('password').value
+        })
 
       this.viewSnackbar = !this.viewSnackbar;
       this.messageSnackBar = 'Cadastro realizado com sucesso! Enviamos um e-mail para você.';
       this.warningIcon = '../../../assets//successIcon.png';
       // console.log(this.registerForm);
 
-      setTimeout(()=>{
+      setTimeout(() => {
         this.registerForm.reset()
       }, 2000)
     }

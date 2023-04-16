@@ -19,14 +19,10 @@ export class AnnotationComponent implements OnInit {
 
   constructor(private userService: UserService) {
 
-    console.log(this.userAnnotations)
-    console.log(this.userService.getAnnotationsUser())
   }
 
   ngOnInit(): void {
-    console.log(this.userService.getAnnotationsUser())
-     this.userAnnotations = this.userService.getAnnotationsUser();
-     console.log(this.userAnnotations)
+
   }
 
 }

@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
+import { environment } from 'src/environments/environment';
+
+import { UserRegistered } from '../interfaces/interfacesUser';
 @Injectable({
   providedIn: 'root',
 })
@@ -13,9 +17,21 @@ export class UserService {
     color: string;
   }[] = [];
 
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
-  receiveAnnotationUser(annotation: {
+  login() {
+
+  }
+
+  register (dataUserRegistered: UserRegistered) {
+    this.http.post(environment.development.apiRegister, dataUserRegistered).subscribe({
+      next: (data)=> console.log(data),
+      error: (error)=> console.log(error),
+      complete: ()=> console.log('Usuário registrado com sucesso!')
+    })
+  }
+
+  registerAnnotationUser(annotation: {
     idUser: number;
     title: string;
     date: string;
