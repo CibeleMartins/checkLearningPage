@@ -21,8 +21,6 @@ export class UserService {
     color: string;
   }[] = [];
   isloggedIn: boolean = false;
-
-  headers = new HttpHeaders().append('Access-Control-Allow-Origin', 'http://localhost:4200/').append('Access-Control-Allow-Methods', 'POST');
   constructor(private http: HttpClient) { }
 
   isAthenticated() {
@@ -38,8 +36,7 @@ export class UserService {
   }
 
   login(emailUser: string, passwordUser: string) {
-    console.log(emailUser, passwordUser)
-    this.http.post(desenv.apiAuth, { emailUser: emailUser, passwordUser: passwordUser }, { headers: this.headers }).subscribe({
+    this.http.post(desenv.apiAuth, { emailUser: emailUser, passwordUser: passwordUser }).subscribe({
       next: (data) => console.log(data),
       error: (error) => console.log(error),
       complete: () => {
