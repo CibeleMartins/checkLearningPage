@@ -4,6 +4,10 @@ import { HttpClient } from '@angular/common/http';
 import { desenv } from 'src/environment/environment';
 
 import { UserRegistered } from '../interfaces/interfacesUser';
+
+
+import { HttpHeaders } from '@angular/common/http';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -17,12 +21,9 @@ export class UserService {
     color: string;
   }[] = [];
   isloggedIn: boolean = false;
+
+  headers = new HttpHeaders().append('Access-Control-Allow-Origin', 'http://localhost:4200/').append('Access-Control-Allow-Methods', 'POST');
   constructor(private http: HttpClient) { }
-
-  // login() {
-
-  // }
-
 
   isAthenticated() {
     const promise = new Promise(
@@ -36,8 +37,17 @@ export class UserService {
     return promise;
   }
 
-  login() {
-    this.isloggedIn = true;
+  login(emailUser: string, passwordUser: string) {
+    console.log(emailUser, passwordUser)
+    this.http.post(desenv.apiAuth, { emailUser: emailUser, passwordUser: passwordUser }, { headers: this.headers }).subscribe({
+      next: (data) => console.log(data),
+      error: (error) => console.log(error),
+      complete: () => {
+        console.log('Usuário autenticado com sucesso!')
+        this.isloggedIn = true;
+      }
+    })
+
   }
 
 

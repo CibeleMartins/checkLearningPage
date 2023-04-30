@@ -75,7 +75,7 @@ export class LoginComponent implements OnInit {
          this.signupForm.reset();
       }, 1000)
 
-      this.userService.login()
+      this.userService.login(this.signupForm.get('userEmail').value, this.signupForm.get('userPassword').value )
       console.log(this.userService.isloggedIn)
       this.router.navigate(['/anotacoes'])
     }
