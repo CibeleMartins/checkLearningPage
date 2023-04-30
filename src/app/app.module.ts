@@ -22,6 +22,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SnackbarFeedbackComponent } from './components/snackbar-feedback/snackbar-feedback.component';
 import { AnnotationsComponent } from './pages/annotations/annotations.component';
 import { AnnotationComponent } from './components/annotation/annotation.component';
+import { AuthGuard } from './services/AuthGuard.service';
 
 
 
@@ -51,7 +52,7 @@ import { AnnotationComponent } from './components/annotation/annotation.componen
    
 
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

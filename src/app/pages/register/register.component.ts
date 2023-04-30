@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import emailjs, { EmailJSResponseStatus } from '@emailjs/browser';
-import { environment } from '../../../environments/environment';
+import { desenv } from '../../../environment/environment';
 import { UserService } from 'src/app/services/UserService.service';
 import { UserRegistered } from 'src/app/interfaces/interfacesUser';
 
@@ -18,9 +18,9 @@ export class RegisterComponent implements OnInit {
   messageSnackBar!: string;
   warningIcon!: string;
 
-  private readonly apiKey = environment.development.publicKeyEmailJs
-  private readonly idService = environment.development.idServiceEmailJs
-  private readonly template = environment.development.templateEmailJs
+  private readonly apiKey = desenv.publicKeyEmailJs
+  private readonly idService = desenv.idServiceEmailJs
+  private readonly template = desenv.templateEmailJs
 
   private password = '';
 

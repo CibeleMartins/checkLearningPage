@@ -1,6 +1,8 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/UserService.service';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +15,7 @@ export class LoginComponent implements OnInit {
   messageSnackBar!: string;
   warningIcon!: string;
 
-  constructor() {}
+  constructor(private userService: UserService, private router: Router) {}
 
   ngOnInit(): void {
     this.signupForm = new FormGroup({
@@ -72,6 +74,10 @@ export class LoginComponent implements OnInit {
       setTimeout(()=> {
          this.signupForm.reset();
       }, 1000)
+
+      this.userService.login()
+      console.log(this.userService.isloggedIn)
+      this.router.navigate(['/anotacoes'])
     }
 
     

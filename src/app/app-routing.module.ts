@@ -7,6 +7,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { AnnotationsComponent } from './pages/annotations/annotations.component';
 import { AnnotationComponent } from './components/annotation/annotation.component';
+import { AuthGuard } from './services/AuthGuard.service';
 
 const routes: Routes = [];
 
@@ -14,7 +15,7 @@ const RoutesApp: Routes = [
   {path: '', component: HomeComponent },
   {path: 'login', component: LoginComponent },
   {path: 'cadastro', component: RegisterComponent},
-  {path: 'anotacoes', component: AnnotationsComponent, children: [
+  {path: 'anotacoes', component: AnnotationsComponent, canActivate:[ AuthGuard], children: [
     {path: ':userLoggedId', component: AnnotationComponent}
   ]}
 ]

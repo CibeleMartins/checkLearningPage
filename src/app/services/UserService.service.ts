@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { environment } from 'src/environments/environment';
+import { desenv } from 'src/environment/environment';
 
 import { UserRegistered } from '../interfaces/interfacesUser';
 @Injectable({
@@ -16,18 +16,40 @@ export class UserService {
     annotation: string;
     color: string;
   }[] = [];
+  isloggedIn: boolean = false;
+  constructor(private http: HttpClient) { }
 
-  constructor(private http: HttpClient) {}
+  // login() {
 
-  login() {
+  // }
 
+
+  isAthenticated() {
+    const promise = new Promise(
+      (resolve, reject) => {
+        setTimeout(() => {
+          resolve(this.isloggedIn);
+        }, 800)
+      }
+    )
+
+    return promise;
   }
 
-  register (dataUserRegistered: UserRegistered) {
-    this.http.post(environment.development.apiRegister, dataUserRegistered).subscribe({
-      next: (data)=> console.log(data),
-      error: (error)=> console.log(error),
-      complete: ()=> console.log('Usuário registrado com sucesso!')
+  login() {
+    this.isloggedIn = true;
+  }
+
+
+  logout() {
+    this.isloggedIn = false;
+  }
+
+  register(dataUserRegistered: UserRegistered) {
+    this.http.post(desenv.apiRegister, dataUserRegistered).subscribe({
+      next: (data) => console.log(data),
+      error: (error) => console.log(error),
+      complete: () => console.log('Usuário registrado com sucesso!')
     })
   }
 
