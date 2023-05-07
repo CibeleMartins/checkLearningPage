@@ -7,11 +7,14 @@ import { UserRegistered } from '../interfaces/interfacesUser';
 
 
 import { HttpHeaders } from '@angular/common/http';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
+
+  sendBooleanAuth = new Subject<boolean>;
   private annotationsUser: {
     idUser: number;
     title: string;

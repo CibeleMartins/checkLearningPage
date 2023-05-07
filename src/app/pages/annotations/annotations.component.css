@@ -68,6 +68,7 @@ textarea {
     outline: none;
     background-color: #50f374;
     height: 50vh;
+    cursor: pointer;
 
 }
 

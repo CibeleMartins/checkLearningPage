@@ -22,7 +22,7 @@ export class AnnotationComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+   this.userAnnotations = this.userService.getAnnotationsUser()
   }
 
 }
