@@ -3,12 +3,12 @@ export class User {
     private email: string,
     private token: string,
     private id: number,
-    // private expirationDate: Date
+    private expirationDate: Date
   ) {}
 
-  // get expireDate() {
-  //   return this.expirationDate;
-  // }
+  get expireDate() {
+    return this.expirationDate;
+  }
 
   get userToken() {
     return this.token;

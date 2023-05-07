@@ -106,6 +106,7 @@ export class AuthEffects {
     return this.actions$.pipe(
       ofType(autoLogin),
       mergeMap((action) => {
+        console.log('AUTOLOGIN')
         const user = this.authService.getUserFromLocalStorage();
         return of(loginSuccess({ user, redirect: false }));
       })

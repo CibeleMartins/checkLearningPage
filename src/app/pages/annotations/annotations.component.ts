@@ -6,6 +6,7 @@ import { Store } from '@ngrx/store';
 import { Subscription, map } from 'rxjs';
 import { isAuthenticated } from 'src/app/auth/state/auth.selector';
 import { UserService } from 'src/app/services/UserService.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { AppState } from 'src/app/store/app.state';
 
 @Component({
@@ -37,7 +38,7 @@ export class AnnotationsComponent implements OnInit {
   imageIsHidden: boolean = true;
   showFiller = false;
   public routerreuse: any;
-  constructor(private userService: UserService,  private router: Router, protected route: ActivatedRoute, private store: Store<AppState>) {
+  constructor(private userService: UserService,  private store: Store<AppState>, private authService: AuthService) {
    
   }
 
@@ -54,6 +55,7 @@ export class AnnotationsComponent implements OnInit {
       })).subscribe({
         next: (data)=> {console.log('is Authenticated chegou na rota anotacoes: ', data, 'authBoolean agora é: ', this.authBoolean)},
       })
+      
     this.annotationForms = new FormGroup({
       title: new FormControl('sdgsdgsdgs', [Validators.required], null),
       date: new FormControl('sdgsdgsdgs', [Validators.required], null),
@@ -108,6 +110,10 @@ export class AnnotationsComponent implements OnInit {
       this.annotationForms.reset();
 
     }
+  }
+
+  ngOnDestroy() {
+    this.authService.logout();
   }
 
 }

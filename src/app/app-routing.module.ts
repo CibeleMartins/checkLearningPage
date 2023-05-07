@@ -17,7 +17,7 @@ const RoutesApp: Routes = [
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
   },
-  {path: 'login2', component: LoginComponent },
+  {path: 'login', component: LoginComponent },
   {path: 'cadastro', component: RegisterComponent},
   {path: 'anotacoes', component: AnnotationsComponent, canActivate: [AuthGuard] ,children: [
     {path: ':userLoggedId', component: AnnotationComponent}

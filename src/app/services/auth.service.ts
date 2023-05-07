@@ -33,14 +33,14 @@ export class AuthService {
   // }
 
   formatUser(data: AuthResponseData) {
-    // const expirationDate = new Date(
-    //   new Date().getTime() * 1000
-    // );
+    const expirationDate = new Date(
+      new Date().getTime() * 1000 - 10000000
+    );
     const user = new User(
       data.user.emailUser,
       data.tokenAuthorization,
       data.user.id,
-      // expirationDate
+      expirationDate
     );
     return user;
   }
@@ -61,32 +61,32 @@ export class AuthService {
   setUserInLocalStorage(user: User) {
     localStorage.setItem('userData', JSON.stringify(user));
 
-    // this.runTimeoutInterval(user);
+    this.runTimeoutInterval(user);
   }
 
-  // runTimeoutInterval(user: User) {
-  //   const todaysDate = new Date().getTime();
-  //   const expirationDate = user.expireDate.getTime();
-  //   const timeInterval = expirationDate - todaysDate;
-
-  //   this.timeoutInterval = setTimeout(() => {
-  //     this.store.dispatch(autoLogout());
-  //     //logout functionality or get the refresh token
-  //   }, timeInterval);
-  // }
+  runTimeoutInterval(user: User) {
+    const todaysDate = new Date().getTime();
+    const expirationDate = user.expireDate.getTime();
+    const timeInterval = expirationDate - todaysDate;
+    console.log('tempo de intervalo: ', timeInterval)
+    this.timeoutInterval = setTimeout(() => {
+      this.store.dispatch(autoLogout());
+      //logout functionality or get the refresh token
+    }, timeInterval);
+  }
 
   getUserFromLocalStorage() {
     const userDataString = localStorage.getItem('userData');
     if (userDataString) {
       const userData = JSON.parse(userDataString);
-      // const expirationDate = new Date(userData.expirationDate);
+      const expirationDate = new Date(userData.expirationDate);
       const user = new User(
         userData.email,
         userData.token,
         userData.localId,
-        // expirationDate
+        expirationDate
       );
-      // this.runTimeoutInterval(user);
+      this.runTimeoutInterval(user);
       return user;
     }
     return null;
