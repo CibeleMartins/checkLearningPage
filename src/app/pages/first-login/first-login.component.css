@@ -36,5 +36,29 @@
 }
 
 .tedtalks-list {
-    width: 50%;
+    width: 43%;
+    height: 90vh;
+    margin-right: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+#videos-list-title-container {
+    height: 150px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+#video-list-paragraph {
+    font-size: 2vh;
+    white-space: wrap;
+}
+
+#videos-list {
+    height: 262px;
+    scroll-behavior: smooth;
+    overflow-y: scroll;
 }

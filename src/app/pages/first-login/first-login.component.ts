@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ContentLearningService } from 'src/app/services/ContentLearningService.service';
 
 @Component({
   selector: 'app-first-login',
@@ -14,9 +15,24 @@ export class FirstLoginComponent {
     "Ou até mesmo uma habilidade que você já tenha, mas que deseja aprimorar",
   ];
 
-  ngOnInit() {
+  elements: string[] = ['container0', 'container1', 'container2', 'container3']
+  constructor(private contentLearningService: ContentLearningService) {
 
   }
 
+  getValuesOfObject(frame: string, element: string) {
+    const container = document.getElementById(element); 
+    const iframeHtml = frame;
+    container.innerHTML = iframeHtml;
+  }
+  
+
+  ngOnInit() {
+    this.contentLearningService.getTedTalksFirstLogin().subscribe({
+      next: (data) => { data.map((i: any, index: number)=> this.getValuesOfObject(i.embedHtml, this.elements[index]))},
+      error: (e) => console.log(e),
+      complete: () => console.log('tedtalks carregados')
+    })
+  }
 
 }

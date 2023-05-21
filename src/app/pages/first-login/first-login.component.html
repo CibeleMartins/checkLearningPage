@@ -4,11 +4,12 @@
 
         <div id="welcome">
             <h1 id="welcome-title">Seja-bem vindo!</h1>
-            <p id="welcome-paragraph">Aqui, nós reunimos técnicas, métodos, informações e muita experiência em aprendizagem pra fazer de você um aprendiz EXPERT!</p>
+            <p id="welcome-paragraph">Aqui, nós reunimos técnicas, métodos, informações e muita experiência em
+                aprendizagem pra fazer de você um aprendiz EXPERT!</p>
         </div>
-      
 
-        <div id="content-animated" >
+
+        <div id="content-animated">
             <p class="text-animated">Na plataforma Check Learning você pode: </p>
             <p *ngFor="let text of textAnimated" class="text-animated">{{text}}</p>
         </div>
@@ -16,6 +17,14 @@
 
     </div>
     <div class="tedtalks-list" frame>
-        videos
+        <div id="videos-list-title-container">
+            <h1 id="welcome-title">Top 5 TED-Talks!</h1>
+            <p id="video-list-paragraph">Separamos para você, 5 ted-talks essenciais para o início de qualquer jornada
+                de aprendizagem</p>
+        </div>
+        <div id="videos-list">
+            <div *ngFor="let element of elements" [id]="element">
+            </div>
+        </div>
     </div>
 </app-layout-login-registration>
