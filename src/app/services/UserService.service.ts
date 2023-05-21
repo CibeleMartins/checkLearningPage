@@ -21,6 +21,7 @@ export class UserService {
       data.user.emailUser,
       data.tokenAuthorization,
       data.user.id,
+      true
     );
     return user;
   }

@@ -1,7 +1,6 @@
-<app-layout-login-registration [imageIsHidden]="false">
+<app-layout-login-registration [imageIsHidden]="true">
 
     <div class="welcome-text-content">
-
         <div id="welcome">
             <h1 id="welcome-title">Seja-bem vindo!</h1>
             <p id="welcome-paragraph">Aqui, nós reunimos técnicas, métodos, informações e muita experiência em
@@ -13,15 +12,15 @@
             <p class="text-animated">Na plataforma Check Learning você pode: </p>
             <p *ngFor="let text of textAnimated" class="text-animated">{{text}}</p>
         </div>
-
-
     </div>
+
     <div class="tedtalks-list" frame>
         <div id="videos-list-title-container">
             <h1 id="welcome-title">Top 5 TED-Talks!</h1>
             <p id="video-list-paragraph">Separamos para você, 5 ted-talks essenciais para o início de qualquer jornada
                 de aprendizagem</p>
         </div>
+        
         <div id="videos-list">
             <div *ngFor="let element of elements" [id]="element">
             </div>

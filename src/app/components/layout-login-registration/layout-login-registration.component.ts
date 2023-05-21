@@ -6,6 +6,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { SnackBarService } from 'src/app/services/SnackbarFeedback.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 // import {
 //   MatSnackBar,
@@ -23,9 +24,8 @@ export class LayoutLoginRegistrationComponent implements OnInit, OnChanges {
   @Input() message!: string;
   @Input() icon!: string;
   @Input() imageIsHidden!: boolean;
-
   
-  constructor(private feedbackService: SnackBarService) {}
+  constructor(private feedbackService: SnackBarService, private authService: AuthService) {}
 
   ngOnInit(): void {
  
@@ -38,5 +38,9 @@ export class LayoutLoginRegistrationComponent implements OnInit, OnChanges {
       this.feedbackService.openSnackBar(null, null, null, this.message, this.icon)
   
     }
+  }
+
+  logout() {
+    this.authService.logout()
   }
 }

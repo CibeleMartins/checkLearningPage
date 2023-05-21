@@ -41,6 +41,7 @@ export class AuthService {
         userData.email,
         userData.token,
         userData.localId,
+        true
       );
       return user;
     }
@@ -53,5 +54,16 @@ export class AuthService {
       clearTimeout(this.timeoutInterval);
       this.timeoutInterval = null;
     }
+
+    this.userSubject.next( {	expiresIn: false,
+      tokenAuthorization: '',
+        user: {
+        id: null,
+        nameUser: '',
+        emailUser: '',
+        photoUser:'',
+        dateRegister: '',
+        isLogged: false
+      }})
   }
 }

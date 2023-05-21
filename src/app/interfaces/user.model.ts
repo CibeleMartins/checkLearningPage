@@ -3,6 +3,7 @@ export class User {
     private email: string,
     private token: string,
     private id: number,
+    private isLogged: boolean
   ) {}
 
 
@@ -12,5 +13,8 @@ export class User {
 
   get userId() {
     return this.id;
+  }
+  get userIsLogged() {
+    return this.isLogged;
   }
 }

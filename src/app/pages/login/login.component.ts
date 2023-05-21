@@ -79,10 +79,12 @@ export class LoginComponent implements OnInit {
     }
 
     this.authService.login(this.signupForm.get('userEmail').value, this.signupForm.get('userPassword').value).subscribe({
-      next: (data)=>{this.authService.setUserInLocalStorage(this.userService.formatUser(data)), this.authService.userSubject.next(data)},
+      next: (data)=>{this.authService.setUserInLocalStorage(this.userService.formatUser(data)), data.user.isLogged = true, this.authService.userSubject.next(data)},
       error: (error)=>{alert(`Erro no login: ${error}`)},
-      complete:()=>{}
+      complete:()=>{this.router.navigate(['/anotacoes'])}
     })
+
+    this.router.navigate(['/anotacoes'])
     
   }
 }

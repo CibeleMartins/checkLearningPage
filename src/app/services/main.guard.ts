@@ -23,12 +23,16 @@ export class MainlGuard implements CanActivate {
     this.authService.userSubject.subscribe((user)=> {
         this.profile = user;
         if (!this.profile.tokenAuthorization.includes("Bearer")) {
-            return this.router.navigate(['login']);
+          console.log('profile guard depois de clicar logout: ', this.profile)
+            this.router.navigate(['/login']);
+            return '';
           } else {
-            return this.routeActivator;
+            return this.authService.getUserFromLocalStorage().userIsLogged;
           };
     
     })
-    return this.routeActivator;
+
+    console.log(this.authService.getUserFromLocalStorage().userIsLogged)
+    return this.authService.getUserFromLocalStorage().userIsLogged;
   }
 }

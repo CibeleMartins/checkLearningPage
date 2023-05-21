@@ -12,17 +12,19 @@
                 <img  src="../../../assets//miniAnnotation.svg" alt="anotation">
             </div>
         </div>
+
+        <button (click)="logout()">Logout</button>
     </header>
 
-    <div class="container-forms">
+    <div id="container-forms">
         <ng-content></ng-content>
     </div>
 
-    <div *ngIf="imageIsHidden; else other_content" class="big-post-its">
-        <img class="image-big-postit" src="../../../assets//bigpostIts.svg"/>
+    <div *ngIf="!imageIsHidden; else other_content" id="big-post-its">
+        <img id="image-big-postit" src="../../../assets//bigpostIts.svg"/>
     </div>
 
-    <ng-template class="conditional-content" #other_content>
+    <ng-template id="conditional-content" #other_content>
         <ng-content select="[frame]"></ng-content>
     </ng-template>
 </div>
