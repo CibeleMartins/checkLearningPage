@@ -1,0 +1,40 @@
+.welcome-text-content {
+    width: 100%;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+#welcome {
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+#welcome-title {
+    font-size: 8vh;
+    white-space: nowrap;
+}
+
+#welcome-paragraph {
+    font-size: 2vh;
+}
+
+#content-animated{
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+
+.text-animated {
+    font-size: 30px;
+    white-space: nowrap;
+}
+
+.tedtalks-list {
+    width: 50%;
+}

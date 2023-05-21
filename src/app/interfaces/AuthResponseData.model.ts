@@ -1,7 +1,7 @@
 export interface AuthResponseData {
   	expiresIn: string
 	tokenAuthorization: string,
-  user: {
+  	user: {
 		id: number,
 		nameUser: string,
 		emailUser: string,

@@ -1,0 +1,21 @@
+<app-layout-login-registration [imageIsHidden]="false">
+
+    <div class="welcome-text-content">
+
+        <div id="welcome">
+            <h1 id="welcome-title">Seja-bem vindo!</h1>
+            <p id="welcome-paragraph">Aqui, nós reunimos técnicas, métodos, informações e muita experiência em aprendizagem pra fazer de você um aprendiz EXPERT!</p>
+        </div>
+      
+
+        <div id="content-animated" >
+            <p class="text-animated">Na plataforma Check Learning você pode: </p>
+            <p *ngFor="let text of textAnimated" class="text-animated">{{text}}</p>
+        </div>
+
+
+    </div>
+    <div class="tedtalks-list" frame>
+        videos
+    </div>
+</app-layout-login-registration>

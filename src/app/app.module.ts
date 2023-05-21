@@ -23,6 +23,7 @@ import { SnackbarFeedbackComponent } from './components/snackbar-feedback/snackb
 import { AnnotationsComponent } from './pages/annotations/annotations.component';
 import { AnnotationComponent } from './components/annotation/annotation.component';
 import { MainlGuard } from './services/main.guard';
+import { FirstLoginComponent } from './pages/first-login/first-login.component';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { MainlGuard } from './services/main.guard';
     SnackbarFeedbackComponent,
     AnnotationsComponent,
     AnnotationComponent,
+    FirstLoginComponent,
     
    
   ],

@@ -18,11 +18,11 @@
         <ng-content></ng-content>
     </div>
 
-    <div *ngIf="!imageIsHidden; else other_content" class="big-post-its">
+    <div *ngIf="imageIsHidden; else other_content" class="big-post-its">
         <img class="image-big-postit" src="../../../assets//bigpostIts.svg"/>
     </div>
 
-    <ng-template #other_content>
+    <ng-template class="conditional-content" #other_content>
         <ng-content select="[frame]"></ng-content>
     </ng-template>
 </div>
