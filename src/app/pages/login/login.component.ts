@@ -3,6 +3,7 @@ import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/UserService.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -15,16 +16,16 @@ export class LoginComponent implements OnInit {
   messageSnackBar!: string;
   warningIcon!: string;
 
-  constructor(private userService: UserService, private router: Router) {}
+  constructor(private userService: UserService, private router: Router, private authService: AuthService) {}
 
   ngOnInit(): void {
     this.signupForm = new FormGroup({
       'userEmail': new FormControl(
-        null,
+        'cibeleadmin@hotmail.com',
         [Validators.required, Validators.email, this.emailValidator.bind(this)],
         null
       ),
-      'userPassword': new FormControl(null, [
+      'userPassword': new FormControl('12345678', [
         Validators.required,
         this.passwordValidator.bind(this),
       ]),
@@ -75,11 +76,13 @@ export class LoginComponent implements OnInit {
          this.signupForm.reset();
       }, 1000)
 
-      this.userService.login(this.signupForm.get('userEmail').value, this.signupForm.get('userPassword').value )
-      console.log(this.userService.isloggedIn)
-      this.router.navigate(['/anotacoes'])
     }
 
+    this.authService.login(this.signupForm.get('userEmail').value, this.signupForm.get('userPassword').value).subscribe({
+      next: (data)=>{this.authService.setUserInLocalStorage(this.authService.formatUser(data)), this.authService.userSubject.next(data)},
+      error: (error)=>{alert(`Erro no login: ${error}`)},
+      complete:()=>{}
+    })
     
   }
 }

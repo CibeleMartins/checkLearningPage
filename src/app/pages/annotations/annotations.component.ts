@@ -1,13 +1,11 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDrawer } from '@angular/material/sidenav';
-import { ActivatedRoute, ActivatedRouteSnapshot, NavigationEnd, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subscription, map } from 'rxjs';
-import { isAuthenticated } from 'src/app/auth/state/auth.selector';
 import { UserService } from 'src/app/services/UserService.service';
 import { AuthService } from 'src/app/services/auth.service';
-import { AppState } from 'src/app/store/app.state';
+
 
 @Component({
   selector: 'app-annotations',
@@ -38,24 +36,14 @@ export class AnnotationsComponent implements OnInit {
   imageIsHidden: boolean = true;
   showFiller = false;
   public routerreuse: any;
-  constructor(private userService: UserService,  private store: Store<AppState>, private authService: AuthService) {
+  constructor(private userService: UserService, private authService: AuthService) {
    
   }
 
   authBoolean: boolean = false;
 
   ngOnInit(): void {
-   this.store.select(isAuthenticated).pipe(
-      map((authenticate) => {
-        if (!authenticate) {
-          return console.log('NAO chegou na rota anotacoes: ', authenticate)
-        }
-        this.authBoolean = authenticate;
-        return console.log('chegou na rota anotacoes: ', authenticate)
-      })).subscribe({
-        next: (data)=> {console.log('is Authenticated chegou na rota anotacoes: ', data, 'authBoolean agora é: ', this.authBoolean)},
-      })
-      
+
     this.annotationForms = new FormGroup({
       title: new FormControl('sdgsdgsdgs', [Validators.required], null),
       date: new FormControl('sdgsdgsdgs', [Validators.required], null),
