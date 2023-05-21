@@ -26,14 +26,6 @@ export class AuthService {
     );
   }
 
-  formatUser(data: AuthResponseData) {
-    const user = new User(
-      data.user.emailUser,
-      data.tokenAuthorization,
-      data.user.id,
-    );
-    return user;
-  }
 
   setUserInLocalStorage(user: User) {
     localStorage.setItem('userData', JSON.stringify(user));
@@ -53,14 +45,6 @@ export class AuthService {
       return user;
     }
     return null;
-  }
-
-  register(dataUserRegistered: UserRegistered) {
-    this.http.post(desenv.apiRegister, dataUserRegistered).subscribe({
-      next: (data) => console.log(data),
-      error: (error) => console.log(error),
-      complete: () => console.log('Usuário registrado com sucesso!')
-    })
   }
 
   logout() {

@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   messageSnackBar!: string;
   warningIcon!: string;
 
-  constructor(private userService: UserService, private router: Router, private authService: AuthService) {}
+  constructor( private router: Router, private authService: AuthService, private userService: UserService) {}
 
   ngOnInit(): void {
     this.signupForm = new FormGroup({
@@ -79,7 +79,7 @@ export class LoginComponent implements OnInit {
     }
 
     this.authService.login(this.signupForm.get('userEmail').value, this.signupForm.get('userPassword').value).subscribe({
-      next: (data)=>{this.authService.setUserInLocalStorage(this.authService.formatUser(data)), this.authService.userSubject.next(data)},
+      next: (data)=>{this.authService.setUserInLocalStorage(this.userService.formatUser(data)), this.authService.userSubject.next(data)},
       error: (error)=>{alert(`Erro no login: ${error}`)},
       complete:()=>{}
     })
