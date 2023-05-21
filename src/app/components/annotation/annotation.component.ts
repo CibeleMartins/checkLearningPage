@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from 'src/app/services/UserService.service';
 
 @Component({
   selector: 'app-annotation',
@@ -17,12 +16,12 @@ export class AnnotationComponent implements OnInit {
     color: string;
   }[] = [];
 
-  constructor(private userService: UserService) {
+  constructor() {
 
   }
 
   ngOnInit(): void {
-   this.userAnnotations = this.userService.getAnnotationsUser()
+  
   }
 
 }

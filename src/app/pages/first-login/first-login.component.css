@@ -32,7 +32,7 @@
 
 .text-animated {
     font-size: 30px;
-    white-space: nowrap;
+    /* white-space: nowrap; */
 }
 
 .tedtalks-list {

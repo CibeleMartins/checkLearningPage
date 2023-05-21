@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AuthResponseData } from '../interfaces/AuthResponseData.model';
+import { UserRegistered } from '../interfaces/interfacesUser';
 
 @Injectable({
   providedIn: 'root',
@@ -52,6 +53,14 @@ export class AuthService {
       return user;
     }
     return null;
+  }
+
+  register(dataUserRegistered: UserRegistered) {
+    this.http.post(desenv.apiRegister, dataUserRegistered).subscribe({
+      next: (data) => console.log(data),
+      error: (error) => console.log(error),
+      complete: () => console.log('Usuário registrado com sucesso!')
+    })
   }
 
   logout() {

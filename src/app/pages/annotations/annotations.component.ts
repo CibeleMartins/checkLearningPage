@@ -3,7 +3,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDrawer } from '@angular/material/sidenav';
 import { Store } from '@ngrx/store';
 import { Subscription, map } from 'rxjs';
-import { UserService } from 'src/app/services/UserService.service';
 import { AuthService } from 'src/app/services/auth.service';
 
 
@@ -36,7 +35,7 @@ export class AnnotationsComponent implements OnInit {
   imageIsHidden: boolean = true;
   showFiller = false;
   public routerreuse: any;
-  constructor(private userService: UserService, private authService: AuthService) {
+  constructor(private authService: AuthService) {
    
   }
 
@@ -94,14 +93,14 @@ export class AnnotationsComponent implements OnInit {
       };
 
 
-      this.userService.registerAnnotationUser(annotation);
+      // this.userService.registerAnnotationUser(annotation);
       this.annotationForms.reset();
 
     }
   }
 
-  ngOnDestroy() {
-    this.authService.logout();
-  }
+  // ngOnDestroy() {
+  //   this.authService.logout();
+  // }
 
 }
