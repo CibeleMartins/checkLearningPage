@@ -8,11 +8,6 @@ import {
 import { SnackBarService } from 'src/app/services/SnackbarFeedback.service';
 import { AuthService } from 'src/app/services/auth.service';
 
-// import {
-//   MatSnackBar,
-//   MatSnackBarHorizontalPosition,
-//   MatSnackBarVerticalPosition,
-// } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-layout-login-registration',
@@ -24,7 +19,7 @@ export class LayoutLoginRegistrationComponent implements OnInit, OnChanges {
   @Input() message!: string;
   @Input() icon!: string;
   @Input() imageIsHidden!: boolean;
-  
+
   constructor(private feedbackService: SnackBarService, private authService: AuthService) {}
 
   ngOnInit(): void {

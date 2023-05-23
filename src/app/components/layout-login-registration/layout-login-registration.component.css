@@ -1,17 +1,18 @@
-#container-login {
+.container-login {
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  padding-left: 6vh;
 }
 
 #navigator {
   width: 90px;
-  background-color: #50f374;
+  background-color: .50f374;
   height: 100vh;
   border-radius: 0px 10px 10px 0px;
-
+  background-color:#50F374;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -25,12 +26,12 @@
   justify-content: space-evenly;
 }
 
-#logo {
+.logo {
   width: 60px;
   cursor: pointer;
 }
 
-#register-action {
+.register-action {
   width: 60px; 
   cursor: pointer;
 }
@@ -51,7 +52,7 @@
   visibility: hidden;
 }
 
-#container-forms {
+.container-forms {
   display: flex;
   width: 30%;
   height: 100vh;
@@ -59,7 +60,7 @@
   justify-content: center;
 }
 
-#big-post-its {
+.big-post-its {
   width: 45%;
   height: 100vh;
   display: flex;
@@ -72,6 +73,6 @@
   height: 100vh;
 }
 
-#conditional-content {
+.conditional-content {
   width: 100%;
 }

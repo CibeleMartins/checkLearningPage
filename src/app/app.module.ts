@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
-// import { FormsModule } from '@angular/forms';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -15,7 +14,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
 
 import { LayoutHomeComponent } from './components/layout-home/layout-home.component';
-import { LayoutLoginRegistrationComponent } from './components/layout-login-registration/layout-login-registration.component';
+
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -24,21 +23,24 @@ import { AnnotationsComponent } from './pages/annotations/annotations.component'
 import { AnnotationComponent } from './components/annotation/annotation.component';
 import { MainlGuard } from './services/main.guard';
 import { FirstLoginComponent } from './pages/first-login/first-login.component';
+import { LayoutLoginRegistrationComponent } from './components/layout-login-registration/layout-login-registration.component';
+import { SlideComponent } from './components/slide/slide.component';
 
+import { CarouselModule } from '@coreui/angular';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     LayoutHomeComponent,
-    LayoutLoginRegistrationComponent,
+   LayoutLoginRegistrationComponent,
     LoginComponent,
     RegisterComponent,
     SnackbarFeedbackComponent,
     AnnotationsComponent,
     AnnotationComponent,
     FirstLoginComponent,
-    
+    SlideComponent,
    
   ],
   imports: [
@@ -51,6 +53,8 @@ import { FirstLoginComponent } from './pages/first-login/first-login.component';
     MatSidenavModule,
     HttpClientModule,
     FormsModule,
+  CarouselModule
+  
 
   ],
   providers: [ MainlGuard],

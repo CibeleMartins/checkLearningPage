@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Prompt&display=swap');
 .welcome-text-content {
     width: 100%;
     height: 90vh;
@@ -16,14 +17,16 @@
 #welcome-title {
     font-size: 8vh;
     white-space: nowrap;
+    font-family: 'Prompt', sans-serif;;
 }
 
 #welcome-paragraph {
     font-size: 2vh;
+    font-family: 'Prompt', sans-serif;;
 }
 
 #content-animated{
-    height: 400px;
+    height: 50vh;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -32,7 +35,8 @@
 
 .text-animated {
     font-size: 30px;
-    /* white-space: nowrap; */
+    white-space: nowrap;
+    font-family: 'Prompt', sans-serif;;
 }
 
 .tedtalks-list {

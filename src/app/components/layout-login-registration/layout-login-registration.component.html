@@ -1,33 +1,36 @@
-<div id="container-login">
+<div [ngStyle]="{display: 'flex'}">
     <header id="navigator">
         <div id="register-logo-content">
-            <img [routerLink]="['/']" id="logo" src="../../../assets/miniLogo.svg" alt="logo">
-            <img [routerLink]="['/cadastro']" id="register-action" src="../../../assets//register.svg" alt="register">
+            <img [routerLink]="['/']" class="logo" src="../../../assets/miniLogo.svg" alt="logo">
+            <img [routerLink]="['/cadastro']" class="register-action" src="../../../assets//register.svg" alt="register">
         </div>
-
+    
         <div id="post-it-images-content" >
             <img id="miniPostIt" src="../../../assets/miniPostIt.svg" alt="postit">
-
+    
             <div id="miniAnnotation">
                 <img  src="../../../assets//miniAnnotation.svg" alt="anotation">
             </div>
         </div>
-
+    
         <button (click)="logout()">Logout</button>
     </header>
-
-    <div id="container-forms">
-        <ng-content></ng-content>
+    <div class="container-login">
+        <div class="container-forms">
+            <ng-content></ng-content>
+        </div>
+    
+        <div *ngIf="!imageIsHidden; else other_content" class="big-post-its">
+            <img class="image-big-postit" src="../../../assets//bigpostIts.svg"/>
+        </div>
+    
+        <ng-template class="conditional-content" #other_content>
+            <ng-content select="[frame]"></ng-content>
+        </ng-template>
     </div>
-
-    <div *ngIf="!imageIsHidden; else other_content" id="big-post-its">
-        <img id="image-big-postit" src="../../../assets//bigpostIts.svg"/>
-    </div>
-
-    <ng-template id="conditional-content" #other_content>
-        <ng-content select="[frame]"></ng-content>
-    </ng-template>
 </div>
+
+
 
 
 
