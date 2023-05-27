@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
 
   isFirstLoginOfUser!: boolean;
 
-  constructor( private router: Router, private authService: AuthService, private userService: UserService) {}
+  constructor(private router: Router, private authService: AuthService, private userService: UserService) { }
 
   ngOnInit(): void {
     this.signupForm = new FormGroup({
@@ -70,29 +70,39 @@ export class LoginComponent implements OnInit {
       this.messageSnackBar = 'Campos do formulário inválidos.';
       this.warningIcon = '../../../assets//warningIcon.png';
     } else {
-      this.viewSnackbar = !this.viewSnackbar;
-      this.messageSnackBar = 'Login realizado com sucesso!';
-      this.warningIcon = '../../../assets//successIcon.png';
-     
-      setTimeout(()=> {
-         this.signupForm.reset();
+      this.authService.login(this.signupForm.get('userEmail').value, this.signupForm.get('userPassword').value).subscribe({
+        next: (data) => { this.authService.setUserInLocalStorage(this.userService.formatUser(data)), data.user.isLogged = true, this.authService.userSubject.next(data), this.isFirstLoginOfUser = data.user.isFirstLogin },
+        error: () => {
+          this.viewSnackbar = !this.viewSnackbar;
+          this.messageSnackBar = 'Erro no serviço de login, tente mais tarde!';
+          this.warningIcon = '../../../assets//warningIcon.png';
+        },
+        complete: () => {
+          this.viewSnackbar = !this.viewSnackbar;
+          this.messageSnackBar = 'Login realizado com sucesso!';
+          this.warningIcon = '../../../assets//successIcon.png';
+
+          setTimeout(() => {
+            if (this.isFirstLoginOfUser) {
+              this.router.navigate(['/seja-bem-vindo'])
+            } else {
+              this.router.navigate(['/anotacoes'])
+            }
+          }, 1000)
+
+        }
+      })
+
+
+      setTimeout(() => {
+        this.signupForm.reset();
       }, 1000)
 
     }
 
-    this.authService.login(this.signupForm.get('userEmail').value, this.signupForm.get('userPassword').value).subscribe({
-      next: (data)=>{this.authService.setUserInLocalStorage(this.userService.formatUser(data)),  data.user.isLogged = true, this.authService.userSubject.next(data), console.log('é o primeiro login: ', data.user.isFirstLogin), this.isFirstLoginOfUser = data.user.isFirstLogin},
-      error: (error)=>{alert(`Erro no login: ${error}`)},
-      complete:()=>{
-        if(this.isFirstLoginOfUser) {
-          this.router.navigate(['/seja-bem-vindo'])
-        } else {
-          this.router.navigate(['/anotacoes'])
-        }
-      }
-    })
 
- 
-    
+
+
+
   }
 }
