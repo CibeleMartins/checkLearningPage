@@ -7,6 +7,7 @@ export interface AuthResponseData {
 		emailUser: string,
 		photoUser: string
 		dateRegister: string,
-		isLogged: boolean
+		isLogged: boolean,
+		isFirstLogin: boolean
 	}
 }

@@ -19,7 +19,7 @@ export class LayoutLoginRegistrationComponent implements OnInit, OnChanges {
   @Input() message!: string;
   @Input() icon!: string;
   @Input() imageIsHidden!: boolean;
-
+  @Input() changeClasses!: boolean;
   constructor(private feedbackService: SnackBarService, private authService: AuthService) {}
 
   ngOnInit(): void {

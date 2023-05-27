@@ -63,7 +63,8 @@ export class AuthService {
         emailUser: '',
         photoUser:'',
         dateRegister: '',
-        isLogged: false
+        isLogged: false,
+        isFirstLogin: null
       }})
   }
 }

@@ -16,12 +16,14 @@ export class LoginComponent implements OnInit {
   messageSnackBar!: string;
   warningIcon!: string;
 
+  isFirstLoginOfUser!: boolean;
+
   constructor( private router: Router, private authService: AuthService, private userService: UserService) {}
 
   ngOnInit(): void {
     this.signupForm = new FormGroup({
       'userEmail': new FormControl(
-        'cibeleadmin@hotmail.com',
+        'cibelemartinsadmin@hotmail.com',
         [Validators.required, Validators.email, this.emailValidator.bind(this)],
         null
       ),
@@ -79,12 +81,18 @@ export class LoginComponent implements OnInit {
     }
 
     this.authService.login(this.signupForm.get('userEmail').value, this.signupForm.get('userPassword').value).subscribe({
-      next: (data)=>{this.authService.setUserInLocalStorage(this.userService.formatUser(data)), data.user.isLogged = true, this.authService.userSubject.next(data)},
+      next: (data)=>{this.authService.setUserInLocalStorage(this.userService.formatUser(data)),  data.user.isLogged = true, this.authService.userSubject.next(data), console.log('é o primeiro login: ', data.user.isFirstLogin), this.isFirstLoginOfUser = data.user.isFirstLogin},
       error: (error)=>{alert(`Erro no login: ${error}`)},
-      complete:()=>{this.router.navigate(['/anotacoes'])}
+      complete:()=>{
+        if(this.isFirstLoginOfUser) {
+          this.router.navigate(['/seja-bem-vindo'])
+        } else {
+          this.router.navigate(['/anotacoes'])
+        }
+      }
     })
 
-    this.router.navigate(['/anotacoes'])
+ 
     
   }
 }

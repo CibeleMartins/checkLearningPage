@@ -1,12 +1,7 @@
-<c-carousel [interval]="5000">
+<c-carousel [interval]="5000" [ngStyle]="{display: 'flex'}">
     <c-carousel-inner>
-      <c-carousel-item *ngFor="let slide of slides">
-        <img
-          [src]="slide.src"
-          alt="{{slide.title}}"
-          class="d-block w-100"
-          loading="lazy"
-        />
+      <c-carousel-item *ngFor="let frame of frames">
+          <ng-content [select]="frame"></ng-content>
       </c-carousel-item>
     </c-carousel-inner>
     <c-carousel-control [routerLink] caption="Previous" direction="prev"></c-carousel-control>

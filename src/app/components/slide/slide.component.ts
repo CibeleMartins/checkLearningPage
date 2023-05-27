@@ -1,15 +1,16 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, Input } from '@angular/core';
 import { DragScrollComponent } from 'ngx-drag-scroll';
 
 @Component({
   selector: 'app-slide',
   templateUrl: './slide.component.html',
-  styleUrls: ['./slide.component.css']
+  styleUrls: ['./slide.component.scss']
 })
 export class SlideComponent {
   
   slides: any[] = new Array(3).fill({id: -1, src: '', title: '', subtitle: ''});
-
+  @Input()  frames: string[] = [];
+@Input() renderSlide!: boolean;
   ngOnInit() {
     this.slides[0] = {
       id: 0,

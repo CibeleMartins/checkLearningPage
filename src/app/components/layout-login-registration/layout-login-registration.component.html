@@ -16,7 +16,7 @@
         <button (click)="logout()">Logout</button>
     </header>
     <div class="container-login">
-        <div class="container-forms">
+        <div class="container-forms" [ngClass]="changeClasses ? 'container-forms-column' : ''">
             <ng-content></ng-content>
         </div>
     
