@@ -4,9 +4,13 @@
         <ng-content></ng-content>
     </div>
 
-    <div>
-        <app-lottie [options]="options"></app-lottie>
+    <div *ngIf="!renderLogo; else other_content">
+        <app-lottie [styles]="styles" [options]="optionsLottie"></app-lottie>
     </div>
+
+    <ng-template class="conditional-content" #other_content>
+        <ng-content select="[frame]"></ng-content>
+    </ng-template>
 </div>
 
 

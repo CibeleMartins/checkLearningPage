@@ -9,15 +9,16 @@ import { AnimationOptions } from 'ngx-lottie';
 export class LayoutHomeComponent implements OnInit {
 
   @Input() image: string | undefined;
-
+  @Input() optionsLottie!: AnimationOptions;
+  @Input() renderLogo: boolean;
+  @Input() styles!: Partial<CSSStyleDeclaration>;
+  
   constructor() { }
 
   ngOnInit(): void {
-
+    
   }
 
-  options: AnimationOptions = {
-    path: '/assets/lottie-man-fly.json',
-  };
+
 
 }

@@ -1,6 +1,6 @@
 <div class="pageHome">
   <!-- content 1 -->
-  <app-layout-home [image]="poster">
+  <app-layout-home [image]="poster" [optionsLottie]="options">
     <div class="initial-content">
       <div class="child-content">
         <h1 class="title" data-aos="fade-right" data-aos-duration="1500">
@@ -32,17 +32,16 @@
   </app-layout-home>
 
   <!-- content 2 -->
-  <app-layout-home [ngStyle]="{ marginTop: '15vh' }" [image]="poster">
+  <app-layout-home [ngStyle]="{ marginTop: '15vh' }" [styles]="styles" [optionsLottie]="optionsCheckRegistryLearn">
     <div class="initial-content-2">
        <p data-aos="fade-right" data-aos-duration="2000"> Um jeito diferente </p> 
        <p data-aos="fade-right" data-aos-duration="300">de registrar e </p> 
        <p data-aos="fade-right" data-aos-duration="2000">checar</p> 
-   
     </div>
   </app-layout-home>
 
   <!-- content 3 -->
-  <app-layout-home [ngStyle]="{ marginTop: '15vh' }" [image]="learnerMethod">
+  <app-layout-home [ngStyle]="{ marginTop: '15vh' }"  [renderLogo]="true">
     <div class="initial-content-3">
       <p data-aos="fade-right" data-aos-duration="15000" id="your-learning">
         O seu 
@@ -66,6 +65,14 @@
 
       <p (click)="backToTop()" id="back-top">Ou volte ao topo e registre-se</p>
       
+    </div>
+
+    <div [ngStyle]="{display: 'flex', alignItems: 'center', justifyContent: 'start', width: '37%'}" frame>
+      <img  data-aos="fade-right"
+      data-aos-duration="1500"
+        class="logo"
+        alt="register"
+        src="../../../assets/newLogo.png"/>
     </div>
   </app-layout-home>
 </div>

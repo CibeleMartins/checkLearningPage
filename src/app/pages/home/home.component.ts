@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Router } from '@angular/router';
 import * as Aos from 'aos';
+import { AnimationOptions } from 'ngx-lottie';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +16,19 @@ export class HomeComponent implements OnInit {
   learnerMethod: string = '../../../../assets/howToLearn.svg';
   renderAnimatedText: boolean=true;
 
+ options: AnimationOptions = {
+    path: '/assets/lottie-man-fly.json',
+  };
 
+  optionsCheckRegistryLearn: AnimationOptions = {
+    path: '/assets/lottie-check-registry-learn.json',
+  };
+
+    styles: Partial<CSSStyleDeclaration> = {
+    maxWidth: '100vh',
+    width: '80vh',
+    paddingRight: '7%',
+  };
   constructor(private route: Router) {}
 
   ngOnInit(): void {
