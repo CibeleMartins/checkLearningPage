@@ -5,6 +5,7 @@ import {
   OnChanges,
   SimpleChanges,
 } from '@angular/core';
+import { AnimationOptions } from 'ngx-lottie';
 import { SnackBarService } from 'src/app/services/SnackbarFeedback.service';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -20,6 +21,9 @@ export class LayoutLoginRegistrationComponent implements OnInit, OnChanges {
   @Input() icon!: string;
   @Input() imageIsHidden!: boolean;
   @Input() changeClasses!: boolean;
+  options: AnimationOptions = {
+    path: '/assets/lottie-login-2.json',
+  };
   constructor(private feedbackService: SnackBarService, private authService: AuthService) {}
 
   ngOnInit(): void {
