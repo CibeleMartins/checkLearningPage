@@ -4,6 +4,7 @@ import emailjs, { EmailJSResponseStatus } from '@emailjs/browser';
 import { desenv } from '../../../environment/environment';
 import { UserService } from 'src/app/services/UserService.service';
 import { UserRegistered } from 'src/app/interfaces/interfacesUser';
+import { AnimationOptions } from 'ngx-lottie';
 
 @Component({
   selector: 'app-register',
@@ -17,6 +18,14 @@ export class RegisterComponent implements OnInit {
   viewSnackbar: boolean = false;
   messageSnackBar!: string;
   warningIcon!: string;
+  styles: Partial<CSSStyleDeclaration> = {
+    maxWidth: '100vh',
+    width: '80vh',
+    paddingRight: '7%',
+  };
+  options: AnimationOptions = {
+    path: '/assets/lottie-login-3.json',
+  };
 
   private readonly apiKey = desenv.publicKeyEmailJs
   private readonly idService = desenv.idServiceEmailJs
