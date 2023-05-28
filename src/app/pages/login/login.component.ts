@@ -2,6 +2,7 @@ import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AnimationOptions } from 'ngx-lottie';
 import { UserService } from 'src/app/services/UserService.service';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -15,9 +16,15 @@ export class LoginComponent implements OnInit {
   viewSnackbar: boolean = false;
   messageSnackBar!: string;
   warningIcon!: string;
-
   isFirstLoginOfUser!: boolean;
-
+  styles: Partial<CSSStyleDeclaration> = {
+    maxWidth: '100vh',
+    width: '80vh',
+    paddingRight: '7%',
+  };
+  options: AnimationOptions = {
+    path: '/assets/lottie-login-2.json',
+  };
   constructor(private router: Router, private authService: AuthService, private userService: UserService) { }
 
   ngOnInit(): void {

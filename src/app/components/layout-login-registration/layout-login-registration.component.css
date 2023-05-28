@@ -66,12 +66,12 @@
   flex-direction: column;
   justify-content: center;
 }
-.big-post-its {
+.lottie-content {
   width: 45%;
   height: 100vh;
   display: flex;
-  align-items: flex-end;
-  justify-content: flex-end;
+  align-items: center;
+  justify-content: center;
 }
 
 .image-big-postit {

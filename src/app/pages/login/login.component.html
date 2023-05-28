@@ -1,12 +1,8 @@
-<app-layout-login-registration [viewSnackbar]="viewSnackbar" [message]="messageSnackBar" [icon]="warningIcon">
+<app-layout-login-registration [optionsLottie]="options" [styles]="styles" [viewSnackbar]="viewSnackbar" [message]="messageSnackBar" [icon]="warningIcon">
     <p id="title-login">Seja bem-vindo!</p>
     
     <form [formGroup]="signupForm" id="forms-login" (ngSubmit)="signUp()">
         <input formControlName="userEmail" class="input-login" placeholder="E-mail" type="email">
-
-        <!-- <span *ngIf="this.signupForm.get('userEmail')?.invalid && this.signupForm.get('userEmail')?.touched">
-           Insira um e-mail válido <img id="warning-icon" src="../../../assets//warningIcon.png"/>
-        </span> -->
         <input formControlName="userPassword" class="input-login"  placeholder="Senha" type="password">
 
         <button id="login-action">

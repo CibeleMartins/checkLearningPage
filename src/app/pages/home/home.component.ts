@@ -14,9 +14,9 @@ export class HomeComponent implements OnInit {
   poster: string = '../../../../assets/poster.svg';
   checkList: string = '';
   learnerMethod: string = '../../../../assets/howToLearn.svg';
-  renderAnimatedText: boolean=true;
+  renderAnimatedText: boolean = true;
 
- options: AnimationOptions = {
+  options: AnimationOptions = {
     path: '/assets/lottie-man-fly.json',
   };
 
@@ -24,12 +24,12 @@ export class HomeComponent implements OnInit {
     path: '/assets/lottie-check-registry-learn.json',
   };
 
-    styles: Partial<CSSStyleDeclaration> = {
+  styles: Partial<CSSStyleDeclaration> = {
     maxWidth: '100vh',
     width: '80vh',
     paddingRight: '7%',
   };
-  constructor(private route: Router) {}
+  constructor(private route: Router) { }
 
   ngOnInit(): void {
     Aos.init();

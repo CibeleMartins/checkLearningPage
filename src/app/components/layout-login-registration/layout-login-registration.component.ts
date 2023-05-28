@@ -21,9 +21,9 @@ export class LayoutLoginRegistrationComponent implements OnInit, OnChanges {
   @Input() icon!: string;
   @Input() imageIsHidden!: boolean;
   @Input() changeClasses!: boolean;
-  options: AnimationOptions = {
-    path: '/assets/lottie-login-2.json',
-  };
+  @Input() styles!: Partial<CSSStyleDeclaration>;
+  @Input() optionsLottie!: AnimationOptions;
+
   constructor(private feedbackService: SnackBarService, private authService: AuthService) {}
 
   ngOnInit(): void {

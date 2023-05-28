@@ -3,12 +3,14 @@
   flex-direction: column;
   height: 400px;
   justify-content: space-evenly;
+  align-items: center;
 }
 
 #title-login {
   font-weight: 200;
   letter-spacing: 1px;
   font-size: 2vw;
+  text-align: center;
 }
 
 .input-login {
@@ -41,7 +43,7 @@
 }
 
 #login-register-action {
-  width: 60%;
+  width: 45%;
 }
 
 .snack-style {

@@ -20,9 +20,8 @@
             <ng-content></ng-content>
         </div>
     
-        <div *ngIf="!imageIsHidden; else other_content" class="big-post-its">
-            <!-- <img class="image-big-postit" src="../../../assets//bigpostIts.svg"/> -->
-            <app-lottie [options]="options"></app-lottie>
+        <div *ngIf="!imageIsHidden; else other_content" class="lottie-content">
+            <app-lottie [options]="optionsLottie" [styles]="styles"></app-lottie>
         </div>
     
         <ng-template class="conditional-content" #other_content>
