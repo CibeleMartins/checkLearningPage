@@ -27,7 +27,6 @@ export class FirstLoginComponent {
     container.innerHTML = iframeHtml;
   }
   
-
   ngOnInit() {
     this.contentLearningService.getTedTalksFirstLogin().subscribe({
       next: (data) => { data.map((i: any, index: number)=> this.getValuesOfObject(i.embedHtml, this.elements[index]))},

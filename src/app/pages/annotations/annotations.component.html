@@ -6,7 +6,8 @@
       <input formControlName="title" placeholder="Título" id="input-title" type="text" />
       <input formControlName="date" placeholder="Data" id="input-date" type="date" />
     </div>
-    <app-text-editor [editorConfig]="editorConfig" [htmlContentValue]="editorValue"></app-text-editor>
+    <angular-editor [config]="editorConfig" formControlName="annotation"></angular-editor>
+  
     <button id="annotation-action" (click)="onAddAnnotation($event)">
       <img id="image-annotation-action" src="../../../assets//addAnnotation.svg" alt="signup" />
     </button>
@@ -19,8 +20,7 @@
           <input placeholder="Pesquise suas anotações" id="search-annotations" />
           <img id="search-icon" src="../../../assets/search.svg" />
         </div>
-
-        <router-outlet></router-outlet>
+        <app-annotation></app-annotation>
       </mat-drawer>
       <mat-drawer-content id="container-button-sidenav">
         <button id="button-open-close-sidenav" (click)="sideNav.toggle()">
@@ -29,4 +29,5 @@
       </mat-drawer-content>
     </mat-drawer-container>
   </div>
+  
 </app-layout-login-registration>

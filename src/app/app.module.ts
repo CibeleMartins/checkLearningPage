@@ -30,7 +30,7 @@ import { LottieModule } from 'ngx-lottie';
 import player from 'lottie-web';
 import { LottieComponent } from './components/lottie/lottie.component';
 import { AngularEditorModule } from '@kolkov/angular-editor';
-import { TextEditorComponent } from './components/text-editor/text-editor.component';
+
 
 export function playerFactory() {
   return player;
@@ -50,7 +50,7 @@ export function playerFactory() {
     FirstLoginComponent,
     SlideComponent,
     LottieComponent,
-    TextEditorComponent,
+
 
   ],
   imports: [

@@ -16,9 +16,7 @@ const RoutesApp: Routes = [
   {path: 'login', component: LoginComponent },
   {path: 'seja-bem-vindo', component: FirstLoginComponent},
   {path: 'cadastro', component: RegisterComponent},
-  {path: 'anotacoes', component: AnnotationsComponent, canActivate: [MainlGuard] ,children: [
-    {path: ':userLoggedId', component: AnnotationComponent}
-  ]}
+  {path: 'anotacoes', component: AnnotationsComponent, canActivate: [MainlGuard]}
 ]
 @NgModule({
   imports: [RouterModule.forRoot(RoutesApp)],

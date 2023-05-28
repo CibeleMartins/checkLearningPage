@@ -3,6 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDrawer } from '@angular/material/sidenav';
 import { AuthService } from 'src/app/services/auth.service';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
+import { UserService } from 'src/app/services/UserService.service';
+import { AnnotationModel } from 'src/app/interfaces/AnnotationModel.model';
 
 @Component({
   selector: 'app-annotations',
@@ -43,17 +45,17 @@ export class AnnotationsComponent implements OnInit {
       { class: 'comic-sans-ms', name: 'Comic Sans MS' }
     ],
   };
-  editorValue: string;
-  constructor(private authService: AuthService) {
+  htmlContent: string = '';
+  constructor(private userService: UserService) {
 
   }
   ngOnInit(): void {
-    console.log('editor value: ', this.editorValue)
+    console.log('editor value: ', this.htmlContent)
     this.annotationForms = new FormGroup({
       title: new FormControl('', [Validators.required], null),
       date: new FormControl('', [Validators.required], null),
       annotation: new FormControl(
-        this.editorValue,
+        '',
         [Validators.required],
         null
       ),
@@ -73,28 +75,18 @@ export class AnnotationsComponent implements OnInit {
       this.messageSnackBar = 'Anotação feita com sucesso!';
       this.warningIcon = '../../../assets//successIcon.png';
 
-      interface AnnotationModel {
-        idUser: number;
-        title: string;
-        date: string;
-        description: string;
-        annotation: string;
-        color: string;
-      }
-      let id = 0;
-
-
       let annotation: AnnotationModel = {
-        idUser: id++,
         title: this.annotationForms.get('title').value,
         date: this.annotationForms.get('date').value,
-        description: this.annotationForms.get('description').value,
         annotation: this.annotationForms.get('annotation').value,
-        color: this.annotationForms.get('color').value
       };
 
-
-      // this.userService.registerAnnotationUser(annotation);
+      console.log('anotacao', annotation.annotation)
+      this.userService.registerAnnotationUser(annotation).subscribe({
+        next: (data)=> console.log(data),
+        error:(e)=> console.log(e),
+        complete: ()=> console.log('complete')
+      });
       this.annotationForms.reset();
 
     }
