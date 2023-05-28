@@ -27,6 +27,13 @@ import { LayoutLoginRegistrationComponent } from './components/layout-login-regi
 import { SlideComponent } from './components/slide/slide.component';
 
 import { CarouselModule } from '@coreui/angular';
+import { LottieModule } from 'ngx-lottie';
+import player from 'lottie-web';
+import { LottieComponent } from './components/lottie/lottie.component';
+
+export function playerFactory() {
+  return player;
+}
 
 @NgModule({
   declarations: [
@@ -41,6 +48,7 @@ import { CarouselModule } from '@coreui/angular';
     AnnotationComponent,
     FirstLoginComponent,
     SlideComponent,
+    LottieComponent,
    
   ],
   imports: [
@@ -53,8 +61,8 @@ import { CarouselModule } from '@coreui/angular';
     MatSidenavModule,
     HttpClientModule,
     FormsModule,
-  CarouselModule
-  
+  CarouselModule,
+  LottieModule.forRoot({ player: playerFactory })
 
   ],
   providers: [ MainlGuard],

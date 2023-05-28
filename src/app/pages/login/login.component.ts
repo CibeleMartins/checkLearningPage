@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.signupForm = new FormGroup({
       'userEmail': new FormControl(
-        'cibelemartinsadmin@hotmail.com',
+        'cibeleteste2@hotmail.com',
         [Validators.required, Validators.email, this.emailValidator.bind(this)],
         null
       ),

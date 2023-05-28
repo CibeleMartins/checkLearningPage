@@ -36,6 +36,7 @@
     "emailjs": "^4.0.1",
     "ng-animate": "^2.0.1",
     "ngx-drag-scroll": "^15.0.0",
+    "ngx-lottie": "^10.0.0",
     "ngx-teximate": "^0.3.0",
     "normalize.css": "^8.0.1",
     "rxjs": "~7.5.0",

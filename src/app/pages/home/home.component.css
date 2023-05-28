@@ -38,6 +38,8 @@
 
 #logo {
   margin-left: 40px;
+  width: 150px;
+  height: 150px;
 }
 
 .description {
@@ -52,7 +54,7 @@
   border: none;
   outline: none;
   border-radius: 10px;
-  background-color: #50f374;
+  background-color: #2287E0;
   cursor: pointer;
 }
 

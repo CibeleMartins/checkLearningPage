@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, Input } from '@angular/core';
+import { AnimationOptions } from 'ngx-lottie';
 
 @Component({
   selector: 'app-layout-home',
@@ -14,5 +15,9 @@ export class LayoutHomeComponent implements OnInit {
   ngOnInit(): void {
 
   }
+
+  options: AnimationOptions = {
+    path: '/assets/lottie-man-fly.json',
+  };
 
 }
