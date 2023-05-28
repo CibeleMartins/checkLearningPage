@@ -2,45 +2,55 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 80vh;
+    height: 100vh;
     justify-content: space-evenly;
 }
 
-.input-annotations {
-    width: 70%;
-    height: 20px;
+.container-title-date {
+    display: flex;
+    width: 50%;
+    height: 50px;
+    justify-content: start;
+    align-items: start;
+}
+
+#input-title {
+    width: 50%;
+    height: 60px;
     padding: 20px;
     border-radius: 10px;
     border: none;
     outline: none;
-    margin-top: 30px;
-    background-color: #fffacd;
+    /* margin-top: 30px; */
+    background-color: #F4F4F4;
 }
+
+#input-date {
+    width: 20%;
+    height: 60px;
+    padding: 20px;
+    border-radius: 10px;
+    margin-left: 40px;
+    border: none;
+    outline: none;
+    /* margin-top: 30px; */
+    background-color: #F4F4F4;
+}
+
 
 .input-annotations::placeholder {
     color: black;
     letter-spacing: 1px;
 }
 
-textarea {
-    width: 70%;
-    height: 100px;
-    padding: 20px;
-    border-radius: 10px;
-    border: none;
-    outline: none;
-    background-color: #fffacd;
-    margin-top: 30px;
-}
 
 #annotation-action {
-    background-color: #50f374;
+    background-color: #2287E0;
     border-radius: 10px;
     border: none;
     outline: none;
-    width: 25%;
+    width: 6%;
     cursor: pointer;
-    margin-top: 5%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -51,13 +61,13 @@ textarea {
 }
 
 #sidenav {
-    background-color: #50f374;
+    background-color: #161616;
     width: 50vw;
     height: 100vh;
 }
 .mat-drawer-content {
     width: 50px;
-    background-color: #50f374;
+    background-color: #161616;
     height: 50vh;
     border: none;
     border-radius: 10px 0px 0px 10px;
@@ -66,7 +76,7 @@ textarea {
 #button-open-close-sidenav {
     border: none;
     outline: none;
-    background-color: #50f374;
+    background-color: #161616;
     height: 50vh;
     cursor: pointer;
 
@@ -74,7 +84,8 @@ textarea {
 
 #img-open-close-drawer {
     width: 30px;
-    padding: 10px;
+    margin-left: 10px;
+    padding: 0px;
 }
 
 #container-search-annotations {

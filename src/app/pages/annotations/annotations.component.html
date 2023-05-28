@@ -1,74 +1,30 @@
-<app-layout-login-registration
-  [imageIsHidden]="imageIsHidden"
-  [viewSnackbar]="viewSnackbar"
-  [message]="messageSnackBar"
-  [icon]="warningIcon"
->
+<app-layout-login-registration [changeClasses]="true" [imageIsHidden]="imageIsHidden" [viewSnackbar]="viewSnackbar" [message]="messageSnackBar"
+  [icon]="warningIcon">
   <form [formGroup]="annotationForms" class="forms-annotations">
-    <input
-      formControlName="title"
-      placeholder="Título"
-      class="input-annotations"
-      type="text"
-    />
-    <input
-      formControlName="date"
-      placeholder="Data"
-      class="input-annotations"
-      type="date"
-    />
-    <input
-      formControlName="description"
-      placeholder="Descrição"
-      class="input-annotations"
-      type="text"
-    />
 
-    <div id="container-color">
-      <span>Escolhar a cor da sua anotação</span><input formControlName="color" id="input-color" type="color"/>
+    <div class="container-title-date">
+      <input formControlName="title" placeholder="Título" id="input-title" type="text" />
+      <input formControlName="date" placeholder="Data" id="input-date" type="date" />
     </div>
- 
-    <textarea formControlName="annotation"></textarea>
-
-
+    <app-text-editor [editorConfig]="editorConfig" [htmlContentValue]="editorValue"></app-text-editor>
     <button id="annotation-action" (click)="onAddAnnotation($event)">
-      <img
-        id="image-annotation-action"
-        src="../../../assets//addAnnotation.svg"
-        alt="signup"
-      />
+      <img id="image-annotation-action" src="../../../assets//addAnnotation.svg" alt="signup" />
     </button>
   </form>
 
   <div class="container-sidenav" frame>
     <mat-drawer-container class="example-container">
-      <mat-drawer
-        id="sidenav"
-        #sideNav
-        mode="side"
-        opened="{{ sideNavIsopened }}"
-        position="end"
-      >
+      <mat-drawer id="sidenav" #sideNav mode="side" opened="{{ sideNavIsopened }}" position="end">
         <div id="container-search-annotations">
-          <input
-            placeholder="Pesquise suas anotações"
-            id="search-annotations"
-          />
+          <input placeholder="Pesquise suas anotações" id="search-annotations" />
           <img id="search-icon" src="../../../assets/search.svg" />
         </div>
 
         <router-outlet></router-outlet>
       </mat-drawer>
       <mat-drawer-content id="container-button-sidenav">
-        <button
-          id="button-open-close-sidenav"
-          (click)="sideNav.toggle()"
-        >
-          <img
-            id="img-open-close-drawer"
-            src="../../../assets//openSidenav.svg"
-            alt="signup"
-          />
+        <button id="button-open-close-sidenav" (click)="sideNav.toggle()">
+          <img id="img-open-close-drawer" src="../../../assets//openSidenav.svg" alt="signup" />
         </button>
       </mat-drawer-content>
     </mat-drawer-container>

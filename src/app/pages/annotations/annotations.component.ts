@@ -1,10 +1,8 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDrawer } from '@angular/material/sidenav';
-import { Store } from '@ngrx/store';
-import { Subscription, map } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
-
+import { AngularEditorConfig } from '@kolkov/angular-editor';
 
 @Component({
   selector: 'app-annotations',
@@ -15,44 +13,47 @@ export class AnnotationsComponent implements OnInit {
   @ViewChild('drawer') drawerReference!: MatDrawer;
 
   annotationForms!: FormGroup;
-  annotationsArray: {
-    idUser: number;
-    title: string;
-    date: string;
-    description: string;
-    annotation: string;
-    color: string;
-  }[] = [];
-
-  annotationColor: string;
-
   viewSnackbar: boolean = false;
   messageSnackBar!: string;
   warningIcon!: string;
-  
   sideNavIsopened: boolean = false;
 
   imageIsHidden: boolean = true;
   showFiller = false;
-  public routerreuse: any;
+
+  editorConfig: AngularEditorConfig = {
+    editable: true,
+    spellcheck: true,
+    height: '50vh',
+    minHeight: '0',
+    maxHeight: 'auto',
+    width: '50%',
+    minWidth: '0',
+    translate: 'yes',
+    enableToolbar: true,
+    showToolbar: true,
+    placeholder: 'Enter text here...',
+    defaultParagraphSeparator: '',
+    defaultFontName: '',
+    defaultFontSize: '',
+    fonts: [
+      { class: 'arial', name: 'Arial' },
+      { class: 'times-new-roman', name: 'Times New Roman' },
+      { class: 'calibri', name: 'Calibri' },
+      { class: 'comic-sans-ms', name: 'Comic Sans MS' }
+    ],
+  };
+  editorValue: string;
   constructor(private authService: AuthService) {
-   
+
   }
-
-  authBoolean: boolean = false;
-
   ngOnInit(): void {
-
+    console.log('editor value: ', this.editorValue)
     this.annotationForms = new FormGroup({
-      title: new FormControl('sdgsdgsdgs', [Validators.required], null),
-      date: new FormControl('sdgsdgsdgs', [Validators.required], null),
-      description: new FormControl(
-        'dsfsdfsfsfsdfsd',
-        [Validators.required],
-        null
-      ),
+      title: new FormControl('', [Validators.required], null),
+      date: new FormControl('', [Validators.required], null),
       annotation: new FormControl(
-        'sdfsdfsdsdgsdgsdg',
+        this.editorValue,
         [Validators.required],
         null
       ),
