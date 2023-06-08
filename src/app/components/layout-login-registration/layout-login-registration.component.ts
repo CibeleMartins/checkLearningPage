@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { AnimationOptions } from 'ngx-lottie';
 import { SnackBarService } from 'src/app/services/SnackbarFeedback.service';
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthService } from 'src/app/services/Auth.service';
 
 
 @Component({

@@ -7,7 +7,6 @@ import { Store } from '@ngrx/store';
 import { AuthResponseData } from '../interfaces/AuthResponseData.model';
 import { UserRegistered } from '../interfaces/interfacesUser';
 import { AnnotationModel } from '../interfaces/AnnotationModel.model';
-import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root',
@@ -15,9 +14,9 @@ import { AuthService } from './auth.service';
 export class UserService {
 
   userSubject: Subject<AuthResponseData> = new Subject();
-  newAnnotations: Subject<AnnotationModel> = new Subject();
+
   
-  constructor(private http: HttpClient, private authService: AuthService) {}
+  constructor(private http: HttpClient) {}
 
   formatUser(data: AuthResponseData) {
     const user = new User(
@@ -35,24 +34,6 @@ export class UserService {
       error: (error) => console.log(error),
       complete: () => console.log('Usuário registrado com sucesso!')
     })
-  }
-
-  registerAnnotationUser(annotation: AnnotationModel) {
-    const user = this.authService.getUserFromLocalStorage()
-    let headerObj = new HttpHeaders().set("Authorization", user.userToken)
-    return  this.http.post(desenv.apiAnnotations, annotation, {headers:headerObj})
-  }
-
-  getAnnotationsOfUser() {
-    const user = this.authService.getUserFromLocalStorage()
-    let headerObj = new HttpHeaders().set("Authorization", user.userToken)
-    return this.http.get(desenv.apiAnnotations, {headers:headerObj})
-  }
-
-  deleteAnnotationOfUser(id: number) {
-    const user = this.authService.getUserFromLocalStorage()
-    let headerObj = new HttpHeaders().set("Authorization", user.userToken)
-    return this.http.delete(desenv.apiAnnotations + `/${id}`, {headers:headerObj})
   }
 
 }

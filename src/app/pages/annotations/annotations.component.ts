@@ -1,12 +1,13 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDrawer } from '@angular/material/sidenav';
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthService } from 'src/app/services/Auth.service';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
-import { UserService } from 'src/app/services/UserService.service';
 import { AnnotationModel } from 'src/app/interfaces/AnnotationModel.model';
 import { Router } from '@angular/router';
 import { AnnotationComponent } from 'src/app/components/annotation/annotation.component';
+import { AnnotationService } from 'src/app/services/AnnotationService.service';
+import { UserService } from 'src/app/services/UserService.service';
 
 @Component({
   selector: 'app-annotations',
@@ -22,6 +23,7 @@ export class AnnotationsComponent implements OnInit {
   warningIcon!: string;
   sideNavIsopened: boolean = false;
   imageIsHidden: boolean = true;
+  changeIconFormAnnotation: boolean = false;
 
   editorConfig: AngularEditorConfig = {
     editable: true,
@@ -46,7 +48,7 @@ export class AnnotationsComponent implements OnInit {
     ],
   };
 
-  constructor(private userService: UserService, private router: Router, private authService: AuthService) {
+  constructor(private userService: UserService, private annotationService: AnnotationService, private router: Router, private authService: AuthService) {
 
   }
   ngOnInit(): void {
@@ -59,7 +61,6 @@ export class AnnotationsComponent implements OnInit {
         [Validators.required],
         null
       ),
-      color: new FormControl('', null),
     });
   }
 
@@ -75,26 +76,24 @@ export class AnnotationsComponent implements OnInit {
       this.messageSnackBar = 'Anotação feita com sucesso!';
       this.warningIcon = '../../../assets//successIcon.png';
 
-      const date = new Date(this.annotationForms.get('date').value);
-
       let annotation: AnnotationModel = {
         title: this.annotationForms.get('title').value,
         date: this.annotationForms.get('date').value,
         annotation: this.annotationForms.get('annotation').value,
       };
 
-      this.userService.registerAnnotationUser(annotation).subscribe({
-        next: (data) => { console.log('anotação registrada', data) },
-        error: (e) => console.log(e),
+      this.annotationService.registerAnnotationUser(annotation).subscribe({
+        next: (data: any) => { console.log('anotação registrada', data) },
+        error: (e: any) => console.log(e),
         complete: () => console.log('complete')
       });
 
-      this.userService.getAnnotationsOfUser().subscribe({
-        next: (data) => {
+      this.annotationService.getAnnotationsOfUser().subscribe({
+        next: (data: any) => {
           console.log('mandou novo array de anotações para AnnotationComponente')
-          this.userService.newAnnotations.next(annotation)
+          this.annotationService.newAnnotations.next(annotation)
         },
-        error: (e) => console.log(e),
+        error: (e: any) => console.log(e),
         complete: () => ''
       })
 
@@ -102,6 +101,36 @@ export class AnnotationsComponent implements OnInit {
 
     }
   }
+
+  onUpdateAnnotationInPage() {
+
+    let annotation: AnnotationModel = {
+      title: this.annotationForms.get('title').value,
+      date: this.annotationForms.get('date').value,
+      annotation: this.annotationForms.get('annotation').value,
+    };
+    this.annotationService.updateAnnotationOfUser(annotation, 28).subscribe({
+      next: (data: any)=> {console.log('sucesso no update da anotação', data)},
+      error: (e: any)=> {console.log('erro no update da anotação', e)},
+      complete: ()=> {console.log('update de anotação completado')
+      }
+    })
+  }
+
+  receiveUpdateAnnotationInPage(event: { annotation: AnnotationModel, id: number }) {
+    var dateAnnotation = event.annotation.date.slice(0, 10);
+    var partsOfDateAnnotation = dateAnnotation.split("/");
+    var newDate = partsOfDateAnnotation[2] + "-" + partsOfDateAnnotation[1] + "-" + partsOfDateAnnotation[0];
+    this.changeIconFormAnnotation = true;
+    this.annotationForms.setValue({
+      title: event.annotation.title,
+      date: newDate,
+      annotation: event.annotation.annotation,
+    })
+  }
+
+
+
 
   // ngOnDestroy() {
   //   this.authService.logout();

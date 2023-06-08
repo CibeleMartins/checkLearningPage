@@ -6,12 +6,12 @@ import {
   RouterStateSnapshot,
 } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AuthService } from './auth.service';
+import { AuthService } from './Auth.service';
 import { AuthResponseData } from '../interfaces/AuthResponseData.model';
 
 
 @Injectable()
-export class MainlGuard implements CanActivate {
+export class AuthGuard implements CanActivate {
   profile: AuthResponseData;
   routeActivator: boolean = true;
   constructor(private authService: AuthService, private router: Router) {}

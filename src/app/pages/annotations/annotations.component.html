@@ -1,3 +1,4 @@
+<app-loading-spinner></app-loading-spinner>
 <app-layout-login-registration [changeClasses]="true" [imageIsHidden]="imageIsHidden" [viewSnackbar]="viewSnackbar" [message]="messageSnackBar"
   [icon]="warningIcon">
   <form [formGroup]="annotationForms" class="forms-annotations">
@@ -8,8 +9,8 @@
     </div>
     <angular-editor [config]="editorConfig" formControlName="annotation"></angular-editor>
   
-    <button id="annotation-action" (click)="onAddAnnotation($event)">
-      <img id="image-annotation-action" src="../../../assets//addAnnotation.svg" alt="signup" />
+    <button id="annotation-action" (click)="!changeIconFormAnnotation ? onAddAnnotation($event) : onUpdateAnnotationInPage()">
+      <img id="image-annotation-action"  [src]="!changeIconFormAnnotation ? '../../../assets/addAnnotation.svg' : '../../../assets/editIcon.svg'" alt="signup" />
     </button>
   </form>
 
@@ -20,7 +21,7 @@
           <input placeholder="Pesquise suas anotações" id="search-annotations" />
           <img id="search-icon" src="../../../assets/search.svg" />
         </div>
-        <app-annotation></app-annotation>
+        <app-annotation (dispatchOnUpdateAnnotation)="receiveUpdateAnnotationInPage($event)"></app-annotation>
       </mat-drawer>
       <mat-drawer-content id="container-button-sidenav">
         <button id="button-open-close-sidenav" (click)="sideNav.toggle()">

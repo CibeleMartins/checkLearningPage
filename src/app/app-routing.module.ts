@@ -6,7 +6,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { AnnotationsComponent } from './pages/annotations/annotations.component';
 import { AnnotationComponent } from './components/annotation/annotation.component';
-import { MainlGuard } from './services/main.guard';
+import { AuthGuard } from './services/Auth.guard';
 import { FirstLoginComponent } from './pages/first-login/first-login.component';
 import { config } from 'rxjs';
 
@@ -18,7 +18,7 @@ const RoutesApp: Routes = [
   { path: 'seja-bem-vindo', component: FirstLoginComponent },
   { path: 'cadastro', component: RegisterComponent },
   {
-    path: 'anotacoes', component: AnnotationsComponent, canActivate: [MainlGuard]
+    path: 'anotacoes', component: AnnotationsComponent, canActivate: [AuthGuard]
   }
 ]
 @NgModule({

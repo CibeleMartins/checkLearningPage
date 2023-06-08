@@ -4,7 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AnimationOptions } from 'ngx-lottie';
 import { UserService } from 'src/app/services/UserService.service';
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthService } from 'src/app/services/Auth.service';
 
 @Component({
   selector: 'app-login',

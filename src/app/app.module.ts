@@ -21,7 +21,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SnackbarFeedbackComponent } from './components/snackbar-feedback/snackbar-feedback.component';
 import { AnnotationsComponent } from './pages/annotations/annotations.component';
 import { AnnotationComponent } from './components/annotation/annotation.component';
-import { MainlGuard } from './services/main.guard';
+import { AuthGuard } from './services/Auth.guard';
 import { FirstLoginComponent } from './pages/first-login/first-login.component';
 import { LayoutLoginRegistrationComponent } from './components/layout-login-registration/layout-login-registration.component';
 import { SlideComponent } from './components/slide/slide.component';
@@ -30,6 +30,8 @@ import { LottieModule } from 'ngx-lottie';
 import player from 'lottie-web';
 import { LottieComponent } from './components/lottie/lottie.component';
 import { AngularEditorModule } from '@kolkov/angular-editor';
+import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
+import { LoadingInterceptor } from './interceptors/loading.interceptor';
 
 
 export function playerFactory() {
@@ -50,7 +52,7 @@ export function playerFactory() {
     FirstLoginComponent,
     SlideComponent,
     LottieComponent,
-
+    LoadingSpinnerComponent,
 
   ],
   imports: [
@@ -68,7 +70,9 @@ export function playerFactory() {
     AngularEditorModule
 
   ],
-  providers: [MainlGuard],
+  providers: [AuthGuard,{
+    provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
