@@ -5,6 +5,8 @@ import { AuthService } from 'src/app/services/auth.service';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { UserService } from 'src/app/services/UserService.service';
 import { AnnotationModel } from 'src/app/interfaces/AnnotationModel.model';
+import { Router } from '@angular/router';
+import { AnnotationComponent } from 'src/app/components/annotation/annotation.component';
 
 @Component({
   selector: 'app-annotations',
@@ -46,11 +48,11 @@ export class AnnotationsComponent implements OnInit {
     ],
   };
   htmlContent: string = '';
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private router: Router, private authService: AuthService) {
 
   }
   ngOnInit(): void {
-    console.log('editor value: ', this.htmlContent)
+
     this.annotationForms = new FormGroup({
       title: new FormControl('', [Validators.required], null),
       date: new FormControl('', [Validators.required], null),
@@ -81,12 +83,18 @@ export class AnnotationsComponent implements OnInit {
         annotation: this.annotationForms.get('annotation').value,
       };
 
-      console.log('anotacao', annotation.annotation)
       this.userService.registerAnnotationUser(annotation).subscribe({
-        next: (data)=> console.log(data),
+        next: (data)=> {console.log(data)},
         error:(e)=> console.log(e),
         complete: ()=> console.log('complete')
       });
+      this.userService.getAnnotationsOfUser().subscribe({
+        next: (data)=> {
+          this.userService.newAnnotations.next(Object.values(data))},
+        error: (e)=> console.log(e),
+        complete: ()=> ''
+      })
+
       this.annotationForms.reset();
 
     }
