@@ -48,4 +48,11 @@ export class UserService {
     let headerObj = new HttpHeaders().set("Authorization", user.userToken)
     return this.http.get(desenv.apiAnnotations, {headers:headerObj})
   }
+
+  deleteAnnotationOfUser(id: number) {
+    const user = this.authService.getUserFromLocalStorage()
+    let headerObj = new HttpHeaders().set("Authorization", user.userToken)
+    return this.http.delete(desenv.apiAnnotations + `/${id}`, {headers:headerObj})
+  }
+
 }

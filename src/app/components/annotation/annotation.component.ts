@@ -39,6 +39,19 @@ export class AnnotationComponent implements OnInit {
     container.innerHTML = iframeHtml;
   }
 
+  onDeleteAnnotation(idAnnotationClicked: number, index: number) {
 
+    this.userService.deleteAnnotationOfUser(idAnnotationClicked).subscribe({
+      next: (data)=> {console.log('sucesso no delete da anotação', data)},
+      error: (e)=> {console.log('erro no delete da anotação', e)},
+      complete: ()=> {console.log('delete de anitação completado')
+      this.userAnnotations.splice(index, 1);
+      }
+    })
+  }
+
+  onUpdateAnnotation() {
+
+  }
  
 }

@@ -10,9 +10,9 @@
         </div>
 
         <div class="container-actions-annotation">
-            <button class="action-annotation"><img src="../../../assets/eyeIcon.svg" alt="Ver anotação"/></button>
+            <button class="action-annotation"><img src="../../../assets/checkIcon.svg" alt="Ver anotação"/></button>
             <button class="action-annotation"><img src="../../../assets/editIcon.svg" alt="Editar anotação"/></button>
-            <button class="action-annotation"><img src="../../../assets/deleteIcon.svg" alt="Deletar anotação"/></button>
+            <button (click)="onDeleteAnnotation(annotation.id, i)" class="action-annotation"><img src="../../../assets/deleteIcon.svg" alt="Deletar anotação"/></button>
         </div>
     </div>
 
