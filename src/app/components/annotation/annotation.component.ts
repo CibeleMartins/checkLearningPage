@@ -13,7 +13,7 @@ export class AnnotationComponent implements OnInit {
 
   userAnnotations: AnnotationModel[] = [];
   elements: string[] = [];
-  refreshComponent: boolean;
+
   constructor(private userService:UserService, private router: Router, private route: ActivatedRoute, private cd: ChangeDetectorRef) {
 
   }

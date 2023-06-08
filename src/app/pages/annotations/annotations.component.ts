@@ -21,9 +21,7 @@ export class AnnotationsComponent implements OnInit {
   messageSnackBar!: string;
   warningIcon!: string;
   sideNavIsopened: boolean = false;
-
   imageIsHidden: boolean = true;
-  showFiller = false;
 
   editorConfig: AngularEditorConfig = {
     editable: true,
@@ -47,7 +45,7 @@ export class AnnotationsComponent implements OnInit {
       { class: 'comic-sans-ms', name: 'Comic Sans MS' }
     ],
   };
-  htmlContent: string = '';
+
   constructor(private userService: UserService, private router: Router, private authService: AuthService) {
 
   }

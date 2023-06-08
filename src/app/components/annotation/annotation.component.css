@@ -10,11 +10,32 @@
   width: 100%;
   height: 200px;
   background-color: #F4F4F4;
-  border-radius: 10px;
+  border-radius: 10px 10px 0px 0px;
   padding: 20px;
   overflow-y: auto;
   overflow-x: hidden;
   margin-top: 40px;
+}
+
+.container-actions-annotation {
+  background-color: #F4F4F4;
+  border-radius: 0px 0px 10px 10px;
+  height: 50px;
+  padding: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  align-items: end;
+}
+
+.action-annotation {
+  border-radius: 10px;
+  background-color: #393939 ;
+  width: 50px;
+  border: none;
+  outline: none;
+  padding: 5px;
+  margin-left: 7px;
 }
 
 .container-annotation::-webkit-scrollbar {
