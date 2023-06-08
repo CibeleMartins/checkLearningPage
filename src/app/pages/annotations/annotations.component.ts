@@ -77,6 +77,8 @@ export class AnnotationsComponent implements OnInit {
       this.messageSnackBar = 'Anotação feita com sucesso!';
       this.warningIcon = '../../../assets//successIcon.png';
 
+      const date = new Date(this.annotationForms.get('date').value);
+
       let annotation: AnnotationModel = {
         title: this.annotationForms.get('title').value,
         date: this.annotationForms.get('date').value,
@@ -84,15 +86,18 @@ export class AnnotationsComponent implements OnInit {
       };
 
       this.userService.registerAnnotationUser(annotation).subscribe({
-        next: (data)=> {console.log(data)},
-        error:(e)=> console.log(e),
-        complete: ()=> console.log('complete')
+        next: (data) => { console.log('anotação registrada', data) },
+        error: (e) => console.log(e),
+        complete: () => console.log('complete')
       });
+
       this.userService.getAnnotationsOfUser().subscribe({
-        next: (data)=> {
-          this.userService.newAnnotations.next(Object.values(data))},
-        error: (e)=> console.log(e),
-        complete: ()=> ''
+        next: (data) => {
+          console.log('mandou novo array de anotações para AnnotationComponente')
+          this.userService.newAnnotations.next(annotation)
+        },
+        error: (e) => console.log(e),
+        complete: () => ''
       })
 
       this.annotationForms.reset();

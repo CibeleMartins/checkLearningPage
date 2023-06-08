@@ -15,7 +15,7 @@ import { AuthService } from './auth.service';
 export class UserService {
 
   userSubject: Subject<AuthResponseData> = new Subject();
-  newAnnotations: Subject<AnnotationModel[]> = new Subject();
+  newAnnotations: Subject<AnnotationModel> = new Subject();
   
   constructor(private http: HttpClient, private authService: AuthService) {}
 

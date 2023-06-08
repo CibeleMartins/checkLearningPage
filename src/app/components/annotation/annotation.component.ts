@@ -27,7 +27,7 @@ export class AnnotationComponent implements OnInit {
       })
       
       this.userService.newAnnotations.subscribe(
-        {next: (data)=> {console.log('newAnnotations chegou no AnnotationComponent',data),  this.userAnnotations = data, console.log('userAnnotations no AnntationComponent depois de registrar mais uma', this.userAnnotations);},
+        {next: (data)=> {console.log('newAnnotations chegou no AnnotationComponent',data),  this.userAnnotations.push(data), console.log('userAnnotations no AnntationComponent depois de registrar mais uma', this.userAnnotations);},
         error: (e)=> console.log('erro new annotation', e),
         complete: ()=> {}}
       )
