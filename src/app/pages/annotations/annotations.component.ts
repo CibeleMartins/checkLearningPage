@@ -56,7 +56,6 @@ export class AnnotationsComponent implements OnInit {
 
     this.annotationForms = new FormGroup({
       title: new FormControl('', [Validators.required], null),
-      date: new FormControl('', [Validators.required], null),
       annotation: new FormControl(
         '',
         [Validators.required],
@@ -80,7 +79,6 @@ export class AnnotationsComponent implements OnInit {
 
       let annotation: AnnotationModel = {
         title: this.annotationForms.get('title').value,
-        date: this.annotationForms.get('date').value,
         annotation: this.annotationForms.get('annotation').value,
       };
 
@@ -98,7 +96,6 @@ export class AnnotationsComponent implements OnInit {
   onUpdateAnnotationInPage() {
     let annotation: AnnotationModel = {
       title: this.annotationForms.get('title').value,
-      date: this.annotationForms.get('date').value,
       annotation: this.annotationForms.get('annotation').value,
     };
     console.log('id de anotaçao atualizada que vai ser enviado na requisição', this.idAnnotationUpdated)
@@ -112,14 +109,10 @@ export class AnnotationsComponent implements OnInit {
   }
 
   receiveUpdateAnnotationInPage(event: { annotation: AnnotationModel, id: number }) {
-    var dateAnnotation = event.annotation.date.slice(0, 10);
-    var partsOfDateAnnotation = dateAnnotation.split("/");
-    var newDate = partsOfDateAnnotation[2] + "-" + partsOfDateAnnotation[1] + "-" + partsOfDateAnnotation[0];
     this.changeIconFormAnnotation = true;
     this.idAnnotationUpdated = event.annotation.id;
     this.annotationForms.setValue({
       title: event.annotation.title,
-      date: newDate,
       annotation: event.annotation.annotation,
     })
   }
