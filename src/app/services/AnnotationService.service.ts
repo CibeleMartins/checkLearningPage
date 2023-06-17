@@ -13,16 +13,16 @@ export class AnnotationService {
     newAnnotations: Subject<AnnotationModel> = new Subject();
     constructor(private http: HttpClient, private authService: AuthService) { }
 
-    registerAnnotationUser(annotation: AnnotationModel) {
-        const user = this.authService.getUserFromLocalStorage()
-        let headerObj = new HttpHeaders().set("Authorization", user.userToken)
-        return this.http.post(desenv.apiAnnotations, annotation, { headers: headerObj })
-    }
-
     getAnnotationsOfUser() {
         const user = this.authService.getUserFromLocalStorage()
         let headerObj = new HttpHeaders().set("Authorization", user.userToken)
         return this.http.get(desenv.apiAnnotations, { headers: headerObj })
+    }
+
+    registerAnnotationUser(annotation: AnnotationModel) {
+        const user = this.authService.getUserFromLocalStorage()
+        let headerObj = new HttpHeaders().set("Authorization", user.userToken)
+        return this.http.post(desenv.apiAnnotations, annotation, { headers: headerObj })
     }
 
     deleteAnnotationOfUser(id: number) {

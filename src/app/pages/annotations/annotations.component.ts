@@ -24,6 +24,7 @@ export class AnnotationsComponent implements OnInit {
   sideNavIsopened: boolean = false;
   imageIsHidden: boolean = true;
   changeIconFormAnnotation: boolean = false;
+  idAnnotationUpdated!: number;
 
   editorConfig: AngularEditorConfig = {
     editable: true,
@@ -71,6 +72,7 @@ export class AnnotationsComponent implements OnInit {
       this.messageSnackBar = 'É necessário preencher todos os campos.';
       this.warningIcon = '../../../assets//warningIcon.png';
       console.log(this.annotationForms);
+
     } else {
       this.viewSnackbar = !this.viewSnackbar;
       this.messageSnackBar = 'Anotação feita com sucesso!';
@@ -83,19 +85,10 @@ export class AnnotationsComponent implements OnInit {
       };
 
       this.annotationService.registerAnnotationUser(annotation).subscribe({
-        next: (data: any) => { console.log('anotação registrada', data) },
+        next: (data: any) => { console.log('anotação registrada', data), this.annotationService.newAnnotations.next(data) },
         error: (e: any) => console.log(e),
         complete: () => console.log('complete')
       });
-
-      this.annotationService.getAnnotationsOfUser().subscribe({
-        next: (data: any) => {
-          console.log('mandou novo array de anotações para AnnotationComponente')
-          this.annotationService.newAnnotations.next(annotation)
-        },
-        error: (e: any) => console.log(e),
-        complete: () => ''
-      })
 
       this.annotationForms.reset();
 
@@ -103,16 +96,17 @@ export class AnnotationsComponent implements OnInit {
   }
 
   onUpdateAnnotationInPage() {
-
     let annotation: AnnotationModel = {
       title: this.annotationForms.get('title').value,
       date: this.annotationForms.get('date').value,
       annotation: this.annotationForms.get('annotation').value,
     };
-    this.annotationService.updateAnnotationOfUser(annotation, 28).subscribe({
-      next: (data: any)=> {console.log('sucesso no update da anotação', data)},
+    console.log('id de anotaçao atualizada que vai ser enviado na requisição', this.idAnnotationUpdated)
+    this.annotationService.updateAnnotationOfUser(annotation, this.idAnnotationUpdated).subscribe({
+      next: (data: any)=> {console.log('sucesso no update da anotação', data), this.annotationService.newAnnotations.next(data)},
       error: (e: any)=> {console.log('erro no update da anotação', e)},
       complete: ()=> {console.log('update de anotação completado')
+      this.annotationForms.reset();
       }
     })
   }
@@ -122,15 +116,13 @@ export class AnnotationsComponent implements OnInit {
     var partsOfDateAnnotation = dateAnnotation.split("/");
     var newDate = partsOfDateAnnotation[2] + "-" + partsOfDateAnnotation[1] + "-" + partsOfDateAnnotation[0];
     this.changeIconFormAnnotation = true;
+    this.idAnnotationUpdated = event.annotation.id;
     this.annotationForms.setValue({
       title: event.annotation.title,
       date: newDate,
       annotation: event.annotation.annotation,
     })
   }
-
-
-
 
   // ngOnDestroy() {
   //   this.authService.logout();

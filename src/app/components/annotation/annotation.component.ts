@@ -14,6 +14,7 @@ export class AnnotationComponent implements OnInit {
   @Output() dispatchOnUpdateAnnotation: EventEmitter<{annotation: AnnotationModel, id: number}> = new EventEmitter();
   userAnnotations: AnnotationModel[] = [];
   elements: string[] = [];
+  indexAnnotationUpdatedInArray!: number;
 
   constructor(private annotationService:AnnotationService, private router: Router, private route: ActivatedRoute, private cd: ChangeDetectorRef) {
 
@@ -28,7 +29,7 @@ export class AnnotationComponent implements OnInit {
       })
       
       this.annotationService.newAnnotations.subscribe(
-        {next: (data)=> {console.log('newAnnotations chegou no AnnotationComponent',data),  this.userAnnotations.push(data), console.log('userAnnotations no AnntationComponent depois de registrar mais uma', this.userAnnotations);},
+        {next: (data)=> {console.log('newAnnotations chegou no AnnotationComponent',data),  this.userAnnotations.push(data), this.userAnnotations.splice(this.indexAnnotationUpdatedInArray,1), console.log('userAnnotations no AnntationComponent depois de registrar mais uma', this.userAnnotations);},
         error: (e)=> console.log('erro new annotation', e),
         complete: ()=> {}}
       )
@@ -52,6 +53,8 @@ export class AnnotationComponent implements OnInit {
 
   onUpdateAnnotation(annotation: AnnotationModel, idAnnotationClickedForEdit: number) {
     console.log('onUpdateAnnotation acionado no AnnotationComponent')
+    this.indexAnnotationUpdatedInArray =  this.userAnnotations.indexOf(annotation);
+    console.log('index da anotação clicada para atualizar', this.indexAnnotationUpdatedInArray)
     this.dispatchOnUpdateAnnotation.emit({ annotation: annotation, id: idAnnotationClickedForEdit });
   }
  
