@@ -3,9 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import emailjs, { EmailJSResponseStatus } from '@emailjs/browser';
 import { desenv } from '../../../environment/environment';
 import { UserService } from 'src/app/services/UserService.service';
-import { UserRegistered } from 'src/app/interfaces/interfacesUser';
 import { AnimationOptions } from 'ngx-lottie';
-import { SnackBarService } from 'src/app/services/SnackbarFeedback.service';
+import {SnackBarFeedbackService } from 'src/app/services/SnackbarFeedback.service';
 
 @Component({
   selector: 'app-register',
@@ -31,7 +30,7 @@ export class RegisterComponent implements OnInit {
 
   private password = '';
 
-  constructor(private userService: UserService, private feedbackService: SnackBarService) { }
+  constructor(private userService: UserService, private feedbackService: SnackBarFeedbackService) { }
 
   ngOnInit(): void {
     this.registerForm = new FormGroup({
@@ -147,13 +146,13 @@ export class RegisterComponent implements OnInit {
       }
 
       this.userService.register({ nameUser: this.registerForm.get('completeName').value, emailUser: this.registerForm.get('email').value, passwordUser: this.registerForm.get('password').value }).subscribe({
-        next: (data) => console.log(data),
-        error: (error) => { console.log(error), this.feedbackService.sendValuesForSnackbarFeedbackComponent.next({ viewSnackbar: true, message: 'Erro no serviço de cadastro do usuário. Aguarde alguns segundos.', icon: '../../../assets//warningIcon.png' }) },
+        next: (data) => console.log('usuario registrado: ', data),
+        error: (error) => { this.feedbackService.sendValuesForSnackbarFeedbackComponent.next({ viewSnackbar: true, message: 'Erro no serviço de cadastro do usuário. Aguarde alguns segundos.', icon: '../../../assets//warningIcon.png' }) },
         complete: () => {
-          console.log('Usuário cadastrado com sucesso!'), this.feedbackService.sendValuesForSnackbarFeedbackComponent.next({ viewSnackbar: true, message: 'Cadastro realizado com sucesso!', icon: '../../../assets//successIcon.png' }),
+          this.feedbackService.sendValuesForSnackbarFeedbackComponent.next({ viewSnackbar: true, message: 'Cadastro realizado com sucesso!', icon: '../../../assets//successIcon.png' }),
           this.registerForm.reset()
           emailjs.send(this.idService, this.template, templateParams, this.apiKey).then(response => {
-            console.log("Email enviado com sucesso!", response.status, response.text), this.feedbackService.sendValuesForSnackbarFeedbackComponent.next({ viewSnackbar: true, message: 'E-mail enviado p/ usuário cadastrado', icon: '../../../assets/successIcon.png' })
+          this.feedbackService.sendValuesForSnackbarFeedbackComponent.next({ viewSnackbar: true, message: 'E-mail enviado p/ usuário cadastrado', icon: '../../../assets/successIcon.png' })
           }).catch((error) => { console.log(error), this.feedbackService.sendValuesForSnackbarFeedbackComponent.next({ viewSnackbar: true, message: 'Erro no envio do e-mail p/ usuário cadastrado.', icon: '../../../assets/warningIcon.png' }) })
         }
       })

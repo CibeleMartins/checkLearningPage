@@ -5,7 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AuthResponseData } from '../interfaces/AuthResponseData.model';
 import { UserRegistered } from '../interfaces/interfacesUser';
-import { SnackBarService } from './SnackbarFeedback.service';
+import { SnackBarFeedbackService } from './SnackbarFeedback.service';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +15,7 @@ export class UserService {
   userSubject: Subject<AuthResponseData> = new Subject();
 
 
-  constructor(private http: HttpClient, private feedbackService: SnackBarService) { }
+  constructor(private http: HttpClient, private feedbackService: SnackBarFeedbackService) { }
 
   formatUser(data: AuthResponseData) {
     const user = new User(

@@ -19,6 +19,13 @@
     height: 5vw !important;
 }
 
+.container-snackbar-confirmation-delete {
+    --mdc-snackbar-container-color: #ffff;
+    border-radius: 20px;
+    color: black;
+    height: 50vw !important;
+}
+
 .ng-tns-c54-0.carousel-inner.ng-star- {
     width: 100% !important; 
 }

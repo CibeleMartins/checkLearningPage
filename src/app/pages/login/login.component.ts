@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { AnimationOptions } from 'ngx-lottie';
 import { UserService } from 'src/app/services/UserService.service';
 import { AuthService } from 'src/app/services/Auth.service';
-import { SnackBarService } from 'src/app/services/SnackbarFeedback.service';
+import { SnackBarFeedbackService} from 'src/app/services/SnackbarFeedback.service';
 
 @Component({
   selector: 'app-login',
@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
   options: AnimationOptions = {
     path: '/assets/lottie-login-2.json',
   };
-  constructor(private router: Router, private authService: AuthService, private userService: UserService, private feedbackService: SnackBarService) { }
+  constructor(private router: Router, private authService: AuthService, private userService: UserService, private feedbackService: SnackBarFeedbackService) { }
 
   ngOnInit(): void {
     this.signupForm = new FormGroup({

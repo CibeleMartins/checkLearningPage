@@ -6,8 +6,10 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { AnimationOptions } from 'ngx-lottie';
-import { SnackBarService } from 'src/app/services/SnackbarFeedback.service';
+import { SnackBarFeedbackService } from 'src/app/services/SnackbarFeedback.service';
 import { AuthService } from 'src/app/services/Auth.service';
+import { SnackbarConfirmationDeleteComponent } from '../snackbar-confirmation-delete/snackbar-confirmation-delete.component';
+import { SnackbarFeedbackComponent } from '../snackbar-feedback/snackbar-feedback.component';
 
 
 @Component({
@@ -15,38 +17,28 @@ import { AuthService } from 'src/app/services/Auth.service';
   templateUrl: './layout-login-registration.component.html',
   styleUrls: ['./layout-login-registration.component.css'],
 })
-export class LayoutLoginRegistrationComponent implements OnInit, OnChanges {
-  // @Input() viewSnackbar!: boolean;
-  // @Input() message!: string;
-  // @Input() icon!: string;
+export class LayoutLoginRegistrationComponent implements OnInit {
   @Input() imageIsHidden!: boolean;
   @Input() changeClasses!: boolean;
   @Input() styles!: Partial<CSSStyleDeclaration>;
   @Input() optionsLottie!: AnimationOptions;
 
-  constructor(private feedbackService: SnackBarService, private authService: AuthService) { }
+  constructor(private feedbackService: SnackBarFeedbackService, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.feedbackService.sendValuesForSnackbarFeedbackComponent.subscribe({
       next: (data) => {
         console.log('dados do feedback component no layout login registration', data)
-        if (data.viewSnackbar) {
-          this.feedbackService.openSnackBar(null, null, null, data.message, data.icon)
+        if (data.viewSnackbar && !data.isConfirmationDelete) {
+          this.feedbackService.openSnackBar(null, null, null, null, data.message, data.icon, null, null,  SnackbarFeedbackComponent)
 
+        } else {
+          this.feedbackService.openSnackBar('center', 'top', 'container-snackbar-confirmation-delete', 15000, data.message, data.icon, data.idAnnotationClicked, data.index, SnackbarConfirmationDeleteComponent)
         }
       },
       error: (e) => console.log(e),
       complete: () => console.log('complete infos feedback component no layout login registration')
     })
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    // console.log(changes);
-    // console.log(this.viewSnackbar);
-    // if (this.viewSnackbar) {
-    //   this.feedbackService.openSnackBar(null, null, null, this.message, this.icon)
-
-    // }
   }
 
   logout() {

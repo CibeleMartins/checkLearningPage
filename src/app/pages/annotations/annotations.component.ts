@@ -6,7 +6,7 @@ import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { AnnotationModel } from 'src/app/interfaces/AnnotationModel.model';
 import { Router } from '@angular/router';
 import { AnnotationService } from 'src/app/services/AnnotationService.service';
-import { SnackBarService } from 'src/app/services/SnackbarFeedback.service';
+import { SnackBarFeedbackService } from 'src/app/services/SnackbarFeedback.service';
 
 @Component({
   selector: 'app-annotations',
@@ -45,7 +45,7 @@ export class AnnotationsComponent implements OnInit {
     ],
   };
 
-  constructor(private feedbackService: SnackBarService, private annotationService: AnnotationService, private router: Router, private authService: AuthService) {
+  constructor(private feedbackService: SnackBarFeedbackService, private annotationService: AnnotationService, private router: Router, private authService: AuthService) {
 
   }
   ngOnInit(): void {
@@ -72,7 +72,7 @@ export class AnnotationsComponent implements OnInit {
       };
 
       this.annotationService.registerAnnotationUser(annotation).subscribe({
-        next: (data: any) => { this.annotationService.newAnnotations.next({ annotation: data, isUpdate: false }) },
+        next: (data: any) => { this.annotationService.newAnnotationsOrRemoveAnnotation.next({ annotation: data, isUpdate: false }) },
         error: (e: any) => {
           this.feedbackService.sendValuesForSnackbarFeedbackComponent.next({viewSnackbar: true, message: e.message, icon:'../../../assets/warningIcon.png'})
 
@@ -98,7 +98,7 @@ export class AnnotationsComponent implements OnInit {
         annotation: this.annotationForms.get('annotation').value,
       };
       this.annotationService.updateAnnotationOfUser(annotation, this.idAnnotationUpdated).subscribe({
-        next: (data: any) => {this.annotationService.newAnnotations.next({ annotation: data, isUpdate: true }) },
+        next: (data: any) => {this.annotationService.newAnnotationsOrRemoveAnnotation.next({ annotation: data, isUpdate: true }) },
         error: (e: any) => { this.feedbackService.sendValuesForSnackbarFeedbackComponent.next({viewSnackbar: true, message: e.error.message, icon:'../../../assets//warningIcon.png'}), console.log('erro no update da anotação', e) },
         complete: () => {
           this.feedbackService.sendValuesForSnackbarFeedbackComponent.next({viewSnackbar: true, message: 'Anotação atualizada com sucesso!', icon:'../../assets/successIcon.png'})

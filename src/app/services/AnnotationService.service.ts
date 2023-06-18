@@ -10,7 +10,7 @@ import { Subject } from 'rxjs';
 })
 export class AnnotationService {
 
-    newAnnotations: Subject<{annotation:AnnotationModel, isUpdate:boolean}> = new Subject();
+    newAnnotationsOrRemoveAnnotation: Subject<{annotation?:AnnotationModel, isUpdate?:boolean, isDelete?:boolean, index?: number, amountAnnotationsDelete?: number}> = new Subject();
     constructor(private http: HttpClient, private authService: AuthService) { }
 
     getAnnotationsOfUser() {

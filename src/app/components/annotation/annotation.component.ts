@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AnnotationModel } from 'src/app/interfaces/AnnotationModel.model';
 import { AnnotationService } from 'src/app/services/AnnotationService.service';
+import { SnackBarFeedbackService } from 'src/app/services/SnackbarFeedback.service';
 
 @Component({
   selector: 'app-annotation',
@@ -16,7 +17,7 @@ export class AnnotationComponent implements OnInit {
   elements: string[] = [];
   indexAnnotationUpdatedInArray!: number;
 
-  constructor(private annotationService:AnnotationService, private router: Router, private route: ActivatedRoute, private cd: ChangeDetectorRef) {
+  constructor(private annotationService:AnnotationService, private feedbackService: SnackBarFeedbackService) {
 
   }
 
@@ -28,8 +29,8 @@ export class AnnotationComponent implements OnInit {
         complete: ()=> ''
       })
       
-      this.annotationService.newAnnotations.subscribe(
-        {next: (data)=> {console.log('newAnnotations chegou no AnnotationComponent',data),  this.userAnnotations.push(data.annotation), data.isUpdate ? this.userAnnotations.splice(this.indexAnnotationUpdatedInArray,1) : 0, console.log('userAnnotations no AnntationComponent depois de registrar mais uma', this.userAnnotations);},
+      this.annotationService.newAnnotationsOrRemoveAnnotation.subscribe(
+        {next: (data)=> {console.log('newAnnotations chegou no AnnotationComponent',data),  this.userAnnotations.push(data.annotation), data.isUpdate ? this.userAnnotations.splice(this.indexAnnotationUpdatedInArray,1) : 0, data.isDelete ? this.userAnnotations.splice(data.index, data.amountAnnotationsDelete) : 0, console.log('userAnnotations no AnntationComponent depois de registrar mais uma', this.userAnnotations);},
         error: (e)=> console.log('erro new annotation', e),
         complete: ()=> {}}
       )
@@ -42,13 +43,7 @@ export class AnnotationComponent implements OnInit {
   }
 
   onDeleteAnnotation(idAnnotationClicked: number, index: number) {
-    this.annotationService.deleteAnnotationOfUser(idAnnotationClicked).subscribe({
-      next: (data)=> {console.log('sucesso no delete da anotação', data)},
-      error: (e)=> {console.log('erro no delete da anotação', e)},
-      complete: ()=> {console.log('delete de anotação completado')
-      this.userAnnotations.splice(index, 1);
-      }
-    })
+    this.feedbackService.sendValuesForSnackbarFeedbackComponent.next({viewSnackbar: true, message: 'Realmente deseja deletar essa anotação?', icon: '../../../assets/warningIcon.png', isConfirmationDelete: true, idAnnotationClicked: idAnnotationClicked, index: index})
   }
 
   onUpdateAnnotation(annotation: AnnotationModel, idAnnotationClickedForEdit: number) {

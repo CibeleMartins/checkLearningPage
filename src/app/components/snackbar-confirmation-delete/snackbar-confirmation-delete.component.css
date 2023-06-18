@@ -1,0 +1,39 @@
+.container-feedback-confirmation-delete {
+    color: black;
+    justify-content: center;
+    align-items: center;
+}
+
+.question-confirmation {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+}
+.message {
+    color: black;
+    margin-top: 20px;
+    padding-right: 6px;
+}
+.img {
+    padding-right: 12px;
+    width: 45px;
+}
+
+.actions-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    gap: 15px;
+}
+
+.action {
+    border: none;
+    outline: none;
+    background-color: #161616;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    border-radius: 6px;
+    padding: 4px;
+}

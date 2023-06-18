@@ -32,6 +32,7 @@ import { LottieComponent } from './components/lottie/lottie.component';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 import { LoadingInterceptor } from './interceptors/loading.interceptor';
+import { SnackbarConfirmationDeleteComponent } from './components/snackbar-confirmation-delete/snackbar-confirmation-delete.component';
 
 
 export function playerFactory() {
@@ -53,6 +54,7 @@ export function playerFactory() {
     SlideComponent,
     LottieComponent,
     LoadingSpinnerComponent,
+    SnackbarConfirmationDeleteComponent,
 
   ],
   imports: [
