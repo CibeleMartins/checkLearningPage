@@ -79,10 +79,12 @@ export class AnnotationsComponent implements OnInit {
       };
 
       this.annotationService.registerAnnotationUser(annotation).subscribe({
-        next: (data: any) => { console.log('anotação registrada', data), this.annotationService.newAnnotations.next({ annotation: data, isUpdate: false }) },
-        error: (e: any) => {  this.viewSnackbar = !this.viewSnackbar;
-          this.messageSnackBar = `${e.message}`;
-          this.warningIcon = '../../assets/warningIcon.png'; console.log(e)},
+        next: (data: any) => { this.annotationService.newAnnotations.next({ annotation: data, isUpdate: false }) },
+        error: (e: any) => {
+          this.viewSnackbar = !this.viewSnackbar;
+          this.messageSnackBar = `${e.error.message}`;
+          this.warningIcon = '../../assets/warningIcon.png';
+        },
         complete: () => {
           this.viewSnackbar = !this.viewSnackbar;
           this.messageSnackBar = 'Anotação registrada com sucesso!';
@@ -96,19 +98,33 @@ export class AnnotationsComponent implements OnInit {
   }
 
   onUpdateAnnotationInPage() {
-    let annotation: AnnotationModel = {
-      title: this.annotationForms.get('title').value,
-      annotation: this.annotationForms.get('annotation').value,
-    };
-    console.log('id de anotaçao atualizada que vai ser enviado na requisição', this.idAnnotationUpdated)
-    this.annotationService.updateAnnotationOfUser(annotation, this.idAnnotationUpdated).subscribe({
-      next: (data: any) => { console.log('sucesso no update da anotação', data), this.annotationService.newAnnotations.next({ annotation: data, isUpdate: true }) },
-      error: (e: any) => { console.log('erro no update da anotação', e) },
-      complete: () => {
-        console.log('update de anotação completado')
-        this.annotationForms.reset();
-      }
-    })
+
+    if (this.annotationForms.status === "INVALID") {
+      this.viewSnackbar = !this.viewSnackbar;
+      this.messageSnackBar = 'É necessário preencher todos os campos.';
+      this.warningIcon = '../../../assets//warningIcon.png';
+      console.log(this.annotationForms);
+
+    } else {
+      let annotation: AnnotationModel = {
+        title: this.annotationForms.get('title').value,
+        annotation: this.annotationForms.get('annotation').value,
+      };
+      console.log('id de anotaçao atualizada que vai ser enviado na requisição', this.idAnnotationUpdated)
+      this.annotationService.updateAnnotationOfUser(annotation, this.idAnnotationUpdated).subscribe({
+        next: (data: any) => { console.log('sucesso no update da anotação', data), this.annotationService.newAnnotations.next({ annotation: data, isUpdate: true }) },
+        error: (e: any) => {  this.viewSnackbar = !this.viewSnackbar;
+          this.messageSnackBar = `${e.error.message}`;
+          this.warningIcon = '../../assets/warningIcon.png'; console.log('erro no update da anotação', e) },
+        complete: () => {
+          this.viewSnackbar = !this.viewSnackbar;
+          this.messageSnackBar = 'Anotação atualizada com sucesso!';
+          this.warningIcon = '../../assets/successIcon.png';
+          console.log('update de anotação completado')
+          this.annotationForms.reset();
+        }
+      })
+    }
   }
 
   receiveUpdateAnnotationInPage(event: { annotation: AnnotationModel, id: number }) {
