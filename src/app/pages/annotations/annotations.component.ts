@@ -63,7 +63,6 @@ export class AnnotationsComponent implements OnInit {
   onAddAnnotation(event: Event) {
     if (this.annotationForms.status === "INVALID") {
       event.preventDefault();
-      console.log(this.annotationForms);
       this.feedbackService.sendValuesForSnackbarFeedbackComponent.next({viewSnackbar: true, message: 'É necessário preencher todos os campos.', icon:'../../../assets//warningIcon.png'})
 
     } else {
@@ -103,7 +102,6 @@ export class AnnotationsComponent implements OnInit {
         error: (e: any) => { this.feedbackService.sendValuesForSnackbarFeedbackComponent.next({viewSnackbar: true, message: e.error.message, icon:'../../../assets//warningIcon.png'}), console.log('erro no update da anotação', e) },
         complete: () => {
           this.feedbackService.sendValuesForSnackbarFeedbackComponent.next({viewSnackbar: true, message: 'Anotação atualizada com sucesso!', icon:'../../assets/successIcon.png'})
-          console.log('update de anotação completado')
           this.annotationForms.reset();
         }
       })
