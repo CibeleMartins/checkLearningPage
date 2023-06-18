@@ -1,11 +1,15 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { SnackbarFeedbackComponent } from '../components/snackbar-feedback/snackbar-feedback.component';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SnackBarService {
+
+
+  sendValuesForSnackbarFeedbackComponent = new Subject<{viewSnackbar:boolean, message:string, icon:string}>();
 
   constructor(private snackBar: MatSnackBar) {}
 

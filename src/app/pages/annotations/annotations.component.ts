@@ -1,13 +1,12 @@
-import { Component, ElementRef, EventEmitter, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDrawer } from '@angular/material/sidenav';
 import { AuthService } from 'src/app/services/Auth.service';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { AnnotationModel } from 'src/app/interfaces/AnnotationModel.model';
 import { Router } from '@angular/router';
-import { AnnotationComponent } from 'src/app/components/annotation/annotation.component';
 import { AnnotationService } from 'src/app/services/AnnotationService.service';
-import { UserService } from 'src/app/services/UserService.service';
+import { SnackBarService } from 'src/app/services/SnackbarFeedback.service';
 
 @Component({
   selector: 'app-annotations',
@@ -18,9 +17,6 @@ export class AnnotationsComponent implements OnInit {
   @ViewChild('drawer') drawerReference!: MatDrawer;
 
   annotationForms!: FormGroup;
-  viewSnackbar: boolean = false;
-  messageSnackBar!: string;
-  warningIcon!: string;
   sideNavIsopened: boolean = false;
   imageIsHidden: boolean = true;
   changeIconFormAnnotation: boolean = false;
@@ -49,7 +45,7 @@ export class AnnotationsComponent implements OnInit {
     ],
   };
 
-  constructor(private userService: UserService, private annotationService: AnnotationService, private router: Router, private authService: AuthService) {
+  constructor(private feedbackService: SnackBarService, private annotationService: AnnotationService, private router: Router, private authService: AuthService) {
 
   }
   ngOnInit(): void {
@@ -67,10 +63,8 @@ export class AnnotationsComponent implements OnInit {
   onAddAnnotation(event: Event) {
     if (this.annotationForms.status === "INVALID") {
       event.preventDefault();
-      this.viewSnackbar = !this.viewSnackbar;
-      this.messageSnackBar = 'É necessário preencher todos os campos.';
-      this.warningIcon = '../../../assets//warningIcon.png';
       console.log(this.annotationForms);
+      this.feedbackService.sendValuesForSnackbarFeedbackComponent.next({viewSnackbar: true, message: 'É necessário preencher todos os campos.', icon:'../../../assets//warningIcon.png'})
 
     } else {
       let annotation: AnnotationModel = {
@@ -81,14 +75,11 @@ export class AnnotationsComponent implements OnInit {
       this.annotationService.registerAnnotationUser(annotation).subscribe({
         next: (data: any) => { this.annotationService.newAnnotations.next({ annotation: data, isUpdate: false }) },
         error: (e: any) => {
-          this.viewSnackbar = !this.viewSnackbar;
-          this.messageSnackBar = `${e.error.message}`;
-          this.warningIcon = '../../assets/warningIcon.png';
+          this.feedbackService.sendValuesForSnackbarFeedbackComponent.next({viewSnackbar: true, message: e.message, icon:'../../../assets/warningIcon.png'})
+
         },
         complete: () => {
-          this.viewSnackbar = !this.viewSnackbar;
-          this.messageSnackBar = 'Anotação registrada com sucesso!';
-          this.warningIcon = '../../assets/successIcon.png';
+          this.feedbackService.sendValuesForSnackbarFeedbackComponent.next({viewSnackbar: true, message: 'Anotação registrada com sucesso!', icon:'../../assets/successIcon.png'})
         }
       });
 
@@ -100,26 +91,18 @@ export class AnnotationsComponent implements OnInit {
   onUpdateAnnotationInPage() {
 
     if (this.annotationForms.status === "INVALID") {
-      this.viewSnackbar = !this.viewSnackbar;
-      this.messageSnackBar = 'É necessário preencher todos os campos.';
-      this.warningIcon = '../../../assets//warningIcon.png';
-      console.log(this.annotationForms);
+      this.feedbackService.sendValuesForSnackbarFeedbackComponent.next({viewSnackbar: true, message: 'É necessário preencher todos os campos.', icon:'../../../assets//warningIcon.png'})
 
     } else {
       let annotation: AnnotationModel = {
         title: this.annotationForms.get('title').value,
         annotation: this.annotationForms.get('annotation').value,
       };
-      console.log('id de anotaçao atualizada que vai ser enviado na requisição', this.idAnnotationUpdated)
       this.annotationService.updateAnnotationOfUser(annotation, this.idAnnotationUpdated).subscribe({
-        next: (data: any) => { console.log('sucesso no update da anotação', data), this.annotationService.newAnnotations.next({ annotation: data, isUpdate: true }) },
-        error: (e: any) => {  this.viewSnackbar = !this.viewSnackbar;
-          this.messageSnackBar = `${e.error.message}`;
-          this.warningIcon = '../../assets/warningIcon.png'; console.log('erro no update da anotação', e) },
+        next: (data: any) => {this.annotationService.newAnnotations.next({ annotation: data, isUpdate: true }) },
+        error: (e: any) => { this.feedbackService.sendValuesForSnackbarFeedbackComponent.next({viewSnackbar: true, message: e.error.message, icon:'../../../assets//warningIcon.png'}), console.log('erro no update da anotação', e) },
         complete: () => {
-          this.viewSnackbar = !this.viewSnackbar;
-          this.messageSnackBar = 'Anotação atualizada com sucesso!';
-          this.warningIcon = '../../assets/successIcon.png';
+          this.feedbackService.sendValuesForSnackbarFeedbackComponent.next({viewSnackbar: true, message: 'Anotação atualizada com sucesso!', icon:'../../assets/successIcon.png'})
           console.log('update de anotação completado')
           this.annotationForms.reset();
         }

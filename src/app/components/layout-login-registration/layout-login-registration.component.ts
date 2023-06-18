@@ -16,27 +16,37 @@ import { AuthService } from 'src/app/services/Auth.service';
   styleUrls: ['./layout-login-registration.component.css'],
 })
 export class LayoutLoginRegistrationComponent implements OnInit, OnChanges {
-  @Input() viewSnackbar!: boolean;
-  @Input() message!: string;
-  @Input() icon!: string;
+  // @Input() viewSnackbar!: boolean;
+  // @Input() message!: string;
+  // @Input() icon!: string;
   @Input() imageIsHidden!: boolean;
   @Input() changeClasses!: boolean;
   @Input() styles!: Partial<CSSStyleDeclaration>;
   @Input() optionsLottie!: AnimationOptions;
 
-  constructor(private feedbackService: SnackBarService, private authService: AuthService) {}
+  constructor(private feedbackService: SnackBarService, private authService: AuthService) { }
 
   ngOnInit(): void {
- 
+    this.feedbackService.sendValuesForSnackbarFeedbackComponent.subscribe({
+      next: (data) => {
+        console.log('dados do feedback component no layout login registration', data)
+        if (data.viewSnackbar) {
+          this.feedbackService.openSnackBar(null, null, null, data.message, data.icon)
+
+        }
+      },
+      error: (e) => console.log(e),
+      complete: () => console.log('complete infos feedback component no layout login registration')
+    })
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     // console.log(changes);
     // console.log(this.viewSnackbar);
-    if (this.viewSnackbar) {
-      this.feedbackService.openSnackBar(null, null, null, this.message, this.icon)
-  
-    }
+    // if (this.viewSnackbar) {
+    //   this.feedbackService.openSnackBar(null, null, null, this.message, this.icon)
+
+    // }
   }
 
   logout() {
