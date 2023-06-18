@@ -1,6 +1,4 @@
-import { ChangeDetectorRef, Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import {  Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { AnnotationModel } from 'src/app/interfaces/AnnotationModel.model';
 import { AnnotationService } from 'src/app/services/AnnotationService.service';
 import { SnackBarFeedbackService } from 'src/app/services/SnackbarFeedback.service';
@@ -47,10 +45,12 @@ export class AnnotationComponent implements OnInit {
   }
 
   onUpdateAnnotation(annotation: AnnotationModel, idAnnotationClickedForEdit: number) {
-    console.log('onUpdateAnnotation acionado no AnnotationComponent')
     this.indexAnnotationUpdatedInArray =  this.userAnnotations.indexOf(annotation);
-    console.log('index da anotação clicada para atualizar', this.indexAnnotationUpdatedInArray)
     this.dispatchOnUpdateAnnotation.emit({ annotation: annotation, id: idAnnotationClickedForEdit });
   }
- 
+
+  viewAnnotation(annotationRenderInPDF: AnnotationModel) {
+    this.annotationService.openModalPdf.next({allowedOpen: true, annotation: annotationRenderInPDF})
+  }
+
 }

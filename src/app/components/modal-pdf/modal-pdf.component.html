@@ -1,0 +1,14 @@
+
+
+<div #outsideElement *ngIf="openModal">
+<div class="modal-view-container">
+  <div #modalView class="modal-view-visible">
+    <div class="modal-view-details">
+      <p style="text-align: center;margin-top: 0; margin-bottom: 0">
+        <object data="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf" type="application/pdf" width="100%" height="592px"></object>
+      </p>
+      <button (click)="closeModal()">Close</button>
+    </div>
+  </div>
+</div>
+</div>

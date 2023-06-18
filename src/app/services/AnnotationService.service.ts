@@ -11,6 +11,7 @@ import { Subject } from 'rxjs';
 export class AnnotationService {
 
     newAnnotationsOrRemoveAnnotation: Subject<{annotation?:AnnotationModel, isUpdate?:boolean, isDelete?:boolean, index?: number, amountAnnotationsDelete?: number}> = new Subject();
+    openModalPdf: Subject<{allowedOpen: boolean, annotation?:AnnotationModel}> = new Subject();
     constructor(private http: HttpClient, private authService: AuthService) { }
 
     getAnnotationsOfUser() {
