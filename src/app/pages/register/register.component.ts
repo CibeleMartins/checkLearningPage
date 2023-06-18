@@ -5,6 +5,7 @@ import { desenv } from '../../../environment/environment';
 import { UserService } from 'src/app/services/UserService.service';
 import { UserRegistered } from 'src/app/interfaces/interfacesUser';
 import { AnimationOptions } from 'ngx-lottie';
+import { SnackBarService } from 'src/app/services/SnackbarFeedback.service';
 
 @Component({
   selector: 'app-register',
@@ -15,9 +16,6 @@ import { AnimationOptions } from 'ngx-lottie';
 
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
-  viewSnackbar: boolean = false;
-  messageSnackBar!: string;
-  warningIcon!: string;
   styles: Partial<CSSStyleDeclaration> = {
     maxWidth: '100vh',
     width: '80vh',
@@ -33,7 +31,7 @@ export class RegisterComponent implements OnInit {
 
   private password = '';
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private feedbackService: SnackBarService) { }
 
   ngOnInit(): void {
     this.registerForm = new FormGroup({
@@ -72,9 +70,7 @@ export class RegisterComponent implements OnInit {
   completeNameValidator(control: FormControl): { [s: string]: boolean } {
     const timeout = setTimeout(() => {
       if (control.value && control.errors) {
-        this.viewSnackbar = !this.viewSnackbar;
-        this.messageSnackBar = 'O nome completo muito pequeno.';
-        this.warningIcon = '../../../assets//warningIcon.png';
+        this.feedbackService.sendValuesForSnackbarFeedbackComponent.next({ viewSnackbar: true, message: 'Nome completo muito pequeno', icon: '../../../assets/warningIcon.png' })
       }
     }, 1500);
     return null;
@@ -87,9 +83,7 @@ export class RegisterComponent implements OnInit {
       control.errors['email'] &&
       control.value.length > 4
     ) {
-      this.viewSnackbar = !this.viewSnackbar;
-      this.messageSnackBar = 'E-mail inválido.';
-      this.warningIcon = '../../../assets//warningIcon.png';
+      this.feedbackService.sendValuesForSnackbarFeedbackComponent.next({ viewSnackbar: true, message: 'E-mail inválido', icon: '../../../assets/warningIcon.png' })
       return { emailInvalid: true };
     }
     return null;
@@ -98,9 +92,7 @@ export class RegisterComponent implements OnInit {
   passwordValidator(control: FormControl): { [s: string]: boolean } {
     setTimeout(() => {
       if (control.value && control.errors) {
-        this.viewSnackbar = !this.viewSnackbar;
-        this.messageSnackBar = 'Senha muito pequena.';
-        this.warningIcon = '../../../assets//warningIcon.png';
+        this.feedbackService.sendValuesForSnackbarFeedbackComponent.next({ viewSnackbar: true, message: 'Senha muito pequena', icon: '../../../assets//warningIcon.png' })
       }
       this.password = control.value;
     }, 1500);
@@ -110,9 +102,8 @@ export class RegisterComponent implements OnInit {
 
   confirmationPasswordValidator(control: FormControl): { [s: string]: boolean; } {
     if (control.value && control.value !== this.password) {
-      this.viewSnackbar = !this.viewSnackbar;
-      this.messageSnackBar = 'As senhas não estão iguais.';
-      this.warningIcon = '../../../assets//warningIcon.png';
+      this.feedbackService.sendValuesForSnackbarFeedbackComponent.next({ viewSnackbar: true, message: 'As senhas não estão iguais', icon: '../../../assets//warningIcon.png' })
+
       return { confirmationPasswordInvalid: true };
     } else {
       return null;
@@ -146,10 +137,7 @@ export class RegisterComponent implements OnInit {
           }
         })
         .join(' - ');
-
-      this.viewSnackbar = !this.viewSnackbar;
-      this.messageSnackBar = 'Campos do formulário inválidos. ' + controlsWithError;
-      this.warningIcon = '../../../assets//warningIcon.png';
+      this.feedbackService.sendValuesForSnackbarFeedbackComponent.next({ viewSnackbar: true, message: 'Campos do formulário inválidos: ' + controlsWithError, icon: '../../../assets//warningIcon.png' })
     } else {
       const templateParams = {
         to_name: "Check Learning",
@@ -158,25 +146,17 @@ export class RegisterComponent implements OnInit {
         emailUser: this.registerForm.get('email').value
       }
 
-      emailjs.send(this.idService, this.template, templateParams, this.apiKey).then(response => {
-        console.log("Email enviado com sucesso!", response.status, response.text)
-      }).catch((error) => console.log(error))
-
-      this.userService.register(
-        {
-          nameUser: this.registerForm.get('completeName').value,
-          emailUser: this.registerForm.get('email').value,
-          passwordUser: this.registerForm.get('password').value
-        })
-
-      this.viewSnackbar = !this.viewSnackbar;
-      this.messageSnackBar = 'Cadastro realizado com sucesso! Enviamos um e-mail para você.';
-      this.warningIcon = '../../../assets//successIcon.png';
-      // console.log(this.registerForm);
-
-      setTimeout(() => {
-        this.registerForm.reset()
-      }, 2000)
+      this.userService.register({ nameUser: this.registerForm.get('completeName').value, emailUser: this.registerForm.get('email').value, passwordUser: this.registerForm.get('password').value }).subscribe({
+        next: (data) => console.log(data),
+        error: (error) => { console.log(error), this.feedbackService.sendValuesForSnackbarFeedbackComponent.next({ viewSnackbar: true, message: 'Erro no serviço de cadastro do usuário. Aguarde alguns segundos.', icon: '../../../assets//warningIcon.png' }) },
+        complete: () => {
+          console.log('Usuário cadastrado com sucesso!'), this.feedbackService.sendValuesForSnackbarFeedbackComponent.next({ viewSnackbar: true, message: 'Cadastro realizado com sucesso!', icon: '../../../assets//successIcon.png' }),
+          this.registerForm.reset()
+          emailjs.send(this.idService, this.template, templateParams, this.apiKey).then(response => {
+            console.log("Email enviado com sucesso!", response.status, response.text), this.feedbackService.sendValuesForSnackbarFeedbackComponent.next({ viewSnackbar: true, message: 'E-mail enviado p/ usuário cadastrado', icon: '../../../assets/successIcon.png' })
+          }).catch((error) => { console.log(error), this.feedbackService.sendValuesForSnackbarFeedbackComponent.next({ viewSnackbar: true, message: 'Erro no envio do e-mail p/ usuário cadastrado.', icon: '../../../assets/warningIcon.png' }) })
+        }
+      })
     }
   }
 }

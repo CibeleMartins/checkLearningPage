@@ -5,6 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AuthResponseData } from '../interfaces/AuthResponseData.model';
 import { UserRegistered } from '../interfaces/interfacesUser';
+import { SnackBarService } from './SnackbarFeedback.service';
 
 @Injectable({
   providedIn: 'root',
@@ -13,8 +14,8 @@ export class UserService {
 
   userSubject: Subject<AuthResponseData> = new Subject();
 
-  
-  constructor(private http: HttpClient) {}
+
+  constructor(private http: HttpClient, private feedbackService: SnackBarService) { }
 
   formatUser(data: AuthResponseData) {
     const user = new User(
@@ -27,11 +28,7 @@ export class UserService {
   }
 
   register(dataUserRegistered: UserRegistered) {
-    this.http.post(desenv.apiRegister, dataUserRegistered).subscribe({
-      next: (data) => console.log(data),
-      error: (error) => console.log(error),
-      complete: () => console.log('Usuário registrado com sucesso!')
-    })
+    return this.http.post(desenv.apiRegister, dataUserRegistered)
   }
 
 }
