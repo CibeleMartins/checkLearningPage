@@ -3,7 +3,11 @@
         <div class="container-annotation">
             <div class="container-title-date">
                 <h1 class="title">{{annotation.title}}</h1>
-                <p class="date">{{annotation.date}}</p>
+
+                <div class="container-date">
+                    <p class="date">Criado em: {{annotation.createdAt}}</p>
+                    <p class="date">Últ. atualização: {{annotation.updatedAt}}</p>
+                </div>
             </div>
             <p [id]="elements[i]">{{getValuesOfObject(annotation.annotation, elements[i])}}</p>
         </div>

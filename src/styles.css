@@ -9,22 +9,16 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.mdc-snackbar__surface.ng-tns-c95-0 {
-    padding-right: 0px;
-    border-radius: 20px;   
-    background-color: white;
-    position: absolute;
-    right: 1vw;
-    top: 1.5vw;
+.mdc-snackbar__surface {
+    height: 5vw !important;;
 }
 
 .mat-mdc-snack-bar-container {
     --mdc-snackbar-container-color: #ffff;
     border-radius: 20px;
-   
+    height: 5vw !important;
 }
 
 .ng-tns-c54-0.carousel-inner.ng-star- {
     width: 100% !important; 
 }
-

@@ -62,11 +62,16 @@
   color: #393939;
 }
 
+.container-date {
+  
+}
+
 .date {
   letter-spacing: 1px;
   text-transform: uppercase;
-  font-size: medium;
+  font-size: small;
   color: #393939;
+  white-space: nowrap;
 }
 
 .description {

@@ -65,7 +65,7 @@ export class AnnotationsComponent implements OnInit {
   }
 
   onAddAnnotation(event: Event) {
-    if (this.annotationForms.invalid) {
+    if (this.annotationForms.status === "INVALID") {
       event.preventDefault();
       this.viewSnackbar = !this.viewSnackbar;
       this.messageSnackBar = 'É necessário preencher todos os campos.';
@@ -73,19 +73,21 @@ export class AnnotationsComponent implements OnInit {
       console.log(this.annotationForms);
 
     } else {
-      this.viewSnackbar = !this.viewSnackbar;
-      this.messageSnackBar = 'Anotação feita com sucesso!';
-      this.warningIcon = '../../../assets//successIcon.png';
-
       let annotation: AnnotationModel = {
         title: this.annotationForms.get('title').value,
         annotation: this.annotationForms.get('annotation').value,
       };
 
       this.annotationService.registerAnnotationUser(annotation).subscribe({
-        next: (data: any) => { console.log('anotação registrada', data), this.annotationService.newAnnotations.next({annotation: data, isUpdate: false}) },
-        error: (e: any) => console.log(e),
-        complete: () => console.log('complete')
+        next: (data: any) => { console.log('anotação registrada', data), this.annotationService.newAnnotations.next({ annotation: data, isUpdate: false }) },
+        error: (e: any) => {  this.viewSnackbar = !this.viewSnackbar;
+          this.messageSnackBar = `${e.message}`;
+          this.warningIcon = '../../assets/warningIcon.png'; console.log(e)},
+        complete: () => {
+          this.viewSnackbar = !this.viewSnackbar;
+          this.messageSnackBar = 'Anotação registrada com sucesso!';
+          this.warningIcon = '../../assets/successIcon.png';
+        }
       });
 
       this.annotationForms.reset();
@@ -100,10 +102,11 @@ export class AnnotationsComponent implements OnInit {
     };
     console.log('id de anotaçao atualizada que vai ser enviado na requisição', this.idAnnotationUpdated)
     this.annotationService.updateAnnotationOfUser(annotation, this.idAnnotationUpdated).subscribe({
-      next: (data: any)=> {console.log('sucesso no update da anotação', data), this.annotationService.newAnnotations.next({annotation: data, isUpdate: true})},
-      error: (e: any)=> {console.log('erro no update da anotação', e)},
-      complete: ()=> {console.log('update de anotação completado')
-      this.annotationForms.reset();
+      next: (data: any) => { console.log('sucesso no update da anotação', data), this.annotationService.newAnnotations.next({ annotation: data, isUpdate: true }) },
+      error: (e: any) => { console.log('erro no update da anotação', e) },
+      complete: () => {
+        console.log('update de anotação completado')
+        this.annotationForms.reset();
       }
     })
   }

@@ -16,9 +16,10 @@ export class SnackBarService {
     data?: any,
     icon?: string
   ) {
+    console.log('icon snackbarservice', icon);
     this.snackBar.openFromComponent(SnackbarFeedbackComponent, {
       data: [data, icon],
-      duration: 1500,
+      duration: 20000,
       horizontalPosition: hPosition ? hPosition : 'end',
       verticalPosition: vPosition ? vPosition : 'top',
       panelClass: style,
